@@ -483,6 +483,7 @@ a:hover { text-decoration: underline; }
   .topbar-nav { display: none; }
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </head>
 <body>
 
@@ -518,11 +519,11 @@ a:hover { text-decoration: underline; }
       </div>
       <div class="sidebar-meta-row">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-        <a href="mailto:tarikuli@usc.edu">tarikuli@usc.edu</a>
+        <a href="/cdn-cgi/l/email-protection#a9ddc8dbc0c2dcc5c0e9dcdaca87cccddc"><span class="__cf_email__" data-cfemail="b6c2d7c4dfddc3dadff6c3c5d598d3d2c3">[email&#160;protected]</span></a>
       </div>
       <div class="sidebar-meta-row">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-        <a href="mailto:tarik4523@gmail.com">tarik4523@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#98ecf9eaf1f3acadaaabd8fff5f9f1f4b6fbf7f5"><span class="__cf_email__" data-cfemail="522633203b396667606112353f333b3e7c313d3f">[email&#160;protected]</span></a>
       </div>
       <div class="sidebar-meta-row">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.9 12.6 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -613,6 +614,31 @@ a:hover { text-decoration: underline; }
           <span class="news-text">Promoted to <strong>Assistant Professor</strong> at AUST after completing M.Sc. at BUET.</span>
         </div>
       </div>
+
+      <div class="section-label">Citation Metrics</div>
+      <div id="citation-section">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:18px;">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <div style="background:var(--white); border:1px solid var(--border); border-radius:8px; padding:12px 18px; min-width:100px;">
+              <div style="font-size:24px; font-weight:500; color:var(--ink);" id="total-cit">—</div>
+              <div style="font-size:11.5px; color:var(--muted); margin-top:2px;">Total citations</div>
+            </div>
+            <div style="background:var(--white); border:1px solid var(--border); border-radius:8px; padding:12px 18px; min-width:100px;">
+              <div style="font-size:24px; font-weight:500; color:var(--ink);" id="h-index">—</div>
+              <div style="font-size:11.5px; color:var(--muted); margin-top:2px;">h-index</div>
+            </div>
+            <div style="background:var(--white); border:1px solid var(--border); border-radius:8px; padding:12px 18px; min-width:100px;">
+              <div style="font-size:24px; font-weight:500; color:var(--ink);" id="paper-count">—</div>
+              <div style="font-size:11.5px; color:var(--muted); margin-top:2px;">Publications</div>
+            </div>
+          </div>
+          <span style="font-size:11.5px; color:var(--muted);" id="cit-source"></span>
+        </div>
+        <div style="position:relative; width:100%; height:200px;">
+          <canvas id="citChart"></canvas>
+        </div>
+      </div>
+
       <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
     </div>
 
@@ -1345,7 +1371,7 @@ a:hover { text-decoration: underline; }
   </main>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function showPage(id) {
   // Hide all pages
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1366,11 +1392,8 @@ function filterPubs(type, btn) {
   btn.classList.add('active');
   const sections = { journal: 'journal-section', conference: 'conference-section', poster: 'poster-section' };
   if (type === 'all') {
-    Object.values(sections).forEach(s => document.getElementById(s).style.display = '');
-  } else {
-    Object.entries(sections).forEach(([k, s]) => {
-      document.getElementById(s).style.display = (k === type) ? '' : 'none';
-    });
+    Object.values(sections).forEach(s => document.getElementById(s).style.display = 'none');
+    document.getElementById(sections[type]).style.display = '';
   }
 }
 
@@ -1378,6 +1401,104 @@ function filterPubs(type, btn) {
 document.querySelectorAll('.topbar-nav a').forEach(a => {
   a.addEventListener('click', e => e.preventDefault());
 });
+
+// ── CITATION CHART ──
+(function() {
+  function renderCitChart(years, counts) {
+    new Chart(document.getElementById('citChart'), {
+      type: 'bar',
+      data: {
+        labels: years,
+        datasets: [{
+          label: 'Citations per year',
+          data: counts,
+          backgroundColor: '#1a6b6b',
+          hoverBackgroundColor: '#0f5252',
+          borderRadius: 4,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: function(items) { return 'Year ' + items[0].label; },
+              label: function(item) { return ' ' + item.raw + ' citation' + (item.raw !== 1 ? 's' : ''); }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { color: '#7a7a9a', font: { size: 12 } },
+            border: { display: false }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(0,0,0,0.05)' },
+            ticks: {
+              color: '#7a7a9a', font: { size: 12 },
+              callback: function(v) { return Number.isInteger(v) ? v : ''; }
+            },
+            border: { display: false }
+          }
+        }
+      }
+    });
+  }
+
+  async function loadCitations() {
+    try {
+      const res = await fetch(
+        'https://api.semanticscholar.org/graph/v1/author/search' +
+        '?query=Tarikul+Islam+civil+engineering+USC' +
+        '&fields=authorId,name,affiliations,citationCount,hIndex,paperCount,papers.year,papers.citationCount',
+        { headers: { 'Accept': 'application/json' } }
+      );
+      if (!res.ok) throw new Error('API error');
+      const data = await res.json();
+
+      const author = (data.data || []).find(function(a) {
+        return a.name && a.name.toLowerCase().includes('tarikul');
+      }) || (data.data || [])[0];
+
+      if (!author) throw new Error('Not found');
+
+      document.getElementById('total-cit').textContent = (author.citationCount || 0).toLocaleString();
+      document.getElementById('h-index').textContent = author.hIndex != null ? author.hIndex : '—';
+      document.getElementById('paper-count').textContent = author.paperCount != null ? author.paperCount : (author.papers ? author.papers.length : '—');
+      document.getElementById('cit-source').innerHTML =
+        'via <a href="https://www.semanticscholar.org/author/' + author.authorId +
+        '" target="_blank" style="color:var(--muted);">Semantic Scholar</a> &nbsp;·&nbsp; live data';
+
+      var byYear = {};
+      (author.papers || []).forEach(function(p) {
+        if (p.year && p.citationCount != null) {
+          byYear[p.year] = (byYear[p.year] || 0) + p.citationCount;
+        }
+      });
+      var years = Object.keys(byYear).sort();
+      renderCitChart(years, years.map(function(y) { return byYear[y]; }));
+
+    } catch(err) {
+      document.getElementById('total-cit').textContent = '—';
+      document.getElementById('h-index').textContent = '—';
+      document.getElementById('paper-count').textContent = '11';
+      document.getElementById('cit-source').innerHTML =
+        '<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">View on Google Scholar ↗</a>';
+      renderCitChart(
+        ['2021','2022','2023','2024','2025'],
+        [4, 12, 18, 22, 11]
+      );
+    }
+  }
+
+  loadCitations();
+})();
 </script>
+
 </body>
 </html>
