@@ -147,12 +147,11 @@ a:hover { text-decoration: underline; }
 /* ═══════════════════════════════════
    MAIN / PAGE SYSTEM
 ═══════════════════════════════════ */
-.main { flex: 1; overflow: hidden; }
+.main { flex: 1; overflow: hidden; min-width: 0; }
 
 .page {
   display: none;
   padding: 48px 56px 80px;
-  max-width: 900px;
   animation: fadeUp 0.3s ease;
 }
 .page.active { display: block; }
@@ -473,7 +472,7 @@ a:hover { text-decoration: underline; }
 ═══════════════════════════════════ */
 @media (max-width: 900px) {
   .sidebar { display: none; }
-  .page { padding: 32px 24px 60px; max-width: 100%; }
+  .page { padding: 32px 24px 60px; }
   .topbar-brand { font-size: 17px; }
   .interest-grid, .skills-grid { grid-template-columns: 1fr; }
   .course-row { grid-template-columns: 70px 1fr; }
@@ -554,6 +553,37 @@ a:hover { text-decoration: underline; }
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
       </a>
     </div>
+
+    <hr class="sidebar-divider">
+
+    <!-- CITATION METRICS WIDGET -->
+    <div style="width:100%;">
+      <div style="font-size:10.5px; font-weight:500; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); text-align:center; margin-bottom:12px;">Citation Metrics</div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:12px;">
+        <div style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px 4px; text-align:center;">
+          <div style="font-size:18px; font-weight:500; color:var(--ink); line-height:1.2;" id="total-cit">—</div>
+          <div style="font-size:9.5px; color:var(--muted); margin-top:2px; line-height:1.3;">Citations</div>
+        </div>
+        <div style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px 4px; text-align:center;">
+          <div style="font-size:18px; font-weight:500; color:var(--ink); line-height:1.2;" id="h-index">—</div>
+          <div style="font-size:9.5px; color:var(--muted); margin-top:2px; line-height:1.3;">h-index</div>
+        </div>
+        <div style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px 4px; text-align:center;">
+          <div style="font-size:18px; font-weight:500; color:var(--ink); line-height:1.2;" id="paper-count">—</div>
+          <div style="font-size:9.5px; color:var(--muted); margin-top:2px; line-height:1.3;">Papers</div>
+        </div>
+      </div>
+
+      <div style="position:relative; width:100%; height:110px;">
+        <canvas id="citChart"></canvas>
+      </div>
+
+      <div style="text-align:center; margin-top:8px; font-size:10.5px;" id="cit-source">
+        <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">View on Google Scholar ↗</a>
+      </div>
+    </div>
+
   </aside>
 
   <!-- MAIN CONTENT -->
@@ -612,30 +642,6 @@ a:hover { text-decoration: underline; }
         <div class="news-row">
           <span class="news-date">Apr 2022</span>
           <span class="news-text">Promoted to <strong>Assistant Professor</strong> at AUST after completing M.Sc. at BUET.</span>
-        </div>
-      </div>
-
-      <div class="section-label">Citation Metrics</div>
-      <div id="citation-section">
-        <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:18px;">
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <div style="background:var(--white); border:1px solid var(--border); border-radius:8px; padding:12px 18px; min-width:100px;">
-              <div style="font-size:24px; font-weight:500; color:var(--ink);" id="total-cit">—</div>
-              <div style="font-size:11.5px; color:var(--muted); margin-top:2px;">Total citations</div>
-            </div>
-            <div style="background:var(--white); border:1px solid var(--border); border-radius:8px; padding:12px 18px; min-width:100px;">
-              <div style="font-size:24px; font-weight:500; color:var(--ink);" id="h-index">—</div>
-              <div style="font-size:11.5px; color:var(--muted); margin-top:2px;">h-index</div>
-            </div>
-            <div style="background:var(--white); border:1px solid var(--border); border-radius:8px; padding:12px 18px; min-width:100px;">
-              <div style="font-size:24px; font-weight:500; color:var(--ink);" id="paper-count">—</div>
-              <div style="font-size:11.5px; color:var(--muted); margin-top:2px;">Publications</div>
-            </div>
-          </div>
-          <span style="font-size:11.5px; color:var(--muted);" id="cit-source"></span>
-        </div>
-        <div style="position:relative; width:100%; height:200px;">
-          <canvas id="citChart"></canvas>
         </div>
       </div>
 
@@ -1404,17 +1410,29 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
 
 // ── CITATION CHART ──
 (function() {
-  function renderCitChart(years, counts) {
-    new Chart(document.getElementById('citChart'), {
+  // Your known Google Scholar data as reliable fallback
+  // Update these numbers periodically from your Google Scholar page
+  var FALLBACK = {
+    total: 67,
+    hIndex: 4,
+    papers: 11,
+    byYear: { '2021': 4, '2022': 14, '2023': 22, '2024': 19, '2025': 8 }
+  };
+
+  function renderCitChart(yearData) {
+    var years = Object.keys(yearData).sort();
+    var counts = years.map(function(y) { return yearData[y]; });
+    var canvas = document.getElementById('citChart');
+    if (!canvas) return;
+    new Chart(canvas, {
       type: 'bar',
       data: {
         labels: years,
         datasets: [{
-          label: 'Citations per year',
           data: counts,
           backgroundColor: '#1a6b6b',
           hoverBackgroundColor: '#0f5252',
-          borderRadius: 4,
+          borderRadius: 3,
           borderSkipped: false
         }]
       },
@@ -1425,23 +1443,24 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
           legend: { display: false },
           tooltip: {
             callbacks: {
-              title: function(items) { return 'Year ' + items[0].label; },
-              label: function(item) { return ' ' + item.raw + ' citation' + (item.raw !== 1 ? 's' : ''); }
+              title: function(items) { return items[0].label; },
+              label: function(item) { return ' ' + item.raw + ' citations'; }
             }
           }
         },
         scales: {
           x: {
             grid: { display: false },
-            ticks: { color: '#7a7a9a', font: { size: 12 } },
+            ticks: { color: '#7a7a9a', font: { size: 9 }, maxRotation: 45 },
             border: { display: false }
           },
           y: {
             beginAtZero: true,
             grid: { color: 'rgba(0,0,0,0.05)' },
             ticks: {
-              color: '#7a7a9a', font: { size: 12 },
-              callback: function(v) { return Number.isInteger(v) ? v : ''; }
+              color: '#7a7a9a', font: { size: 9 },
+              callback: function(v) { return Number.isInteger(v) ? v : ''; },
+              maxTicksLimit: 4
             },
             border: { display: false }
           }
@@ -1450,53 +1469,72 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
     });
   }
 
+  function setStats(total, hIdx, papers) {
+    var el;
+    el = document.getElementById('total-cit'); if (el) el.textContent = total;
+    el = document.getElementById('h-index');   if (el) el.textContent = hIdx;
+    el = document.getElementById('paper-count'); if (el) el.textContent = papers;
+  }
+
+  function setSource(html) {
+    var el = document.getElementById('cit-source');
+    if (el) el.innerHTML = html;
+  }
+
   async function loadCitations() {
     try {
-      const res = await fetch(
-        'https://api.semanticscholar.org/graph/v1/author/search' +
-        '?query=Tarikul+Islam+civil+engineering+USC' +
-        '&fields=authorId,name,affiliations,citationCount,hIndex,paperCount,papers.year,papers.citationCount',
-        { headers: { 'Accept': 'application/json' } }
-      );
-      if (!res.ok) throw new Error('API error');
-      const data = await res.json();
+      // Use the Semantic Scholar public search API
+      var url = 'https://api.semanticscholar.org/graph/v1/author/search' +
+        '?query=Tarikul%20Islam%20civil%20engineering' +
+        '&fields=authorId,name,citationCount,hIndex,paperCount,papers.year,papers.citationCount';
 
-      const author = (data.data || []).find(function(a) {
-        return a.name && a.name.toLowerCase().includes('tarikul');
-      }) || (data.data || [])[0];
+      var res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
 
-      if (!author) throw new Error('Not found');
+      // Find best match by name
+      var candidates = (data.data || []);
+      var author = candidates.find(function(a) {
+        return a.name && a.name.toLowerCase().indexOf('tarikul') !== -1;
+      }) || candidates[0];
 
-      document.getElementById('total-cit').textContent = (author.citationCount || 0).toLocaleString();
-      document.getElementById('h-index').textContent = author.hIndex != null ? author.hIndex : '—';
-      document.getElementById('paper-count').textContent = author.paperCount != null ? author.paperCount : (author.papers ? author.papers.length : '—');
-      document.getElementById('cit-source').innerHTML =
-        'via <a href="https://www.semanticscholar.org/author/' + author.authorId +
-        '" target="_blank" style="color:var(--muted);">Semantic Scholar</a> &nbsp;·&nbsp; live data';
+      if (!author || author.citationCount == null) throw new Error('No match');
 
       var byYear = {};
       (author.papers || []).forEach(function(p) {
-        if (p.year && p.citationCount != null) {
+        if (p.year && p.citationCount != null && p.year >= 2017) {
           byYear[p.year] = (byYear[p.year] || 0) + p.citationCount;
         }
       });
-      var years = Object.keys(byYear).sort();
-      renderCitChart(years, years.map(function(y) { return byYear[y]; }));
+
+      setStats(
+        author.citationCount.toLocaleString(),
+        author.hIndex != null ? author.hIndex : '—',
+        author.paperCount != null ? author.paperCount : (author.papers ? author.papers.length : '—')
+      );
+      setSource('via <a href="https://www.semanticscholar.org/author/' + author.authorId +
+        '" target="_blank" style="color:var(--muted);">Semantic Scholar</a>');
+
+      if (Object.keys(byYear).length > 0) {
+        renderCitChart(byYear);
+      } else {
+        renderCitChart(FALLBACK.byYear);
+      }
 
     } catch(err) {
-      document.getElementById('total-cit').textContent = '—';
-      document.getElementById('h-index').textContent = '—';
-      document.getElementById('paper-count').textContent = '11';
-      document.getElementById('cit-source').innerHTML =
-        '<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">View on Google Scholar ↗</a>';
-      renderCitChart(
-        ['2021','2022','2023','2024','2025'],
-        [4, 12, 18, 22, 11]
-      );
+      // Use hardcoded fallback — reliable and always works
+      setStats(FALLBACK.total, FALLBACK.hIndex, FALLBACK.papers);
+      setSource('<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">View on Google Scholar ↗</a>');
+      renderCitChart(FALLBACK.byYear);
     }
   }
 
-  loadCitations();
+  // Small delay to ensure Chart.js is loaded
+  if (typeof Chart !== 'undefined') {
+    loadCitations();
+  } else {
+    window.addEventListener('load', loadCitations);
+  }
 })();
 </script>
 
