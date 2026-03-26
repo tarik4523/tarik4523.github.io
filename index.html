@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -31,22 +30,22 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* TOP BAR */
-.topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(–nav-h); background: var(–ink); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
-.topbar-brand { font-family: ‘EB Garamond’, serif; font-size: 23px; font-weight: 500; color: #fff; letter-spacing: 0.02em; flex-shrink: 0; }
-.topbar-brand:hover { text-decoration: none; color: var(–accent-mid); }
+.topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--nav-h); background: var(--ink); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+.topbar-brand { font-family: 'EB Garamond', serif; font-size: 23px; font-weight: 500; color: #fff; letter-spacing: 0.02em; flex-shrink: 0; }
+.topbar-brand:hover { text-decoration: none; color: var(--accent-mid); }
 .topbar-nav { display: flex; gap: 0; }
-.topbar-nav a { font-size: 13.5px; font-weight: 400; color: rgba(255,255,255,0.6); padding: 0 12px; height: var(–nav-h); display: flex; align-items: center; border-bottom: 2px solid transparent; transition: all 0.18s; letter-spacing: 0.04em; text-transform: uppercase; }
+.topbar-nav a { font-size: 13.5px; font-weight: 400; color: rgba(255,255,255,0.6); padding: 0 12px; height: var(--nav-h); display: flex; align-items: center; border-bottom: 2px solid transparent; transition: all 0.18s; letter-spacing: 0.04em; text-transform: uppercase; }
 .topbar-nav a:hover { color: #fff; text-decoration: none; border-bottom-color: rgba(255,255,255,0.3); }
-.topbar-nav a.active { color: #fff; border-bottom-color: var(–accent); }
+.topbar-nav a.active { color: #fff; border-bottom-color: var(--accent); }
 .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
 .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.2s; }
-.mobile-nav { display: none; position: fixed; top: var(–nav-h); left: 0; right: 0; z-index: 199; background: var(–ink); flex-direction: column; padding: 8px 0 16px; border-top: 1px solid rgba(255,255,255,0.1); }
+.mobile-nav { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 199; background: var(--ink); flex-direction: column; padding: 8px 0 16px; border-top: 1px solid rgba(255,255,255,0.1); }
 .mobile-nav.open { display: flex; }
 .mobile-nav a { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.7); padding: 12px 24px; text-transform: uppercase; letter-spacing: 0.06em; border-left: 3px solid transparent; transition: all 0.15s; }
-.mobile-nav a:hover, .mobile-nav a.active { color: #fff; border-left-color: var(–accent); background: rgba(255,255,255,0.05); text-decoration: none; }
+.mobile-nav a:hover, .mobile-nav a.active { color: #fff; border-left-color: var(--accent); background: rgba(255,255,255,0.05); text-decoration: none; }
 
 /* LAYOUT */
-.layout { margin-top: var(–nav-h); }
+.layout { margin-top: var(--nav-h); }
 
 /* PAGES */
 .page { display: none; padding: 50px 64px 88px; max-width: 1100px; margin: 0 auto; animation: fadeUp 0.3s ease; }
@@ -54,10 +53,10 @@ a:hover { text-decoration: underline; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* COMMON */
-.page-title { font-family: ‘EB Garamond’, serif; font-size: 39px; font-weight: 500; color: var(–ink); margin-bottom: 7px; line-height: 1.2; }
-.page-subtitle { font-size: 16px; color: var(–muted); font-weight: 300; margin-bottom: 36px; letter-spacing: 0.02em; }
-.section-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(–accent); margin-bottom: 20px; margin-top: 40px; display: flex; align-items: center; gap: 10px; }
-.section-label::after { content: ‘’; flex: 1; height: 1px; background: var(–border); }
+.page-title { font-family: 'EB Garamond', serif; font-size: 39px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.2; }
+.page-subtitle { font-size: 16px; color: var(--muted); font-weight: 300; margin-bottom: 36px; letter-spacing: 0.02em; }
+.section-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 20px; margin-top: 40px; display: flex; align-items: center; gap: 10px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .section-label:first-child { margin-top: 0; }
 
 /* ── BIO HERO: two-column ── */
@@ -66,212 +65,210 @@ a:hover { text-decoration: underline; }
 
 /* Profile card (right) */
 .profile-card { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.profile-ring { width: 190px; height: 190px; border-radius: 50%; border: 3px solid var(–border); background: linear-gradient(135deg, #e8edf8, #f5e8e8); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; position: relative; }
-.profile-ring::after { content: ‘’; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid transparent; background: linear-gradient(135deg, var(–accent), var(–teal)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude; }
+.profile-ring { width: 190px; height: 190px; border-radius: 50%; border: 3px solid var(--border); background: linear-gradient(135deg, #e8edf8, #f5e8e8); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; position: relative; }
+.profile-ring::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid transparent; background: linear-gradient(135deg, var(--accent), var(--teal)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude; }
 .profile-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
-.profile-meta { width: 100%; background: var(–white); border: 1px solid var(–border); border-radius: 8px; padding: 16px 16px 12px; }
-.profile-meta-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 9px; font-size: 13px; color: var(–ink-soft); }
+.profile-meta { width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 16px 12px; }
+.profile-meta-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 9px; font-size: 13px; color: var(--ink-soft); }
 .profile-meta-row:last-child { margin-bottom: 0; }
-.profile-meta-row svg { flex-shrink: 0; margin-top: 3px; color: var(–muted); }
-.profile-meta-row a { color: var(–ink-soft); font-size: 13px; word-break: break-all; }
-.profile-meta-row a:hover { color: var(–accent); }
+.profile-meta-row svg { flex-shrink: 0; margin-top: 3px; color: var(--muted); }
+.profile-meta-row a { color: var(--ink-soft); font-size: 13px; word-break: break-all; }
+.profile-meta-row a:hover { color: var(--accent); }
 .profile-meta-row span { line-height: 1.55; }
-.profile-meta-divider { border: none; border-top: 1px solid var(–border); margin: 11px 0; }
+.profile-meta-divider { border: none; border-top: 1px solid var(--border); margin: 11px 0; }
 .social-icons { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-.social-icons a { width: 34px; height: 34px; border-radius: 6px; border: 1px solid var(–border); display: flex; align-items: center; justify-content: center; color: var(–muted); transition: all 0.15s; background: var(–white); }
-.social-icons a:hover { border-color: var(–accent); background: var(–accent-soft); text-decoration: none; }
+.social-icons a { width: 34px; height: 34px; border-radius: 6px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all 0.15s; background: var(--white); }
+.social-icons a:hover { border-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
 
 /* Citation metrics */
-.cit-section { width: 100%; background: var(–white); border: 1px solid var(–border); border-radius: 8px; padding: 16px 16px 12px; }
-.cit-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(–muted); margin-bottom: 12px; text-align: center; }
+.cit-section { width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 16px 12px; }
+.cit-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 12px; text-align: center; }
 .cit-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 12px; }
-.cit-box { background: var(–bg); border: 1px solid var(–border); border-radius: 6px; padding: 8px 4px; text-align: center; }
-.cit-num { font-size: 20px; font-weight: 500; color: var(–ink); line-height: 1.2; }
-.cit-lbl { font-size: 9.5px; color: var(–muted); margin-top: 2px; line-height: 1.3; }
+.cit-box { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 4px; text-align: center; }
+.cit-num { font-size: 20px; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.cit-lbl { font-size: 9.5px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
 .cit-chart-wrap { position: relative; width: 100%; height: 110px; }
 .cit-source { text-align: center; margin-top: 8px; font-size: 11px; }
 
 /* BIO text */
-.bio-intro { font-family: ‘EB Garamond’, serif; font-size: 23px; line-height: 1.75; color: var(–ink); margin-bottom: 26px; font-weight: 400; }
-.bio-body { font-size: 17.5px; line-height: 1.85; color: var(–ink-soft); margin-bottom: 18px; font-weight: 300; }
-.bio-body strong { font-weight: 500; color: var(–ink); }
+.bio-intro { font-family: 'EB Garamond', serif; font-size: 23px; line-height: 1.75; color: var(--ink); margin-bottom: 26px; font-weight: 400; }
+.bio-body { font-size: 17.5px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 18px; font-weight: 300; }
+.bio-body strong { font-weight: 500; color: var(--ink); }
 .interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 4px; }
-.interest-tag { background: var(–white); border: 1px solid var(–border); border-left: 3px solid var(–accent); border-radius: 0 4px 4px 0; padding: 11px 16px; font-size: 15.5px; color: var(–ink-soft); font-weight: 300; }
-.news-list { border-top: 1px solid var(–border); }
-.news-row { display: flex; gap: 22px; padding: 13px 0; border-bottom: 1px solid var(–border); align-items: flex-start; }
-.news-date { font-family: ‘DM Mono’, monospace; font-size: 13.5px; color: var(–muted); flex-shrink: 0; width: 90px; padding-top: 2px; }
-.news-text { font-size: 16px; font-weight: 300; color: var(–ink-soft); line-height: 1.6; }
-.news-text strong { font-weight: 500; color: var(–ink); }
+.interest-tag { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0; padding: 11px 16px; font-size: 15.5px; color: var(--ink-soft); font-weight: 300; }
+.news-list { border-top: 1px solid var(--border); }
+.news-row { display: flex; gap: 22px; padding: 13px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.news-date { font-family: 'DM Mono', monospace; font-size: 13.5px; color: var(--muted); flex-shrink: 0; width: 90px; padding-top: 2px; }
+.news-text { font-size: 16px; font-weight: 300; color: var(--ink-soft); line-height: 1.6; }
+.news-text strong { font-weight: 500; color: var(--ink); }
 
 /* TIMELINE */
 .timeline { position: relative; padding-left: 24px; }
-.timeline::before { content: ‘’; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(–border); }
+.timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
 .tl-item { position: relative; padding: 0 0 30px 22px; }
-.tl-item::before { content: ‘’; position: absolute; left: -3px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(–white); border: 2px solid var(–accent); }
-.tl-period { font-family: ‘DM Mono’, monospace; font-size: 13px; color: var(–muted); margin-bottom: 4px; }
-.tl-title { font-size: 17.5px; font-weight: 500; color: var(–ink); margin-bottom: 3px; line-height: 1.35; }
-.tl-org { font-size: 15.5px; color: var(–ink-soft); font-weight: 300; margin-bottom: 5px; }
-.tl-desc { font-size: 14.5px; color: var(–muted); line-height: 1.65; font-weight: 300; }
+.tl-item::before { content: ''; position: absolute; left: -3px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--white); border: 2px solid var(--accent); }
+.tl-period { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.tl-title { font-size: 17.5px; font-weight: 500; color: var(--ink); margin-bottom: 3px; line-height: 1.35; }
+.tl-org { font-size: 15.5px; color: var(--ink-soft); font-weight: 300; margin-bottom: 5px; }
+.tl-desc { font-size: 14.5px; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
 /* RESEARCH */
-.research-card { background: var(–white); border: 1px solid var(–border); border-radius: 8px; padding: 26px 24px; margin-bottom: 16px; transition: box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
-.research-card::before { content: ‘’; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(–accent); }
-.research-card.teal::before { background: var(–teal); }
-.research-card.gold::before { background: var(–gold); }
+.research-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 26px 24px; margin-bottom: 16px; transition: box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+.research-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+.research-card.teal::before { background: var(--teal); }
+.research-card.gold::before { background: var(--gold); }
 .research-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); border-color: #ccc; }
-.rc-tag { display: inline-block; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 3px; background: var(–accent-soft); color: var(–accent); margin-bottom: 11px; }
-.rc-tag.teal { background: var(–teal-soft); color: var(–teal); }
-.rc-tag.gold { background: var(–gold-soft); color: var(–gold); }
-.rc-title { font-family: ‘EB Garamond’, serif; font-size: 22px; font-weight: 500; color: var(–ink); margin-bottom: 9px; line-height: 1.35; }
-.rc-desc { font-size: 16px; color: var(–ink-soft); line-height: 1.75; font-weight: 300; }
+.rc-tag { display: inline-block; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 3px; background: var(--accent-soft); color: var(--accent); margin-bottom: 11px; }
+.rc-tag.teal { background: var(--teal-soft); color: var(--teal); }
+.rc-tag.gold { background: var(--gold-soft); color: var(--gold); }
+.rc-title { font-family: 'EB Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 9px; line-height: 1.35; }
+.rc-desc { font-size: 16px; color: var(--ink-soft); line-height: 1.75; font-weight: 300; }
 
 /* PUBLICATIONS */
 .pub-filter { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 26px; }
-.filter-btn { font-size: 13.5px; font-weight: 500; padding: 6px 16px; border: 1px solid var(–border); border-radius: 20px; color: var(–muted); background: var(–white); cursor: pointer; transition: all 0.15s; font-family: ‘DM Sans’, sans-serif; }
-.filter-btn:hover, .filter-btn.active { background: var(–ink); color: #fff; border-color: var(–ink); }
-.pub-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(–border); align-items: flex-start; }
-.pub-num { font-family: ‘DM Mono’, monospace; font-size: 13.5px; color: var(–muted); width: 26px; flex-shrink: 0; padding-top: 3px; text-align: right; }
-.pub-badge { flex-shrink: 0; background: var(–ink); color: #fff; font-size: 11.5px; font-weight: 500; padding: 4px 8px; border-radius: 3px; letter-spacing: 0.06em; margin-top: 3px; text-transform: uppercase; white-space: nowrap; }
+.filter-btn { font-size: 13.5px; font-weight: 500; padding: 6px 16px; border: 1px solid var(--border); border-radius: 20px; color: var(--muted); background: var(--white); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+.filter-btn:hover, .filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.pub-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.pub-num { font-family: 'DM Mono', monospace; font-size: 13.5px; color: var(--muted); width: 26px; flex-shrink: 0; padding-top: 3px; text-align: right; }
+.pub-badge { flex-shrink: 0; background: var(--ink); color: #fff; font-size: 11.5px; font-weight: 500; padding: 4px 8px; border-radius: 3px; letter-spacing: 0.06em; margin-top: 3px; text-transform: uppercase; white-space: nowrap; }
 .pub-body { flex: 1; min-width: 0; }
-.pub-title { font-size: 16.5px; font-weight: 500; color: var(–ink); margin-bottom: 5px; line-height: 1.45; }
-.pub-authors { font-size: 14.5px; color: var(–muted); margin-bottom: 4px; font-weight: 300; }
-.pub-authors em { font-style: normal; font-weight: 500; color: var(–ink-soft); }
-.pub-venue { font-size: 14px; color: var(–teal); font-style: italic; margin-bottom: 7px; }
+.pub-title { font-size: 16.5px; font-weight: 500; color: var(--ink); margin-bottom: 5px; line-height: 1.45; }
+.pub-authors { font-size: 14.5px; color: var(--muted); margin-bottom: 4px; font-weight: 300; }
+.pub-authors em { font-style: normal; font-weight: 500; color: var(--ink-soft); }
+.pub-venue { font-size: 14px; color: var(--teal); font-style: italic; margin-bottom: 7px; }
 .pub-links { display: flex; gap: 6px; flex-wrap: wrap; }
-.pub-link { font-size: 13px; font-weight: 400; padding: 3px 11px; border: 1px solid var(–border); border-radius: 3px; color: var(–muted); transition: all 0.15s; }
-.pub-link:hover { background: var(–accent-soft); border-color: var(–accent); color: var(–accent); text-decoration: none; }
-.poster-item { background: var(–teal-soft); border: 1px solid #c0dede; border-radius: 6px; padding: 18px 20px; margin-bottom: 11px; }
-.poster-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(–teal); margin-bottom: 7px; }
-.poster-title { font-size: 16px; font-weight: 500; color: var(–ink); margin-bottom: 5px; }
-.poster-authors { font-size: 14.5px; color: var(–ink-soft); margin-bottom: 3px; font-weight: 300; }
-.poster-venue { font-size: 13.5px; color: var(–muted); font-style: italic; }
+.pub-link { font-size: 13px; font-weight: 400; padding: 3px 11px; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); transition: all 0.15s; }
+.pub-link:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.poster-item { background: var(--teal-soft); border: 1px solid #c0dede; border-radius: 6px; padding: 18px 20px; margin-bottom: 11px; }
+.poster-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 7px; }
+.poster-title { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+.poster-authors { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 3px; font-weight: 300; }
+.poster-venue { font-size: 13.5px; color: var(--muted); font-style: italic; }
 
 /* TEACHING */
 .inst-block { margin-bottom: 38px; }
 .inst-header { display: flex; align-items: center; gap: 14px; margin-bottom: 5px; }
 .inst-logo { height: 42px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
-.inst-name { font-family: ‘EB Garamond’, serif; font-size: 21px; font-weight: 500; color: var(–ink); }
-.inst-loc { font-size: 14.5px; color: var(–muted); margin-bottom: 16px; }
-.teaching-group-label { font-size: 12.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(–muted); margin: 16px 0 7px; padding-bottom: 6px; border-bottom: 1px dashed var(–border); }
+.inst-name { font-family: 'EB Garamond', serif; font-size: 21px; font-weight: 500; color: var(--ink); }
+.inst-loc { font-size: 14.5px; color: var(--muted); margin-bottom: 16px; }
+.teaching-group-label { font-size: 12.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 16px 0 7px; padding-bottom: 6px; border-bottom: 1px dashed var(--border); }
 .course-row { display: grid; grid-template-columns: 90px 1fr 160px; gap: 11px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #f5f5f5; font-size: 16px; }
 .course-row:last-child { border-bottom: none; }
-.course-code { font-family: ‘DM Mono’, monospace; font-size: 13.5px; color: var(–accent); font-weight: 500; }
-.course-name { color: var(–ink-soft); font-weight: 300; }
-.course-term { font-size: 13.5px; color: var(–muted); text-align: right; }
+.course-code { font-family: 'DM Mono', monospace; font-size: 13.5px; color: var(--accent); font-weight: 500; }
+.course-name { color: var(--ink-soft); font-weight: 300; }
+.course-term { font-size: 13.5px; color: var(--muted); text-align: right; }
 
 /* MENTORING */
-.mentee-card { background: var(–white); border: 1px solid var(–border); border-radius: 6px; padding: 20px 22px; margin-bottom: 13px; }
-.mentee-period { font-family: ‘DM Mono’, monospace; font-size: 13px; color: var(–muted); margin-bottom: 7px; }
-.mentee-thesis { font-size: 16.5px; font-weight: 500; color: var(–ink); margin-bottom: 7px; line-height: 1.4; }
-.mentee-students { font-size: 14.5px; color: var(–ink-soft); font-weight: 300; font-style: italic; }
-.mentor-highlight { display: flex; gap: 16px; align-items: flex-start; background: var(–accent-soft); border: 1px solid var(–accent-mid); border-radius: 6px; padding: 20px 22px; margin-bottom: 16px; }
+.mentee-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px; margin-bottom: 13px; }
+.mentee-period { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--muted); margin-bottom: 7px; }
+.mentee-thesis { font-size: 16.5px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.4; }
+.mentee-students { font-size: 14.5px; color: var(--ink-soft); font-weight: 300; font-style: italic; }
+.mentor-highlight { display: flex; gap: 16px; align-items: flex-start; background: var(--accent-soft); border: 1px solid var(--accent-mid); border-radius: 6px; padding: 20px 22px; margin-bottom: 16px; }
 .mh-icon { font-size: 26px; flex-shrink: 0; }
-.mh-title { font-size: 17px; font-weight: 500; color: var(–ink); margin-bottom: 4px; }
-.mh-sub { font-size: 14.5px; color: var(–ink-soft); font-weight: 300; }
+.mh-title { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.mh-sub { font-size: 14.5px; color: var(--ink-soft); font-weight: 300; }
 
 /* AWARDS */
-.award-card { display: flex; gap: 18px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(–border); }
-.award-year { font-family: ‘DM Mono’, monospace; font-size: 13.5px; color: var(–muted); width: 90px; flex-shrink: 0; padding-top: 3px; }
+.award-card { display: flex; gap: 18px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.award-year { font-family: 'DM Mono', monospace; font-size: 13.5px; color: var(--muted); width: 90px; flex-shrink: 0; padding-top: 3px; }
 .award-icon { font-size: 20px; flex-shrink: 0; }
-.award-title { font-size: 17px; font-weight: 500; color: var(–ink); margin-bottom: 3px; }
-.award-org { font-size: 14.5px; color: var(–ink-soft); font-weight: 300; }
-.grant-card { background: var(–gold-soft); border: 1px solid #e8d5a0; border-left: 3px solid var(–gold); border-radius: 0 6px 6px 0; padding: 20px 22px; margin-bottom: 13px; }
-.grant-agency { font-size: 12.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(–gold); margin-bottom: 7px; }
-.grant-title { font-size: 16.5px; font-weight: 500; color: var(–ink); margin-bottom: 7px; line-height: 1.4; }
-.grant-meta { font-size: 14.5px; color: var(–ink-soft); font-weight: 300; line-height: 1.7; }
-.cert-item { padding: 13px 0; border-bottom: 1px solid var(–border); display: flex; gap: 18px; align-items: flex-start; }
-.cert-period { font-family: ‘DM Mono’, monospace; font-size: 13px; color: var(–muted); width: 115px; flex-shrink: 0; padding-top: 3px; }
-.cert-name { font-size: 16.5px; font-weight: 500; color: var(–ink); margin-bottom: 3px; }
-.cert-org { font-size: 14px; color: var(–muted); font-weight: 300; }
+.award-title { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.award-org { font-size: 14.5px; color: var(--ink-soft); font-weight: 300; }
+.grant-card { background: var(--gold-soft); border: 1px solid #e8d5a0; border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: 20px 22px; margin-bottom: 13px; }
+.grant-agency { font-size: 12.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 7px; }
+.grant-title { font-size: 16.5px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.4; }
+.grant-meta { font-size: 14.5px; color: var(--ink-soft); font-weight: 300; line-height: 1.7; }
+.cert-item { padding: 13px 0; border-bottom: 1px solid var(--border); display: flex; gap: 18px; align-items: flex-start; }
+.cert-period { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--muted); width: 115px; flex-shrink: 0; padding-top: 3px; }
+.cert-name { font-size: 16.5px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.cert-org { font-size: 14px; color: var(--muted); font-weight: 300; }
 
 /* SKILLS */
 .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.skill-card { background: var(–white); border: 1px solid var(–border); border-radius: 8px; padding: 22px 20px; }
-.skill-card-title { font-size: 13.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(–ink); margin-bottom: 13px; padding-bottom: 9px; border-bottom: 2px solid var(–border); }
+.skill-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 22px 20px; }
+.skill-card-title { font-size: 13.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin-bottom: 13px; padding-bottom: 9px; border-bottom: 2px solid var(--border); }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-.skill-tag { font-size: 14px; padding: 5px 13px; background: var(–bg); border: 1px solid var(–border); border-radius: 4px; color: var(–ink-soft); font-weight: 300; }
-.service-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(–border); align-items: flex-start; }
-.service-period { font-family: ‘DM Mono’, monospace; font-size: 13px; color: var(–muted); width: 135px; flex-shrink: 0; padding-top: 2px; }
-.service-name { font-size: 16px; color: var(–ink-soft); font-weight: 300; }
+.skill-tag { font-size: 14px; padding: 5px 13px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; color: var(--ink-soft); font-weight: 300; }
+.service-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.service-period { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--muted); width: 135px; flex-shrink: 0; padding-top: 2px; }
+.service-name { font-size: 16px; color: var(--ink-soft); font-weight: 300; }
 
 /* FOOTER */
-.page-footer { border-top: 1px solid var(–border); margin-top: 66px; padding: 26px 0 0; text-align: center; font-size: 14px; color: var(–muted); }
+.page-footer { border-top: 1px solid var(--border); margin-top: 66px; padding: 26px 0 0; text-align: center; font-size: 14px; color: var(--muted); }
 
 /* ══════════════════════════════
-RESPONSIVE
+   RESPONSIVE
 ══════════════════════════════ */
 
 /* Tablet — hamburger appears */
 @media (max-width: 860px) {
-.topbar-nav { display: none; }
-.hamburger { display: flex; }
-.page { padding: 32px 32px 70px; }
+  .topbar-nav { display: none; }
+  .hamburger { display: flex; }
+  .page { padding: 32px 32px 70px; }
 }
 
 /* ── Mobile portrait: full vertical stack ── */
 @media (orientation: portrait) and (max-width: 700px) {
-.page { padding: 24px 16px 56px; }
-.page-title { font-size: 30px; }
-.bio-intro { font-size: 20px; }
+  .page { padding: 24px 16px 56px; }
+  .page-title { font-size: 30px; }
+  .bio-intro { font-size: 20px; }
 
-/* Bio hero stacks: photo on top, text below */
-.bio-hero {
-grid-template-columns: 1fr;
-gap: 28px;
-}
-.bio-hero-text { order: 2; }
-.profile-card {
-order: 1;
-align-items: center;
-}
-.profile-ring { width: 150px; height: 150px; }
-.profile-meta { max-width: 340px; }
-.cit-section { max-width: 340px; }
+  /* Bio hero stacks: photo on top, text below */
+  .bio-hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .bio-hero-text { order: 2; }
+  .profile-card {
+    order: 1;
+    align-items: center;
+  }
+  .profile-ring { width: 150px; height: 150px; }
+  .profile-meta { max-width: 340px; }
+  .cit-section { max-width: 340px; }
 
-/* Grids → single column */
-.interest-grid { grid-template-columns: 1fr; }
-.skills-grid { grid-template-columns: 1fr; }
+  /* Grids → single column */
+  .interest-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
 
-/* Teaching */
-.course-row { grid-template-columns: 72px 1fr; }
-.course-term { display: none; }
-.inst-logo { height: 34px; }
+  /* Teaching */
+  .course-row { grid-template-columns: 72px 1fr; }
+  .course-term { display: none; }
+  .inst-logo { height: 34px; }
 
-/* Awards */
-.award-year { width: 60px; font-size: 12px; }
-.award-card { flex-wrap: wrap; }
+  /* Awards */
+  .award-year { width: 60px; font-size: 12px; }
+  .award-card { flex-wrap: wrap; }
 
-/* Certs */
-.cert-item { flex-direction: column; gap: 4px; }
-.cert-period { width: auto; }
+  /* Certs */
+  .cert-item { flex-direction: column; gap: 4px; }
+  .cert-period { width: auto; }
 
-/* Service */
-.service-period { width: 105px; }
+  /* Service */
+  .service-period { width: 105px; }
 
-/* Pubs */
-.pub-num { display: none; }
-.pub-item { gap: 8px; }
-.pub-badge { font-size: 10.5px; padding: 3px 6px; }
+  /* Pubs */
+  .pub-num { display: none; }
+  .pub-item { gap: 8px; }
+  .pub-badge { font-size: 10.5px; padding: 3px 6px; }
 
-/* News */
-.news-date { width: 70px; font-size: 12px; }
-.news-text { font-size: 14.5px; }
+  /* News */
+  .news-date { width: 70px; font-size: 12px; }
+  .news-text { font-size: 14.5px; }
 }
 
 /* ── Landscape mobile: resemble desktop ── */
 @media (orientation: landscape) and (max-width: 860px) {
-.page { padding: 30px 40px 64px; }
-.bio-hero { grid-template-columns: 1fr 210px; gap: 40px; }
-.profile-ring { width: 175px; height: 175px; }
-.interest-grid { grid-template-columns: 1fr 1fr; }
-.skills-grid { grid-template-columns: 1fr 1fr; }
-.course-row { grid-template-columns: 80px 1fr 150px; }
-.course-term { display: block; }
+  .page { padding: 30px 40px 64px; }
+  .bio-hero { grid-template-columns: 1fr 210px; gap: 40px; }
+  .profile-ring { width: 175px; height: 175px; }
+  .interest-grid { grid-template-columns: 1fr 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .course-row { grid-template-columns: 80px 1fr 150px; }
+  .course-term { display: block; }
 }
 </style>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-
 </head>
 <body>
 
@@ -306,88 +303,84 @@ align-items: center;
 <div class="layout">
 
 <!-- ═══════════════ BIO ═══════════════ -->
-
 <div class="page active" id="page-bio">
 
   <div class="bio-hero">
 
-```
-<!-- LEFT: bio text -->
-<div class="bio-hero-text">
-  <div class="page-title">Tarikul Islam</div>
-  <div class="page-subtitle">Ph.D. Candidate · Civil &amp; Environmental Engineering · University of Southern California</div>
-  <p class="bio-intro">I am a Graduate Research and Teaching Assistant in the <a href="https://cee.usc.edu" target="_blank">Sonny Astani Department of Civil and Environmental Engineering</a> at the <strong>University of Southern California</strong>, working under <a href="https://thomas-petersen-1.github.io/" target="_blank">Dr. Thomas Petersen</a>. I also hold a position as <a href="https://www.aust.edu/ce/faculty_member/mr_tarikul_islam" target="_blank">Assistant Professor (on leave)</a> in the Department of Civil Engineering at Ahsanullah University of Science and Technology (AUST), Dhaka, Bangladesh.</p>
-  <p class="bio-body">My current research focuses on the <strong>fabrication of bicontinuous cement composites with multifunctional structural and electrical properties</strong> — an interdisciplinary study that bridges materials science, electrochemistry, and civil engineering.</p>
-  <p class="bio-body">I earned my B.Sc. in Civil Engineering from AUST (2017) and M.Sc. in Civil Engineering (Structural) from <strong>Bangladesh University of Engineering and Technology (BUET)</strong> (2022), where my research involved the experimental investigation of boiler blast loads on building structures. I have over 7 years of teaching experience and have authored <strong>10+ peer-reviewed journal articles</strong> on fiber-reinforced concrete, structural retrofitting, and numerical modeling.</p>
-  <p class="bio-body">In my leisure time, I enjoy music, films, soccer, and cricket.</p>
-</div>
+    <!-- LEFT: bio text -->
+    <div class="bio-hero-text">
+      <div class="page-title">Tarikul Islam</div>
+      <div class="page-subtitle">Ph.D. Candidate · Civil &amp; Environmental Engineering · University of Southern California</div>
+      <p class="bio-intro">I am a Graduate Research and Teaching Assistant in the <a href="https://cee.usc.edu" target="_blank">Sonny Astani Department of Civil and Environmental Engineering</a> at the <strong>University of Southern California</strong>, working under <a href="https://thomas-petersen-1.github.io/" target="_blank">Dr. Thomas Petersen</a>. I also hold a position as <a href="https://www.aust.edu/ce/faculty_member/mr_tarikul_islam" target="_blank">Assistant Professor (on leave)</a> in the Department of Civil Engineering at Ahsanullah University of Science and Technology (AUST), Dhaka, Bangladesh.</p>
+      <p class="bio-body">My current research focuses on the <strong>fabrication of bicontinuous cement composites with multifunctional structural and electrical properties</strong> — an interdisciplinary study that bridges materials science, electrochemistry, and civil engineering.</p>
+      <p class="bio-body">I earned my B.Sc. in Civil Engineering from AUST (2017) and M.Sc. in Civil Engineering (Structural) from <strong>Bangladesh University of Engineering and Technology (BUET)</strong> (2022), where my research involved the experimental investigation of boiler blast loads on building structures. I have over 7 years of teaching experience and have authored <strong>10+ peer-reviewed journal articles</strong> on fiber-reinforced concrete, structural retrofitting, and numerical modeling.</p>
+      <p class="bio-body">In my leisure time, I enjoy music, films, soccer, and cricket.</p>
+    </div>
 
-<!-- RIGHT: photo + contact + social + citations -->
-<div class="profile-card">
-  <div class="profile-ring">
-    <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-    <svg style="display:none;width:72px;height:72px;color:var(--muted);opacity:0.35;" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-    </svg>
-  </div>
+    <!-- RIGHT: photo + contact + social + citations -->
+    <div class="profile-card">
+      <div class="profile-ring">
+        <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <svg style="display:none;width:72px;height:72px;color:var(--muted);opacity:0.35;" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+        </svg>
+      </div>
 
-  <!-- Contact info -->
-  <div class="profile-meta">
-    <div class="profile-meta-row">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-      <span>3620 South Vermont Ave, KAP 211<br>Los Angeles, CA 90089, USA</span>
-    </div>
-    <div class="profile-meta-row">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-      <a href="mailto:tarikuli@usc.edu">tarikuli@usc.edu</a>
-    </div>
-    <div class="profile-meta-row">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-      <a href="mailto:tarik4523@gmail.com">tarik4523@gmail.com</a>
-    </div>
-    <hr class="profile-meta-divider">
-    <!-- Social icons -->
-    <div class="social-icons">
-      <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" title="Google Scholar">
-        <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" style="width:20px;height:20px;object-fit:contain;">
-      </a>
-      <a href="https://orcid.org/0000-0002-4193-4366" target="_blank" title="ORCID">
-        <img src="/images/Orcid_logo.png" alt="ORCID" style="width:20px;height:20px;object-fit:contain;">
-      </a>
-      <a href="https://www.scopus.com/authid/detail.uri?authorId=58035898400" target="_blank" title="Scopus">
-        <img src="/images/Scopus_logo.png" alt="Scopus" style="width:20px;height:20px;object-fit:contain;">
-      </a>
-      <a href="https://www.researchgate.net/profile/Tarikul-Islam-5" target="_blank" title="ResearchGate">
-        <img src="/images/ResearchGate_logo.png" alt="ResearchGate" style="width:20px;height:20px;object-fit:contain;">
-      </a>
-      <a href="https://www.linkedin.com/in/tarikul-islam-313785142/" target="_blank" title="LinkedIn">
-        <img src="/images/Linkedin_logo.png" alt="LinkedIn" style="width:20px;height:20px;object-fit:contain;">
-      </a>
-      <a href="https://www.aust.edu/ce/faculty_member/mr_tarikul_islam" target="_blank" title="AUST Profile">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-      </a>
-    </div>
-  </div>
+      <!-- Contact info -->
+      <div class="profile-meta">
+        <div class="profile-meta-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span>3620 South Vermont Ave, KAP 211<br>Los Angeles, CA 90089, USA</span>
+        </div>
+        <div class="profile-meta-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          <a href="mailto:tarikuli@usc.edu">tarikuli@usc.edu</a>
+        </div>
+        <div class="profile-meta-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          <a href="mailto:tarik4523@gmail.com">tarik4523@gmail.com</a>
+        </div>
+        <hr class="profile-meta-divider">
+        <!-- Social icons -->
+        <div class="social-icons">
+          <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" title="Google Scholar">
+            <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" style="width:20px;height:20px;object-fit:contain;">
+          </a>
+          <a href="https://orcid.org/0000-0002-4193-4366" target="_blank" title="ORCID">
+            <img src="/images/Orcid_logo.png" alt="ORCID" style="width:20px;height:20px;object-fit:contain;">
+          </a>
+          <a href="https://www.scopus.com/authid/detail.uri?authorId=58035898400" target="_blank" title="Scopus">
+            <img src="/images/Scopus_logo.png" alt="Scopus" style="width:20px;height:20px;object-fit:contain;">
+          </a>
+          <a href="https://www.researchgate.net/profile/Tarikul-Islam-5" target="_blank" title="ResearchGate">
+            <img src="/images/ResearchGate_logo.png" alt="ResearchGate" style="width:20px;height:20px;object-fit:contain;">
+          </a>
+          <a href="https://www.linkedin.com/in/tarikul-islam-313785142/" target="_blank" title="LinkedIn">
+            <img src="/images/Linkedin_logo.png" alt="LinkedIn" style="width:20px;height:20px;object-fit:contain;">
+          </a>
+          <a href="https://www.aust.edu/ce/faculty_member/mr_tarikul_islam" target="_blank" title="AUST Profile">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </a>
+        </div>
+      </div>
 
-  <!-- Citation metrics -->
-  <div class="cit-section">
-    <div class="cit-title">Citation Metrics</div>
-    <div class="cit-grid">
-      <div class="cit-box"><div class="cit-num" id="total-cit">—</div><div class="cit-lbl">Citations</div></div>
-      <div class="cit-box"><div class="cit-num" id="h-index">—</div><div class="cit-lbl">h-index</div></div>
-      <div class="cit-box"><div class="cit-num" id="i10-index">—</div><div class="cit-lbl">i10-index</div></div>
-      <div class="cit-box"><div class="cit-num" id="paper-count">—</div><div class="cit-lbl">Papers</div></div>
-    </div>
-    <div class="cit-chart-wrap"><canvas id="citChart"></canvas></div>
-    <div class="cit-source" id="cit-source">
-      <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">Google Scholar ↗</a>
-    </div>
-  </div>
+      <!-- Citation metrics -->
+      <div class="cit-section">
+        <div class="cit-title">Citation Metrics</div>
+        <div class="cit-grid">
+          <div class="cit-box"><div class="cit-num" id="total-cit">—</div><div class="cit-lbl">Citations</div></div>
+          <div class="cit-box"><div class="cit-num" id="h-index">—</div><div class="cit-lbl">h-index</div></div>
+          <div class="cit-box"><div class="cit-num" id="i10-index">—</div><div class="cit-lbl">i10-index</div></div>
+          <div class="cit-box"><div class="cit-num" id="paper-count">—</div><div class="cit-lbl">Papers</div></div>
+        </div>
+        <div class="cit-chart-wrap"><canvas id="citChart"></canvas></div>
+        <div class="cit-source" id="cit-source">
+          <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">Google Scholar ↗</a>
+        </div>
+      </div>
 
-</div><!-- /profile-card -->
-```
-
+    </div><!-- /profile-card -->
   </div><!-- /bio-hero -->
 
   <div class="section-label">Research Interests</div>
@@ -415,7 +408,6 @@ align-items: center;
 </div>
 
 <!-- ═══════════════ RESEARCH ═══════════════ -->
-
 <div class="page" id="page-research">
   <div class="page-title">Research</div>
   <div class="page-subtitle">Current and past research interests &amp; projects</div>
@@ -435,7 +427,6 @@ align-items: center;
 </div>
 
 <!-- ═══════════════ PUBLICATIONS ═══════════════ -->
-
 <div class="page" id="page-publications">
   <div class="page-title">Publications</div>
   <div class="page-subtitle">10 peer-reviewed journal papers · 1 conference proceeding · 1 poster presentation &nbsp;|&nbsp; * = Corresponding author</div>
@@ -475,7 +466,6 @@ align-items: center;
 </div>
 
 <!-- ═══════════════ TEACHING ═══════════════ -->
-
 <div class="page" id="page-teaching">
   <div class="page-title">Teaching</div>
   <div class="page-subtitle">Courses taught as instructor and teaching assistant across three institutions</div>
@@ -540,7 +530,6 @@ align-items: center;
 </div>
 
 <!-- ═══════════════ MENTORING ═══════════════ -->
-
 <div class="page" id="page-mentoring">
   <div class="page-title">Mentoring</div>
   <div class="page-subtitle">Undergraduate thesis advising and research mentorship</div>
@@ -559,7 +548,6 @@ align-items: center;
 </div>
 
 <!-- ═══════════════ AWARDS ═══════════════ -->
-
 <div class="page" id="page-awards">
   <div class="page-title">Awards &amp; Training</div>
   <div class="page-subtitle">Honors, fellowships, grants, and professional development</div>
@@ -585,7 +573,6 @@ align-items: center;
 </div>
 
 <!-- ═══════════════ SKILLS ═══════════════ -->
-
 <div class="page" id="page-skills">
   <div class="page-title">Skills &amp; Tools</div>
   <div class="page-subtitle">Software, programming languages, and professional affiliations</div>
@@ -614,7 +601,6 @@ align-items: center;
 </div>
 
 <!-- ═══════════════ EXPERIENCE ═══════════════ -->
-
 <div class="page" id="page-experience">
   <div class="page-title">Experience</div>
   <div class="page-subtitle">Academic appointments and professional history</div>
@@ -688,6 +674,5 @@ function filterPubs(type,btn){
   if(typeof Chart!=='undefined'){loadCitations();}else{window.addEventListener('load',loadCitations);}
 })();
 </script>
-
 </body>
 </html>
