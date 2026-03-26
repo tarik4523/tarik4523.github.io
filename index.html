@@ -1413,22 +1413,24 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
 });
 
 // ── CITATION CHART ──
+// Reads from citations.json (auto-updated weekly by GitHub Action)
+// Falls back to last known values if the file can't be fetched.
 (function() {
-  // Hardcoded from Google Scholar profile (user=60hz_E8AAAAJ) — update periodically
   var FALLBACK = {
-    total: 42,
-    hIndex: 3,
-    i10Index: 1,
-    papers: 11,
-    byYear: { '2021': 2, '2022': 2, '2023': 2, '2024': 14, '2025': 18, '2026': 4 }
+    total: 42, hIndex: 3, i10Index: 1, papers: 11,
+    byYear: { '2021': 2, '2022': 2, '2023': 2, '2024': 14, '2025': 18, '2026': 4 },
+    updatedAt: '2026-03-25'
   };
+
+  var chartInstance = null;
 
   function renderCitChart(yearData) {
     var years = Object.keys(yearData).sort();
     var counts = years.map(function(y) { return yearData[y]; });
     var canvas = document.getElementById('citChart');
     if (!canvas) return;
-    new Chart(canvas, {
+    if (chartInstance) { chartInstance.destroy(); }
+    chartInstance = new Chart(canvas, {
       type: 'bar',
       data: {
         labels: years,
@@ -1464,7 +1466,7 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
             ticks: {
               color: '#7a7a9a', font: { size: 9 },
               callback: function(v) { return Number.isInteger(v) ? v : ''; },
-              maxTicksLimit: 4
+              maxTicksLimit: 5
             },
             border: { display: false }
           }
@@ -1473,69 +1475,42 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
     });
   }
 
-  function setStats(total, hIdx, i10Idx, papers) {
-    var el;
-    el = document.getElementById('total-cit');  if (el) el.textContent = total;
-    el = document.getElementById('h-index');    if (el) el.textContent = hIdx;
-    el = document.getElementById('i10-index');  if (el) el.textContent = i10Idx;
-    el = document.getElementById('paper-count'); if (el) el.textContent = papers;
-  }
+  function applyData(d) {
+    var set = function(id, val) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = (val != null && val !== '') ? val : '—';
+    };
+    set('total-cit',   d.total);
+    set('h-index',     d.hIndex);
+    set('i10-index',   d.i10Index);
+    set('paper-count', d.papers);
 
-  function setSource(html) {
-    var el = document.getElementById('cit-source');
-    if (el) el.innerHTML = html;
-  }
-
-  async function loadCitations() {
-    try {
-      // Use the Semantic Scholar public search API
-      var url = 'https://api.semanticscholar.org/graph/v1/author/search' +
-        '?query=Tarikul%20Islam%20civil%20engineering' +
-        '&fields=authorId,name,citationCount,hIndex,paperCount,papers.year,papers.citationCount';
-
-      var res = await fetch(url);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      var data = await res.json();
-
-      // Find best match by name
-      var candidates = (data.data || []);
-      var author = candidates.find(function(a) {
-        return a.name && a.name.toLowerCase().indexOf('tarikul') !== -1;
-      }) || candidates[0];
-
-      if (!author || author.citationCount == null) throw new Error('No match');
-
-      var byYear = {};
-      (author.papers || []).forEach(function(p) {
-        if (p.year && p.citationCount != null && p.year >= 2017) {
-          byYear[p.year] = (byYear[p.year] || 0) + p.citationCount;
-        }
-      });
-
-      setStats(
-        author.citationCount.toLocaleString(),
-        author.hIndex != null ? author.hIndex : '—',
-        '—',
-        author.paperCount != null ? author.paperCount : (author.papers ? author.papers.length : '—')
-      );
-      setSource('via <a href="https://www.semanticscholar.org/author/' + author.authorId +
-        '" target="_blank" style="color:var(--muted);">Semantic Scholar</a>');
-
-      if (Object.keys(byYear).length > 0) {
-        renderCitChart(byYear);
-      } else {
-        renderCitChart(FALLBACK.byYear);
-      }
-
-    } catch(err) {
-      // Use hardcoded fallback — reliable and always works
-      setStats(FALLBACK.total, FALLBACK.hIndex, FALLBACK.i10Index, FALLBACK.papers);
-      setSource('<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">View on Google Scholar ↗</a>');
-      renderCitChart(FALLBACK.byYear);
+    var src = document.getElementById('cit-source');
+    if (src) {
+      var updated = d.updatedAt ? ' · updated ' + d.updatedAt : '';
+      src.innerHTML = '<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ"'
+        + ' target="_blank" style="color:var(--muted);">Google Scholar ↗</a>'
+        + '<span style="color:var(--muted);">' + updated + '</span>';
     }
+
+    renderCitChart(d.byYear || {});
   }
 
-  // Small delay to ensure Chart.js is loaded
+  function loadCitations() {
+    fetch('citations.json?v=' + Date.now())
+      .then(function(r) {
+        if (!r.ok) throw new Error('not found');
+        return r.json();
+      })
+      .then(function(data) {
+        applyData(data);
+      })
+      .catch(function() {
+        // File not found or JSON error — use hardcoded fallback
+        applyData(FALLBACK);
+      });
+  }
+
   if (typeof Chart !== 'undefined') {
     loadCitations();
   } else {
