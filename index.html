@@ -9,8 +9,8 @@
 <style>
 :root {
   --ink: #1a1a2e;
-  --ink-soft: #3d3d5c;
-  --muted: #7a7a9a;
+  --ink-soft: #2f2f2f;
+  --muted: #4b4b4b;
   --border: #e2e2ee;
   --bg: #fafafa;
   --white: #ffffff;
@@ -21,7 +21,7 @@
   --teal-soft: #f0f8f8;
   --gold: #b8860b;
   --gold-soft: #fdf9f0;
-  --sidebar-w: 280px;
+  --sidebar-w: 330px;
   --nav-h: 56px;
 }
 
@@ -1457,14 +1457,14 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
         scales: {
           x: {
             grid: { display: false },
-            ticks: { color: '#7a7a9a', font: { size: 9 }, maxRotation: 45 },
+            ticks: { color: '#4b4b4b', font: { size: 9 }, maxRotation: 45 },
             border: { display: false }
           },
           y: {
             beginAtZero: true,
             grid: { color: 'rgba(0,0,0,0.05)' },
             ticks: {
-              color: '#7a7a9a', font: { size: 9 },
+              color: '#4b4b4b', font: { size: 9 },
               callback: function(v) { return Number.isInteger(v) ? v : ''; },
               maxTicksLimit: 5
             },
