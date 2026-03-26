@@ -518,15 +518,11 @@ a:hover { text-decoration: underline; }
       </div>
       <div class="sidebar-meta-row">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-        <a href="/cdn-cgi/l/email-protection#a9ddc8dbc0c2dcc5c0e9dcdaca87cccddc"><span class="__cf_email__" data-cfemail="b6c2d7c4dfddc3dadff6c3c5d598d3d2c3">[email&#160;protected]</span></a>
+        <a href="mailto:tarikuli@usc.edu">tarikuli@usc.edu</a>
       </div>
       <div class="sidebar-meta-row">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-        <a href="/cdn-cgi/l/email-protection#98ecf9eaf1f3acadaaabd8fff5f9f1f4b6fbf7f5"><span class="__cf_email__" data-cfemail="522633203b396667606112353f333b3e7c313d3f">[email&#160;protected]</span></a>
-      </div>
-      <div class="sidebar-meta-row">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.9 12.6 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>+1 (213) 994-1003</span>
+        <a href="mailto:tarik4523@gmail.com">tarik4523@gmail.com</a>
       </div>
     </div>
     <hr class="sidebar-divider">
@@ -1394,12 +1390,16 @@ function showPage(id) {
 
 // Publication filter
 function filterPubs(type, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
-  const sections = { journal: 'journal-section', conference: 'conference-section', poster: 'poster-section' };
+  var ids = ['journal-section', 'conference-section', 'poster-section'];
   if (type === 'all') {
-    Object.values(sections).forEach(s => document.getElementById(s).style.display = 'none');
-    document.getElementById(sections[type]).style.display = '';
+    ids.forEach(function(id) { document.getElementById(id).style.display = ''; });
+  } else {
+    var map = { journal: 'journal-section', conference: 'conference-section', poster: 'poster-section' };
+    ids.forEach(function(id) { document.getElementById(id).style.display = 'none'; });
+    var target = map[type];
+    if (target) document.getElementById(target).style.display = '';
   }
 }
 
@@ -1410,13 +1410,12 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
 
 // ── CITATION CHART ──
 (function() {
-  // Your known Google Scholar data as reliable fallback
-  // Update these numbers periodically from your Google Scholar page
+  // Hardcoded from Google Scholar profile (user=60hz_E8AAAAJ) — update periodically
   var FALLBACK = {
-    total: 67,
-    hIndex: 4,
+    total: 31,
+    hIndex: 3,
     papers: 11,
-    byYear: { '2021': 4, '2022': 14, '2023': 22, '2024': 19, '2025': 8 }
+    byYear: { '2021': 2, '2022': 8, '2023': 11, '2024': 7, '2025': 3 }
   };
 
   function renderCitChart(yearData) {
