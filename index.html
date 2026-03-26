@@ -556,7 +556,7 @@ a:hover { text-decoration: underline; }
     <div style="width:100%;">
       <div style="font-size:10.5px; font-weight:500; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); text-align:center; margin-bottom:12px;">Citation Metrics</div>
 
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:12px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:6px; margin-bottom:12px;">
         <div style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px 4px; text-align:center;">
           <div style="font-size:18px; font-weight:500; color:var(--ink); line-height:1.2;" id="total-cit">—</div>
           <div style="font-size:9.5px; color:var(--muted); margin-top:2px; line-height:1.3;">Citations</div>
@@ -564,6 +564,10 @@ a:hover { text-decoration: underline; }
         <div style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px 4px; text-align:center;">
           <div style="font-size:18px; font-weight:500; color:var(--ink); line-height:1.2;" id="h-index">—</div>
           <div style="font-size:9.5px; color:var(--muted); margin-top:2px; line-height:1.3;">h-index</div>
+        </div>
+        <div style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px 4px; text-align:center;">
+          <div style="font-size:18px; font-weight:500; color:var(--ink); line-height:1.2;" id="i10-index">—</div>
+          <div style="font-size:9.5px; color:var(--muted); margin-top:2px; line-height:1.3;">i10-index</div>
         </div>
         <div style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px 4px; text-align:center;">
           <div style="font-size:18px; font-weight:500; color:var(--ink); line-height:1.2;" id="paper-count">—</div>
@@ -1412,10 +1416,11 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
 (function() {
   // Hardcoded from Google Scholar profile (user=60hz_E8AAAAJ) — update periodically
   var FALLBACK = {
-    total: 31,
+    total: 42,
     hIndex: 3,
+    i10Index: 1,
     papers: 11,
-    byYear: { '2021': 2, '2022': 8, '2023': 11, '2024': 7, '2025': 3 }
+    byYear: { '2021': 2, '2022': 2, '2023': 2, '2024': 14, '2025': 18, '2026': 4 }
   };
 
   function renderCitChart(yearData) {
@@ -1468,10 +1473,11 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
     });
   }
 
-  function setStats(total, hIdx, papers) {
+  function setStats(total, hIdx, i10Idx, papers) {
     var el;
-    el = document.getElementById('total-cit'); if (el) el.textContent = total;
-    el = document.getElementById('h-index');   if (el) el.textContent = hIdx;
+    el = document.getElementById('total-cit');  if (el) el.textContent = total;
+    el = document.getElementById('h-index');    if (el) el.textContent = hIdx;
+    el = document.getElementById('i10-index');  if (el) el.textContent = i10Idx;
     el = document.getElementById('paper-count'); if (el) el.textContent = papers;
   }
 
@@ -1509,6 +1515,7 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
       setStats(
         author.citationCount.toLocaleString(),
         author.hIndex != null ? author.hIndex : '—',
+        '—',
         author.paperCount != null ? author.paperCount : (author.papers ? author.papers.length : '—')
       );
       setSource('via <a href="https://www.semanticscholar.org/author/' + author.authorId +
@@ -1522,7 +1529,7 @@ document.querySelectorAll('.topbar-nav a').forEach(a => {
 
     } catch(err) {
       // Use hardcoded fallback — reliable and always works
-      setStats(FALLBACK.total, FALLBACK.hIndex, FALLBACK.papers);
+      setStats(FALLBACK.total, FALLBACK.hIndex, FALLBACK.i10Index, FALLBACK.papers);
       setSource('<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">View on Google Scholar ↗</a>');
       renderCitChart(FALLBACK.byYear);
     }
