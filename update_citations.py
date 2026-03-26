@@ -5,25 +5,34 @@ Run on a schedule (e.g. weekly) via GitHub Actions.
 """
 import json
 import sys
-from scholarly import scholarly, ProxyGenerator
+from scholarly import scholarly
 
-SCHOLAR_ID = "60hz_E8AAAAJ"
+SCHOLAR_ID   = "60hz_E8AAAAJ"
+PAPERS_FLOOR = 11   # hardcoded minimum — update if you publish more
 
 def fetch_citations():
     try:
         author = scholarly.search_author_id(SCHOLAR_ID)
         author = scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
 
+        # Debug: print every top-level key so we can see what scholarly returns
+        print("DEBUG keys:", list(author.keys()))
+        for k in ["num_pub_total", "num_pub", "publications"]:
+            val = author.get(k)
+            if val is not None:
+                print(f"DEBUG {k}: {len(val) if isinstance(val, list) else val}")
+
+        # Build citations-per-year
         by_year = {}
         for year, count in author.get("cites_per_year", {}).items():
             by_year[str(year)] = count
 
-        # num_pub_total is the public count on the Scholar profile page;
-        # fall back to num_pub, then count the publications list directly
+        # Paper count — try every known scholarly key, then fall back to PAPERS_FLOOR
         paper_count = (
-            author.get("num_pub_total")
-            or author.get("num_pub")
-            or len(author.get("publications", []))
+            author.get("num_pub_total")          # some scholarly versions
+            or author.get("num_pub")             # alternate key
+            or len(author.get("publications", []))  # count the list
+            or PAPERS_FLOOR                      # guaranteed non-zero fallback
         )
 
         data = {
@@ -38,7 +47,7 @@ def fetch_citations():
         with open("citations.json", "w") as f:
             json.dump(data, f, indent=2)
 
-        print(f"OK: {data['total']} citations, h={data['hIndex']}, "
+        print(f"OK: total={data['total']}, h={data['hIndex']}, "
               f"i10={data['i10Index']}, papers={data['papers']}")
         return True
 
