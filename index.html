@@ -60,14 +60,13 @@ a:hover { text-decoration: underline; }
 .section-label:first-child { margin-top: 0; }
 
 /* ── BIO HERO: two-column ── */
-.bio-hero { display: grid; grid-template-columns: 1fr 230px; gap: 52px; align-items: start; margin-bottom: 38px; }
+.bio-hero { display: grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start; margin-bottom: 38px; }
 .bio-hero-text {}
 
 /* Profile card (right) */
-.profile-card { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.profile-ring { width: 190px; height: 190px; border-radius: 50%; border: 3px solid var(--border); background: linear-gradient(135deg, #e8edf8, #f5e8e8); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; position: relative; }
-.profile-ring::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid transparent; background: linear-gradient(135deg, var(--accent), var(--teal)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude; }
-.profile-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profile-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+.profile-photo-wrap { width: 100%; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; background: linear-gradient(135deg, #e8edf8, #f5e8e8); line-height: 0; }
+.profile-photo { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 3/4; }
 .profile-meta { width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 16px 12px; }
 .profile-meta-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 9px; font-size: 13px; color: var(--ink-soft); }
 .profile-meta-row:last-child { margin-bottom: 0; }
@@ -223,7 +222,7 @@ a:hover { text-decoration: underline; }
     order: 1;
     align-items: center;
   }
-  .profile-ring { width: 150px; height: 150px; }
+  .profile-photo-wrap { width: 200px; }
   .profile-meta { max-width: 340px; }
   .cit-section { max-width: 340px; }
 
@@ -260,8 +259,8 @@ a:hover { text-decoration: underline; }
 /* ── Landscape mobile: resemble desktop ── */
 @media (orientation: landscape) and (max-width: 860px) {
   .page { padding: 30px 40px 64px; }
-  .bio-hero { grid-template-columns: 1fr 210px; gap: 40px; }
-  .profile-ring { width: 175px; height: 175px; }
+  .bio-hero { grid-template-columns: 1fr 260px; gap: 40px; }
+  .profile-photo-wrap { width: 100%; }
   .interest-grid { grid-template-columns: 1fr 1fr; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
   .course-row { grid-template-columns: 80px 1fr 150px; }
@@ -319,12 +318,8 @@ a:hover { text-decoration: underline; }
 
     <!-- RIGHT: photo + contact + social + citations -->
     <div class="profile-card">
-      <div class="profile-ring">
-        <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <svg style="display:none;width:72px;height:72px;color:var(--muted);opacity:0.35;" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-        </svg>
+      <div class="profile-photo-wrap">
+        <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo">
       </div>
 
       <!-- Contact info -->
@@ -397,7 +392,7 @@ a:hover { text-decoration: underline; }
 
   <div class="section-label">News &amp; Updates</div>
   <div class="news-list">
-    <div class="news-row"><span class="news-date">Jan 2026</span><span class="news-text">Serving as TA for <strong>CE 537: Advanced Reinforced Concrete</strong> at USC (Spring 2026).</span></div>
+    <div class="news-row"><span class="news-date">Mar 2026</span><span class="news-text">Serving as TA for <strong>CE 537: Advanced Reinforced Concrete</strong> at USC (Spring 2026).</span></div>
     <div class="news-row"><span class="news-date">Aug 2025</span><span class="news-text">Mentored <strong>Luke Bayliss</strong> (Amazon SURE Fellow). Poster <em>"Understanding the Electrochemical Properties of Porous Media"</em> presented at USC Viterbi SURE Symposium.</span></div>
     <div class="news-row"><span class="news-date">2025</span><span class="news-text">Two new journal papers published in <em>Malaysian Journal of Civil Engineering</em> (BIM) and <em>Civil Engineering and Architecture</em> (jute fiber-reinforced concrete).</span></div>
     <div class="news-row"><span class="news-date">Aug 2024</span><span class="news-text">Joined <strong>USC</strong> as PhD student and Graduate RA/TA, supported by the <strong>Viterbi School of Engineering Fellowship</strong> ($45,000/year, 2024–2028).</span></div>
@@ -550,7 +545,7 @@ a:hover { text-decoration: underline; }
 <!-- ═══════════════ AWARDS ═══════════════ -->
 <div class="page" id="page-awards">
   <div class="page-title">Awards &amp; Training</div>
-  <div class="page-subtitle">Honors, fellowships, grants, and professional development</div>
+  <div class="page-subtitle">Honors, fellowships, research grants, and professional development</div>
   <div class="section-label">Honors &amp; Awards</div>
   <div class="award-card"><div class="award-year">2024–2028</div><span class="award-icon">🏆</span><div><div class="award-title">Viterbi School of Engineering / Graduate School Fellowship</div><div class="award-org">University of Southern California · Four-year annual stipend of $45,000</div></div></div>
   <div class="award-card"><div class="award-year">2017</div><span class="award-icon">🎓</span><div><div class="award-title">Dean's Honor List</div><div class="award-org">Faculty of Engineering, AUST · Outstanding achievement in B.S. Civil Engineering</div></div></div>
@@ -575,7 +570,7 @@ a:hover { text-decoration: underline; }
 <!-- ═══════════════ SKILLS ═══════════════ -->
 <div class="page" id="page-skills">
   <div class="page-title">Skills &amp; Tools</div>
-  <div class="page-subtitle">Software, programming languages, and professional affiliations</div>
+  <div class="page-subtitle">Software, programming languages, professional affiliations, and university service</div>
   <div class="section-label">Technical Skills</div>
   <div class="skills-grid">
     <div class="skill-card"><div class="skill-card-title">Structural Analysis &amp; Design</div><div class="skill-tags"><span class="skill-tag">ETABS</span><span class="skill-tag">SAP 2000</span><span class="skill-tag">STAAD Pro</span><span class="skill-tag">Abaqus</span><span class="skill-tag">Response 2000</span><span class="skill-tag">OpenSees Navigator</span></div></div>
@@ -603,7 +598,7 @@ a:hover { text-decoration: underline; }
 <!-- ═══════════════ EXPERIENCE ═══════════════ -->
 <div class="page" id="page-experience">
   <div class="page-title">Experience</div>
-  <div class="page-subtitle">Academic appointments and professional history</div>
+  <div class="page-subtitle">Academic appointments, professional history, and education</div>
   <div class="section-label">Academic Appointments</div>
   <div class="timeline">
     <div class="tl-item"><div class="tl-period">Aug 2024 – Present</div><div class="tl-title">Graduate Research &amp; Teaching Assistant</div><div class="tl-org">Dept. of Civil &amp; Environmental Engineering · University of Southern California, Los Angeles, CA</div><div class="tl-desc">Supported by the Viterbi School of Engineering/Graduate School Fellowship. Research under Dr. Thomas Petersen on bicontinuous cement composites and multifunctional materials.</div></div>
