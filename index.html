@@ -3,7 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tarikul Islam — Civil Engineering, USC</title>
+<title>Tarikul Islam | PhD Student | USC Civil &amp; Environmental Engineering</title>
+
+<!-- SEO meta -->
+<meta name="description" content="Tarikul Islam — PhD student in Civil &amp; Environmental Engineering at the University of Southern California. Research on bicontinuous cement composites with multifunctional structural and electrical properties.">
+<meta name="keywords" content="Tarikul Islam, USC, Civil Engineering, PhD, cement composites, fiber-reinforced concrete, structural engineering, AUST">
+<meta name="author" content="Tarikul Islam">
+
+<!-- Open Graph (LinkedIn, Twitter, Facebook previews) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tarik4523.github.io">
+<meta property="og:title" content="Tarikul Islam | PhD Student | USC Civil Engineering">
+<meta property="og:description" content="Graduate Research &amp; Teaching Assistant at USC Sonny Astani Dept. of CEE. Research on multifunctional cement composites and structural materials.">
+<meta property="og:image" content="https://tarik4523.github.io/images/Profile_pic.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tarikul Islam | PhD Student | USC Civil Engineering">
+<meta name="twitter:description" content="Graduate Research &amp; Teaching Assistant at USC Sonny Astani Dept. of CEE.">
+<meta name="twitter:image" content="https://tarik4523.github.io/images/Profile_pic.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/jpeg" href="/images/Profile_pic.jpg">
+<link rel="apple-touch-icon" href="/images/Profile_pic.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -29,7 +50,7 @@ body { font-family: 'DM Sans', sans-serif; font-weight: 300; color: var(--ink); 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* ── TOP BAR ── */
+/* TOP BAR */
 .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--nav-h); background: var(--ink); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
 .topbar-brand { font-family: 'EB Garamond', serif; font-size: 23px; font-weight: 500; color: #fff; letter-spacing: 0.02em; flex-shrink: 0; }
 .topbar-brand:hover { text-decoration: none; color: var(--accent-mid); }
@@ -44,20 +65,20 @@ a:hover { text-decoration: underline; }
 .mobile-nav a { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.7); padding: 12px 24px; text-transform: uppercase; letter-spacing: 0.06em; border-left: 3px solid transparent; transition: all 0.15s; }
 .mobile-nav a:hover, .mobile-nav a.active { color: #fff; border-left-color: var(--accent); background: rgba(255,255,255,0.05); text-decoration: none; }
 
-/* ── LAYOUT ── */
+/* LAYOUT */
 .layout { margin-top: var(--nav-h); }
 .page { display: none; padding: 50px 64px 88px; max-width: 1100px; margin: 0 auto; animation: fadeUp 0.3s ease; }
 .page.active { display: block; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ── COMMON ── */
+/* COMMON */
 .page-title { font-family: 'EB Garamond', serif; font-size: 43px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.2; }
 .page-subtitle { font-size: 17.5px; color: var(--muted); font-weight: 300; margin-bottom: 36px; letter-spacing: 0.02em; }
 .section-label { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 20px; margin-top: 40px; display: flex; align-items: center; gap: 10px; }
 .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .section-label:first-child { margin-top: 0; }
 
-/* ── BIO HERO ── */
+/* BIO HERO */
 .bio-hero { display: grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start; margin-bottom: 38px; }
 
 /* Profile card */
@@ -75,6 +96,11 @@ a:hover { text-decoration: underline; }
 .social-icons { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
 .social-icons a { width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all 0.15s; background: var(--white); }
 .social-icons a:hover { border-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
+
+/* CV download button */
+.cv-download { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 9px 16px; background: var(--ink); color: #fff; border-radius: 6px; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; transition: background 0.18s; text-decoration: none; }
+.cv-download:hover { background: var(--accent); color: #fff; text-decoration: none; }
+.cv-download svg { flex-shrink: 0; }
 
 /* Citation metrics */
 .cit-section { width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 16px 12px; }
@@ -97,7 +123,7 @@ a:hover { text-decoration: underline; }
 .news-text { font-size: 17.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.6; }
 .news-text strong { font-weight: 500; color: var(--ink); }
 
-/* ── TIMELINE ── */
+/* TIMELINE */
 .timeline { position: relative; padding-left: 24px; }
 .timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
 .tl-item { position: relative; padding: 0 0 30px 22px; }
@@ -107,7 +133,7 @@ a:hover { text-decoration: underline; }
 .tl-org { font-size: 17px; color: var(--ink-soft); font-weight: 300; margin-bottom: 5px; }
 .tl-desc { font-size: 16px; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-/* ── RESEARCH ── */
+/* RESEARCH */
 .research-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 26px 24px; margin-bottom: 16px; transition: box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
 .research-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
 .research-card.teal::before { background: var(--teal); }
@@ -119,7 +145,7 @@ a:hover { text-decoration: underline; }
 .rc-title { font-family: 'EB Garamond', serif; font-size: 24px; font-weight: 500; color: var(--ink); margin-bottom: 9px; line-height: 1.35; }
 .rc-desc { font-size: 17.5px; color: var(--ink-soft); line-height: 1.75; font-weight: 300; }
 
-/* ── PUBLICATIONS ── */
+/* PUBLICATIONS */
 .pub-filter { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 26px; }
 .filter-btn { font-size: 14.5px; font-weight: 500; padding: 6px 16px; border: 1px solid var(--border); border-radius: 20px; color: var(--muted); background: var(--white); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
 .filter-btn:hover, .filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
@@ -140,21 +166,20 @@ a:hover { text-decoration: underline; }
 .poster-authors { font-size: 16px; color: var(--ink-soft); margin-bottom: 3px; font-weight: 300; }
 .poster-venue { font-size: 15px; color: var(--muted); font-style: italic; }
 
-/* ── TEACHING ── */
+/* TEACHING */
 .inst-block { margin-bottom: 38px; }
 .inst-header { display: flex; align-items: center; gap: 14px; margin-bottom: 5px; flex-wrap: wrap; }
 .inst-logo { height: 44px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
 .inst-name { font-family: 'EB Garamond', serif; font-size: 23px; font-weight: 500; color: var(--ink); }
 .inst-loc { font-size: 16px; color: var(--muted); margin-bottom: 16px; }
 .teaching-group-label { font-size: 13.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 16px 0 7px; padding-bottom: 6px; border-bottom: 1px dashed var(--border); }
-/* Three-column on desktop: code | name | term */
 .course-row { display: grid; grid-template-columns: 96px 1fr 168px; gap: 11px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #f5f5f5; }
 .course-row:last-child { border-bottom: none; }
 .course-code { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--accent); font-weight: 500; }
 .course-name { font-size: 17.5px; color: var(--ink-soft); font-weight: 300; }
 .course-term { font-size: 15px; color: var(--muted); text-align: right; }
 
-/* ── MENTORING ── */
+/* MENTORING */
 .mentee-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px; margin-bottom: 13px; }
 .mentee-period { font-family: 'DM Mono', monospace; font-size: 14.5px; color: var(--muted); margin-bottom: 7px; }
 .mentee-thesis { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.4; }
@@ -164,7 +189,7 @@ a:hover { text-decoration: underline; }
 .mh-title { font-size: 18.5px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
 .mh-sub { font-size: 16px; color: var(--ink-soft); font-weight: 300; }
 
-/* ── AWARDS ── */
+/* AWARDS */
 .award-card { display: flex; gap: 18px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--border); }
 .award-year { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--muted); width: 96px; flex-shrink: 0; padding-top: 3px; }
 .award-icon { font-size: 22px; flex-shrink: 0; }
@@ -179,7 +204,7 @@ a:hover { text-decoration: underline; }
 .cert-name { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
 .cert-org { font-size: 15.5px; color: var(--muted); font-weight: 300; }
 
-/* ── SKILLS ── */
+/* SKILLS */
 .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .skill-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 22px 20px; }
 .skill-card-title { font-size: 14.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin-bottom: 13px; padding-bottom: 9px; border-bottom: 2px solid var(--border); }
@@ -190,42 +215,38 @@ a:hover { text-decoration: underline; }
 .service-period { font-family: 'DM Mono', monospace; font-size: 14.5px; color: var(--muted); width: 148px; flex-shrink: 0; padding-top: 2px; }
 .service-name { font-size: 17.5px; color: var(--ink-soft); font-weight: 300; }
 
-/* ── FOOTER ── */
+/* FOOTER */
 .page-footer { border-top: 1px solid var(--border); margin-top: 66px; padding: 26px 0 0; text-align: center; font-size: 15.5px; color: var(--muted); }
 
-/* ══════════════════════════════
+/* ═══════════════════════════════
    RESPONSIVE
-══════════════════════════════ */
+═══════════════════════════════ */
 
-/* Tablet — hamburger appears */
+/* Tablet: hamburger + tighten bio hero */
 @media (max-width: 860px) {
   .topbar-nav { display: none; }
   .hamburger { display: flex; }
   .page { padding: 32px 28px 70px; }
+  /* Fix 3: bio hero too cramped between 700–860px */
+  .bio-hero { grid-template-columns: 1fr 240px; gap: 32px; }
 }
 
-/* ── Mobile portrait ── */
+/* Mobile portrait */
 @media (orientation: portrait) and (max-width: 700px) {
   .page { padding: 24px 16px 56px; }
   .page-title { font-size: 32px; }
   .page-subtitle { font-size: 15px; }
   .bio-body { font-size: 16.5px; }
   .section-label { font-size: 11.5px; }
-
-  /* Bio hero: photo card on top, text below */
   .bio-hero { grid-template-columns: 1fr; gap: 24px; }
   .bio-hero-text { order: 2; }
   .profile-card { order: 1; align-items: center; }
   .profile-photo-wrap { width: 180px; border-radius: 6px; }
   .profile-meta { width: 100%; max-width: 360px; }
   .cit-section { width: 100%; max-width: 360px; }
-
-  /* Grids → single column */
   .interest-grid { grid-template-columns: 1fr; }
   .interest-tag { font-size: 15px; }
   .skills-grid { grid-template-columns: 1fr; }
-
-  /* Teaching: drop the term column, shrink code column */
   .course-row { grid-template-columns: 80px 1fr; gap: 8px; }
   .course-term { display: none; }
   .course-code { font-size: 13px; }
@@ -234,25 +255,17 @@ a:hover { text-decoration: underline; }
   .inst-name { font-size: 19px; }
   .inst-loc { font-size: 14px; }
   .teaching-group-label { font-size: 12px; }
-
-  /* Awards */
   .award-year { width: 64px; font-size: 12.5px; }
   .award-title { font-size: 16px; }
   .award-org { font-size: 14px; }
-
-  /* Grants / Certs */
   .grant-title { font-size: 15.5px; }
   .grant-meta { font-size: 14px; }
   .cert-item { flex-direction: column; gap: 4px; }
   .cert-period { width: auto; font-size: 13px; }
   .cert-name { font-size: 16px; }
   .cert-org { font-size: 14px; }
-
-  /* Service */
   .service-period { width: 120px; font-size: 13px; }
   .service-name { font-size: 15.5px; }
-
-  /* Publications */
   .pub-num { display: none; }
   .pub-item { gap: 8px; }
   .pub-badge { font-size: 11px; padding: 3px 7px; }
@@ -260,28 +273,20 @@ a:hover { text-decoration: underline; }
   .pub-authors { font-size: 14px; }
   .pub-venue { font-size: 13.5px; }
   .filter-btn { font-size: 13px; padding: 5px 12px; }
-
-  /* News */
   .news-date { width: 72px; font-size: 12.5px; }
   .news-text { font-size: 15px; }
-
-  /* Research */
   .rc-title { font-size: 20px; }
   .rc-desc { font-size: 15.5px; }
-
-  /* Timeline */
   .tl-title { font-size: 17px; }
   .tl-org { font-size: 15px; }
   .tl-desc { font-size: 14px; }
-
-  /* Mentoring */
   .mentee-thesis { font-size: 15.5px; }
   .mentee-students { font-size: 14px; }
   .mh-title { font-size: 16px; }
   .mh-sub { font-size: 14px; }
 }
 
-/* ── Landscape mobile: desktop-like ── */
+/* Landscape mobile */
 @media (orientation: landscape) and (max-width: 860px) {
   .page { padding: 30px 40px 64px; }
   .bio-hero { grid-template-columns: 1fr 260px; gap: 40px; }
@@ -325,10 +330,9 @@ a:hover { text-decoration: underline; }
 
 <div class="layout">
 
-<!-- ═══════════════ BIO ═══════════════ -->
+<!-- BIO -->
 <div class="page active" id="page-bio">
   <div class="bio-hero">
-    <!-- LEFT: bio text -->
     <div class="bio-hero-text">
       <div class="page-title">Tarikul Islam</div>
       <div class="page-subtitle">Ph.D. Student · Civil &amp; Environmental Engineering · University of Southern California</div>
@@ -338,10 +342,9 @@ a:hover { text-decoration: underline; }
       <p class="bio-body">In my leisure time, I enjoy music, films, soccer, and cricket.</p>
     </div>
 
-    <!-- RIGHT: photo + contact + social + citations -->
     <div class="profile-card">
       <div class="profile-photo-wrap">
-        <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo">
+        <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo" loading="lazy">
       </div>
       <div class="profile-meta">
         <div class="profile-meta-row">
@@ -359,21 +362,27 @@ a:hover { text-decoration: underline; }
         <hr class="profile-meta-divider">
         <div class="social-icons">
           <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" title="Google Scholar">
-            <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" style="width:20px;height:20px;object-fit:contain;">
+            <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
           </a>
           <a href="https://orcid.org/0000-0002-4193-4366" target="_blank" title="ORCID">
-            <img src="/images/Orcid_logo.png" alt="ORCID" style="width:20px;height:20px;object-fit:contain;">
+            <img src="/images/Orcid_logo.png" alt="ORCID" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
           </a>
           <a href="https://www.scopus.com/authid/detail.uri?authorId=58035898400" target="_blank" title="Scopus">
-            <img src="/images/Scopus_logo.png" alt="Scopus" style="width:20px;height:20px;object-fit:contain;">
+            <img src="/images/Scopus_logo.png" alt="Scopus" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
           </a>
           <a href="https://www.researchgate.net/profile/Tarikul-Islam-5" target="_blank" title="ResearchGate">
-            <img src="/images/ResearchGate_logo.png" alt="ResearchGate" style="width:20px;height:20px;object-fit:contain;">
+            <img src="/images/ResearchGate_logo.png" alt="ResearchGate" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
           </a>
           <a href="https://www.linkedin.com/in/tarikul-islam-313785142/" target="_blank" title="LinkedIn">
-            <img src="/images/Linkedin_logo.png" alt="LinkedIn" style="width:20px;height:20px;object-fit:contain;">
+            <img src="/images/Linkedin_logo.png" alt="LinkedIn" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
           </a>
         </div>
+        <hr class="profile-meta-divider">
+        <!-- Fix 5: CV download button -->
+        <a href="/files/CV_Tarikul_Islam.pdf" target="_blank" class="cv-download">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
       </div>
       <div class="cit-section">
         <div class="cit-title">Citation Metrics</div>
@@ -389,7 +398,7 @@ a:hover { text-decoration: underline; }
         </div>
       </div>
     </div>
-  </div><!-- /bio-hero -->
+  </div>
 
   <div class="section-label">Research Interests</div>
   <div class="interest-grid">
@@ -411,11 +420,10 @@ a:hover { text-decoration: underline; }
     <div class="news-row"><span class="news-date">Aug 2024</span><span class="news-text">Joined <strong>USC</strong> as PhD student and Graduate RA/TA, supported by the <strong>Viterbi School of Engineering Fellowship</strong> ($45,000/year, 2024–2028).</span></div>
     <div class="news-row"><span class="news-date">Apr 2022</span><span class="news-text">Promoted to <strong>Assistant Professor</strong> at AUST after completing M.Sc. at BUET.</span></div>
   </div>
-
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- ═══════════════ RESEARCH ═══════════════ -->
+<!-- RESEARCH -->
 <div class="page" id="page-research">
   <div class="page-title">Research</div>
   <div class="page-subtitle">Current and past research interests &amp; projects</div>
@@ -434,7 +442,7 @@ a:hover { text-decoration: underline; }
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- ═══════════════ PUBLICATIONS ═══════════════ -->
+<!-- PUBLICATIONS -->
 <div class="page" id="page-publications">
   <div class="page-title">Publications</div>
   <div class="page-subtitle">10 peer-reviewed journal papers · 1 conference proceeding · 1 poster presentation &nbsp;|&nbsp; * = Corresponding author</div>
@@ -473,15 +481,14 @@ a:hover { text-decoration: underline; }
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- ═══════════════ TEACHING ═══════════════ -->
+<!-- TEACHING -->
 <div class="page" id="page-teaching">
   <div class="page-title">Teaching</div>
   <div class="page-subtitle">Courses taught as instructor and teaching assistant across three institutions</div>
-
   <div class="inst-block">
     <div class="section-label">University of Southern California</div>
     <div class="inst-header">
-      <img src="/images/USC_logo.png" alt="USC" class="inst-logo" onerror="this.style.display='none';">
+      <img src="/images/USC_logo.png" alt="USC" class="inst-logo" loading="lazy" onerror="this.style.display='none';">
       <div class="inst-name">University of Southern California</div>
     </div>
     <div class="inst-loc">Los Angeles, CA, USA &nbsp;·&nbsp; Role: Teaching Assistant</div>
@@ -490,11 +497,10 @@ a:hover { text-decoration: underline; }
     <div class="course-row"><span class="course-code">CE 538</span><span class="course-name">Prestressed Concrete</span><span class="course-term">Spring 2025</span></div>
     <div class="course-row"><span class="course-code">CE 334L</span><span class="course-name">Mechanical Behavior of Materials</span><span class="course-term">Fall 2024, Fall 2025</span></div>
   </div>
-
   <div class="inst-block">
     <div class="section-label">Ahsanullah University of Science and Technology (AUST)</div>
     <div class="inst-header">
-      <img src="/images/AUST_logo.png" alt="AUST" class="inst-logo" onerror="this.style.display='none';">
+      <img src="/images/AUST_logo.png" alt="AUST" class="inst-logo" loading="lazy" onerror="this.style.display='none';">
       <div class="inst-name">Ahsanullah University of Science and Technology</div>
     </div>
     <div class="inst-loc">Dhaka, Bangladesh &nbsp;·&nbsp; Role: Lecturer → Assistant Professor (2019–2024)</div>
@@ -519,11 +525,10 @@ a:hover { text-decoration: underline; }
     <div class="course-row"><span class="course-code">CE 200</span><span class="course-name">Details of Construction</span><span class="course-term">Fall 2019</span></div>
     <div class="course-row"><span class="course-code">CE 344</span><span class="course-name">Geotechnical Engineering Sessional-I</span><span class="course-term">Fall 2018</span></div>
   </div>
-
   <div class="inst-block">
     <div class="section-label">European University of Bangladesh (EUB)</div>
     <div class="inst-header">
-      <img src="/images/EUB_logo.png" alt="EUB" class="inst-logo" onerror="this.style.display='none';">
+      <img src="/images/EUB_logo.png" alt="EUB" class="inst-logo" loading="lazy" onerror="this.style.display='none';">
       <div class="inst-name">European University of Bangladesh</div>
     </div>
     <div class="inst-loc">Dhaka, Bangladesh &nbsp;·&nbsp; Role: Lecturer (2017–2018)</div>
@@ -537,7 +542,7 @@ a:hover { text-decoration: underline; }
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- ═══════════════ MENTORING ═══════════════ -->
+<!-- MENTORING -->
 <div class="page" id="page-mentoring">
   <div class="page-title">Mentoring</div>
   <div class="page-subtitle">Undergraduate thesis advising and research mentorship</div>
@@ -555,7 +560,7 @@ a:hover { text-decoration: underline; }
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- ═══════════════ AWARDS ═══════════════ -->
+<!-- AWARDS -->
 <div class="page" id="page-awards">
   <div class="page-title">Awards &amp; Training</div>
   <div class="page-subtitle">Honors, fellowships, research grants, and professional development</div>
@@ -580,7 +585,7 @@ a:hover { text-decoration: underline; }
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- ═══════════════ SKILLS ═══════════════ -->
+<!-- SKILLS -->
 <div class="page" id="page-skills">
   <div class="page-title">Skills &amp; Tools</div>
   <div class="page-subtitle">Software, programming languages, professional affiliations, and university service</div>
@@ -608,7 +613,7 @@ a:hover { text-decoration: underline; }
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- ═══════════════ EXPERIENCE ═══════════════ -->
+<!-- EXPERIENCE -->
 <div class="page" id="page-experience">
   <div class="page-title">Experience</div>
   <div class="page-subtitle">Academic appointments, professional history, and education</div>
@@ -632,6 +637,7 @@ a:hover { text-decoration: underline; }
 </div><!-- /layout -->
 
 <script>
+/* PAGE NAV */
 function showPage(id) {
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
   document.getElementById('page-'+id).classList.add('active');
@@ -640,10 +646,22 @@ function showPage(id) {
   });
   window.scrollTo(0,0);
 }
-document.getElementById('hamburger').addEventListener('click',function(){
-  document.getElementById('mobile-nav').classList.toggle('open');
+
+/* HAMBURGER + Fix 7: close on outside click */
+var hamburger = document.getElementById('hamburger');
+var mobileNav = document.getElementById('mobile-nav');
+hamburger.addEventListener('click', function(e){
+  e.stopPropagation();
+  mobileNav.classList.toggle('open');
 });
-function closeMobileNav(){document.getElementById('mobile-nav').classList.remove('open');}
+document.addEventListener('click', function(e){
+  if(mobileNav.classList.contains('open') && !mobileNav.contains(e.target) && e.target !== hamburger){
+    mobileNav.classList.remove('open');
+  }
+});
+function closeMobileNav(){ mobileNav.classList.remove('open'); }
+
+/* PUBLICATION FILTER */
 function filterPubs(type,btn){
   document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
@@ -655,31 +673,60 @@ function filterPubs(type,btn){
     if(map[type])document.getElementById(map[type]).style.display='';
   }
 }
+
+/* CITATION CHART */
 (function(){
-  var FALLBACK={total:42,hIndex:3,i10Index:1,papers:11,byYear:{'2021':2,'2022':2,'2023':2,'2024':14,'2025':18,'2026':4},updatedAt:'2026-03-25'};
+  var FALLBACK={total:42,hIndex:3,i10Index:1,papers:11,
+    byYear:{'2021':2,'2022':2,'2023':2,'2024':14,'2025':18,'2026':4},
+    updatedAt:'2026-03-25'};
   var chartInstance=null;
+
   function renderCitChart(yearData){
     var years=Object.keys(yearData).sort();
     var counts=years.map(function(y){return yearData[y];});
     var canvas=document.getElementById('citChart');
     if(!canvas)return;
     if(chartInstance){chartInstance.destroy();}
-    chartInstance=new Chart(canvas,{type:'bar',data:{labels:years,datasets:[{data:counts,backgroundColor:'#1a6b6b',hoverBackgroundColor:'#0f5252',borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:function(i){return i[0].label;},label:function(i){return ' '+i.raw+' citations';}}}},scales:{x:{grid:{display:false},ticks:{color:'#4b4b4b',font:{size:10},maxRotation:45},border:{display:false}},y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{color:'#4b4b4b',font:{size:10},callback:function(v){return Number.isInteger(v)?v:'';},maxTicksLimit:5},border:{display:false}}}}});
+    chartInstance=new Chart(canvas,{
+      type:'bar',
+      data:{labels:years,datasets:[{data:counts,backgroundColor:'#1a6b6b',hoverBackgroundColor:'#0f5252',borderRadius:3,borderSkipped:false}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{
+          title:function(i){return i[0].label;},
+          label:function(i){return ' '+i.raw+' citations';}
+        }}},
+        scales:{
+          x:{grid:{display:false},ticks:{color:'#4b4b4b',font:{size:10},maxRotation:45},border:{display:false}},
+          y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{color:'#4b4b4b',font:{size:10},callback:function(v){return Number.isInteger(v)?v:'';},maxTicksLimit:5},border:{display:false}}
+        }
+      }
+    });
   }
+
   function applyData(d){
-    var set=function(id,val){var el=document.getElementById(id);if(el)el.textContent=(val!=null&&val!=='')?val:'—';};
-    set('total-cit',d.total);set('h-index',d.hIndex);set('i10-index',d.i10Index);set('paper-count',d.papers);
+    var set=function(id,val){var el=document.getElementById(id);if(el)el.textContent=(val!=null&&val!=='')? val:'—';};
+    set('total-cit',d.total);
+    set('h-index',d.hIndex);
+    set('i10-index',d.i10Index);
+    set('paper-count',d.papers);
     var src=document.getElementById('cit-source');
-    if(src){var upd=d.updatedAt?' · updated '+d.updatedAt:'';src.innerHTML='<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">Google Scholar ↗</a><span style="color:var(--muted);font-size:10px;display:block;">'+upd+'</span>';}
+    if(src){
+      var upd=d.updatedAt?' · updated '+d.updatedAt:'';
+      src.innerHTML='<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">Google Scholar ↗</a>'
+        +'<span style="color:var(--muted);font-size:10px;display:block;">'+upd+'</span>';
+    }
     renderCitChart(d.byYear||{});
   }
+
   function loadCitations(){
     fetch('citations.json?v='+Date.now())
       .then(function(r){if(!r.ok)throw new Error('not found');return r.json();})
       .then(function(data){applyData(data);})
       .catch(function(){applyData(FALLBACK);});
   }
-  if(typeof Chart!=='undefined'){loadCitations();}else{window.addEventListener('load',loadCitations);}
+
+  if(typeof Chart!=='undefined'){loadCitations();}
+  else{window.addEventListener('load',loadCitations);}
 })();
 </script>
 </body>
