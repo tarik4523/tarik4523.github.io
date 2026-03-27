@@ -975,6 +975,7 @@ function showPage(id) {
     a.classList.toggle('active', a.dataset.page === id);
   });
   window.scrollTo(0, 0);
+  if (id === 'bio') setTimeout(animateInterestTags, 80);
 }
 
 /* ── HAMBURGER ── */
@@ -1101,12 +1102,6 @@ function animateInterestTags() {
   });
 }
 
-/* Run entrance animation when bio page loads */
-const origShowPage = window.showPage || showPage;
-window.showPage = function(id) {
-  showPage(id);
-  if (id === 'bio') setTimeout(animateInterestTags, 80);
-};
 setTimeout(animateInterestTags, 200);
 </script>
 </body>
