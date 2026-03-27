@@ -4,302 +4,540 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tarikul Islam | PhD Student | USC Civil &amp; Environmental Engineering</title>
-
-<!-- SEO meta -->
 <meta name="description" content="Tarikul Islam — PhD student in Civil &amp; Environmental Engineering at the University of Southern California. Research on bicontinuous cement composites with multifunctional structural and electrical properties.">
 <meta name="keywords" content="Tarikul Islam, USC, Civil Engineering, PhD, cement composites, fiber-reinforced concrete, structural engineering, AUST">
 <meta name="author" content="Tarikul Islam">
-
-<!-- Open Graph (LinkedIn, Twitter, Facebook previews) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tarik4523.github.io">
 <meta property="og:title" content="Tarikul Islam | PhD Student | USC Civil Engineering">
-<meta property="og:description" content="Graduate Research &amp; Teaching Assistant at USC Sonny Astani Dept. of CEE. Research on multifunctional cement composites and structural materials.">
+<meta property="og:description" content="Graduate Research &amp; Teaching Assistant at USC Sonny Astani Dept. of CEE.">
 <meta property="og:image" content="https://tarik4523.github.io/images/Profile_pic.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tarikul Islam | PhD Student | USC Civil Engineering">
-<meta name="twitter:description" content="Graduate Research &amp; Teaching Assistant at USC Sonny Astani Dept. of CEE.">
-<meta name="twitter:image" content="https://tarik4523.github.io/images/Profile_pic.jpg">
-
-<!-- Favicon -->
 <link rel="icon" type="image/jpeg" href="/images/Profile_pic.jpg">
-<link rel="apple-touch-icon" href="/images/Profile_pic.jpg">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
+/* ── TOKENS ── */
 :root {
-  --ink: #1a1a2e;
-  --ink-soft: #2f2f2f;
-  --muted: #4b4b4b;
-  --border: #e2e2ee;
-  --bg: #fafafa;
-  --white: #ffffff;
-  --accent: #c0392b;
-  --accent-soft: #fdf3f2;
-  --accent-mid: #e8bcb8;
-  --teal: #1a6b6b;
-  --teal-soft: #f0f8f8;
-  --gold: #b8860b;
-  --gold-soft: #fdf9f0;
-  --nav-h: 56px;
+  --ink:       #12120f;
+  --ink-2:     #2c2c28;
+  --muted:     #6b6b64;
+  --faint:     #a0a097;
+  --border:    #e4e4dc;
+  --border-2:  #d0d0c6;
+  --bg:        #f7f6f2;
+  --surface:   #ffffff;
+  --accent:    #b03a2e;
+  --accent-lt: #faf1f0;
+  --accent-md: #e8bdb9;
+  --teal:      #1a6b6b;
+  --teal-lt:   #eef7f7;
+  --gold:      #b07d10;
+  --gold-lt:   #fdf8ec;
+  --nav-h:     58px;
+  --ease:      cubic-bezier(.4,0,.2,1);
 }
+
+/* ── RESET & BASE ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: 'DM Sans', sans-serif; font-weight: 300; color: var(--ink); background: var(--bg); line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color .18s; }
+a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+img { max-width: 100%; display: block; }
 
-/* TOP BAR */
-.topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--nav-h); background: var(--ink); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
-.topbar-brand { font-family: 'EB Garamond', serif; font-size: 23px; font-weight: 500; color: #fff; letter-spacing: 0.02em; flex-shrink: 0; }
-.topbar-brand:hover { text-decoration: none; color: var(--accent-mid); }
+/* ── NAV ── */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: var(--nav-h);
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.topbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 500;
+  color: #fff;
+  letter-spacing: .01em;
+  flex-shrink: 0;
+  transition: color .18s;
+}
+.topbar-brand:hover { color: var(--accent-md); text-decoration: none; }
+
 .topbar-nav { display: flex; gap: 0; }
-.topbar-nav a { font-size: 13.5px; font-weight: 400; color: rgba(255,255,255,0.6); padding: 0 12px; height: var(--nav-h); display: flex; align-items: center; border-bottom: 2px solid transparent; transition: all 0.18s; letter-spacing: 0.04em; text-transform: uppercase; }
-.topbar-nav a:hover { color: #fff; text-decoration: none; border-bottom-color: rgba(255,255,255,0.3); }
+.topbar-nav a {
+  font-size: 12.5px; font-weight: 400;
+  color: rgba(255,255,255,.55);
+  padding: 0 14px;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  border-bottom: 2px solid transparent;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: color .18s, border-color .18s;
+}
+.topbar-nav a:hover { color: rgba(255,255,255,.9); text-decoration: none; border-bottom-color: rgba(255,255,255,.25); }
 .topbar-nav a.active { color: #fff; border-bottom-color: var(--accent); }
-.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
-.hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.2s; }
-.mobile-nav { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 199; background: var(--ink); flex-direction: column; padding: 8px 0 16px; border-top: 1px solid rgba(255,255,255,0.1); max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+
+.hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; cursor: pointer; padding: 8px; background: none; border: none;
+}
+.hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; border-radius: 2px; transition: all .2s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+.mobile-nav {
+  display: none; position: fixed;
+  top: var(--nav-h); left: 0; right: 0; z-index: 299;
+  background: var(--ink); flex-direction: column;
+  padding: 8px 0 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
 .mobile-nav.open { display: flex; }
-.mobile-nav a { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.7); padding: 12px 24px; text-transform: uppercase; letter-spacing: 0.06em; border-left: 3px solid transparent; transition: all 0.15s; }
-.mobile-nav a:hover, .mobile-nav a.active { color: #fff; border-left-color: var(--accent); background: rgba(255,255,255,0.05); text-decoration: none; }
+.mobile-nav a {
+  font-size: 14px; font-weight: 400;
+  color: rgba(255,255,255,.65);
+  padding: 13px 28px;
+  text-transform: uppercase; letter-spacing: .08em;
+  border-left: 2px solid transparent; transition: all .15s;
+}
+.mobile-nav a:hover, .mobile-nav a.active {
+  color: #fff; border-left-color: var(--accent);
+  background: rgba(255,255,255,.04); text-decoration: none;
+}
 
-/* LAYOUT */
+/* ── LAYOUT ── */
 .layout { margin-top: var(--nav-h); }
-.page { display: none; padding: 50px 64px 88px; max-width: 1100px; margin: 0 auto; animation: fadeUp 0.3s ease; }
-.page.active { display: block; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.page { display: none; padding: 56px 68px 100px; max-width: 1080px; margin: 0 auto; }
+.page.active { display: block; animation: fadeIn .28s var(--ease); }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-/* COMMON */
-.page-title { font-family: 'EB Garamond', serif; font-size: 43px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.2; }
-.page-subtitle { font-size: 17.5px; color: var(--muted); font-weight: 300; margin-bottom: 36px; letter-spacing: 0.02em; }
-.section-label { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 20px; margin-top: 40px; display: flex; align-items: center; gap: 10px; }
+/* ── TYPOGRAPHY ── */
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 46px; font-weight: 500;
+  color: var(--ink); line-height: 1.15;
+  margin-bottom: 8px;
+}
+.page-subtitle { font-size: 17px; color: var(--muted); font-weight: 300; margin-bottom: 40px; }
+.section-label {
+  font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .18em;
+  color: var(--accent); margin-bottom: 22px; margin-top: 52px;
+  display: flex; align-items: center; gap: 12px;
+}
 .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .section-label:first-child { margin-top: 0; }
 
-/* BIO HERO */
-.bio-hero { display: grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start; margin-bottom: 38px; }
+/* ── BIO HERO ── */
+.bio-hero { display: grid; grid-template-columns: 1fr 268px; gap: 56px; align-items: start; margin-bottom: 48px; }
 
-/* Profile card */
-.profile-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
-.profile-photo-wrap { width: 100%; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; background: linear-gradient(135deg, #e8edf8, #f5e8e8); line-height: 0; }
-.profile-photo { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/5; }
-.profile-meta { width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 16px 12px; }
-.profile-meta-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 9px; font-size: 14.5px; color: var(--ink-soft); }
+/* Profile sidebar */
+.profile-sidebar { display: flex; flex-direction: column; gap: 14px; position: sticky; top: calc(var(--nav-h) + 24px); }
+.profile-photo-wrap {
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg,#eaeaf0,#f5eaea);
+  line-height: 0; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.profile-photo { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+
+/* Meta card */
+.profile-meta {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px 16px 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.profile-meta-row {
+  display: flex; gap: 9px; align-items: flex-start;
+  margin-bottom: 10px; font-size: 14px; color: var(--ink-2);
+}
 .profile-meta-row:last-child { margin-bottom: 0; }
-.profile-meta-row svg { flex-shrink: 0; margin-top: 3px; color: var(--muted); }
-.profile-meta-row a { color: var(--ink-soft); font-size: 14.5px; word-break: break-all; }
-.profile-meta-row a:hover { color: var(--accent); }
-.profile-meta-row span { line-height: 1.55; }
-.profile-meta-divider { border: none; border-top: 1px solid var(--border); margin: 11px 0; }
-.social-icons { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-.social-icons a { width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all 0.15s; background: var(--white); }
-.social-icons a:hover { border-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
+.profile-meta-row svg { flex-shrink: 0; margin-top: 3px; color: var(--faint); }
+.profile-meta-row a { color: var(--ink-2); font-size: 14px; word-break: break-all; }
+.profile-meta-row a:hover { color: var(--accent); text-decoration: none; }
+.profile-meta-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+.social-row { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+.social-btn {
+  width: 34px; height: 34px; border-radius: 7px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); transition: all .18s; background: var(--bg);
+}
+.social-btn:hover { border-color: var(--accent); background: var(--accent-lt); text-decoration: none; transform: translateY(-1px); }
+.social-btn img { width: 18px; height: 18px; object-fit: contain; }
 
-/* CV download button */
-.cv-download { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 9px 16px; background: var(--ink); color: #fff; border-radius: 6px; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; transition: background 0.18s; text-decoration: none; }
-.cv-download:hover { background: var(--accent); color: #fff; text-decoration: none; }
-.cv-download svg { flex-shrink: 0; }
+.cv-btn {
+  display: flex; align-items: center; justify-content: center;
+  gap: 7px; width: 100%; padding: 9px;
+  background: var(--ink); color: #fff;
+  border-radius: 7px; font-size: 13.5px; font-weight: 500;
+  letter-spacing: .04em; transition: all .18s;
+}
+.cv-btn:hover { background: var(--accent); color: #fff; text-decoration: none; transform: translateY(-1px); }
 
-/* Citation metrics */
-.cit-section { width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 16px 12px; }
-.cit-title { font-size: 12.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 12px; text-align: center; }
-.cit-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 12px; }
-.cit-box { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 4px; text-align: center; }
+/* Citation widget */
+.cit-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 16px 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.cit-title {
+  font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .14em;
+  color: var(--faint); margin-bottom: 14px; text-align: center;
+}
+.cit-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 14px; }
+.cit-box {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 7px; padding: 9px 4px; text-align: center;
+  transition: border-color .18s, background .18s;
+}
+.cit-box:hover { border-color: var(--accent-md); background: var(--accent-lt); }
 .cit-num { font-size: 22px; font-weight: 500; color: var(--ink); line-height: 1.2; }
-.cit-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
-.cit-chart-wrap { position: relative; width: 100%; height: 110px; }
-.cit-source { text-align: center; margin-top: 8px; font-size: 12.5px; }
+.cit-lbl { font-size: 10.5px; color: var(--faint); margin-top: 2px; }
+.cit-chart-wrap { position: relative; width: 100%; height: 112px; }
+.cit-source { text-align: center; margin-top: 10px; font-size: 12px; }
 
 /* Bio text */
-.bio-body { font-size: 19px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 18px; font-weight: 300; }
+.bio-body {
+  font-size: 18.5px; line-height: 1.9;
+  color: var(--ink-2); margin-bottom: 20px; font-weight: 300;
+}
 .bio-body strong { font-weight: 500; color: var(--ink); }
-.interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 4px; }
-.interest-tag { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0; padding: 11px 16px; font-size: 17px; color: var(--ink-soft); font-weight: 300; }
+.bio-body a { font-weight: 400; }
+
+/* Interest grid */
+.interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+.interest-tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  font-size: 16px; color: var(--ink-2); font-weight: 300;
+  transition: border-color .18s, box-shadow .18s, transform .18s;
+}
+.interest-tag:hover {
+  border-left-color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transform: translateX(3px);
+}
+
+/* News */
 .news-list { border-top: 1px solid var(--border); }
-.news-row { display: flex; gap: 22px; padding: 13px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
-.news-date { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--muted); flex-shrink: 0; width: 96px; padding-top: 2px; }
-.news-text { font-size: 17.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.6; }
+.news-row {
+  display: flex; gap: 24px; padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start; transition: background .18s;
+  margin: 0 -12px; padding-left: 12px; padding-right: 12px;
+  border-radius: 4px;
+}
+.news-row:hover { background: var(--accent-lt); }
+.news-date { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--faint); flex-shrink: 0; width: 90px; padding-top: 2px; }
+.news-text { font-size: 17px; font-weight: 300; color: var(--ink-2); line-height: 1.65; }
 .news-text strong { font-weight: 500; color: var(--ink); }
+.news-badge {
+  display: inline-block; font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .08em;
+  padding: 2px 8px; border-radius: 3px;
+  background: var(--accent-lt); color: var(--accent);
+  vertical-align: middle; margin-left: 6px;
+}
 
-/* TIMELINE */
-.timeline { position: relative; padding-left: 24px; }
-.timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
-.tl-item { position: relative; padding: 0 0 30px 22px; }
-.tl-item::before { content: ''; position: absolute; left: -3px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--white); border: 2px solid var(--accent); }
-.tl-period { font-family: 'DM Mono', monospace; font-size: 14.5px; color: var(--muted); margin-bottom: 4px; }
-.tl-title { font-size: 19.5px; font-weight: 500; color: var(--ink); margin-bottom: 3px; line-height: 1.35; }
-.tl-org { font-size: 17px; color: var(--ink-soft); font-weight: 300; margin-bottom: 5px; }
-.tl-desc { font-size: 16px; color: var(--muted); line-height: 1.65; font-weight: 300; }
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ''; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 1px; background: var(--border); }
+.tl-item { position: relative; padding: 0 0 36px 24px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -4px; top: 8px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--accent);
+  transition: background .2s, transform .2s;
+}
+.tl-item:hover .tl-dot { background: var(--accent); transform: scale(1.2); }
+.tl-period { font-family: 'DM Mono', monospace; font-size: 13.5px; color: var(--faint); margin-bottom: 5px; }
+.tl-title { font-size: 19px; font-weight: 500; color: var(--ink); margin-bottom: 3px; line-height: 1.35; }
+.tl-org { font-size: 16px; color: var(--ink-2); font-weight: 300; margin-bottom: 5px; }
+.tl-desc { font-size: 15.5px; color: var(--muted); line-height: 1.7; font-weight: 300; }
 
-/* RESEARCH */
-.research-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 26px 24px; margin-bottom: 16px; transition: box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
-.research-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+/* ── RESEARCH ── */
+.research-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 28px 26px; margin-bottom: 18px;
+  position: relative; overflow: hidden;
+  transition: box-shadow .22s, border-color .22s, transform .22s;
+  cursor: default;
+}
+.research-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--accent);
+}
 .research-card.teal::before { background: var(--teal); }
 .research-card.gold::before { background: var(--gold); }
-.research-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); border-color: #ccc; }
-.rc-tag { display: inline-block; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 3px; background: var(--accent-soft); color: var(--accent); margin-bottom: 11px; }
-.rc-tag.teal { background: var(--teal-soft); color: var(--teal); }
-.rc-tag.gold { background: var(--gold-soft); color: var(--gold); }
-.rc-title { font-family: 'EB Garamond', serif; font-size: 24px; font-weight: 500; color: var(--ink); margin-bottom: 9px; line-height: 1.35; }
-.rc-desc { font-size: 17.5px; color: var(--ink-soft); line-height: 1.75; font-weight: 300; }
+.research-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+}
+.rc-tag {
+  display: inline-block; font-size: 12px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: 4px 10px; border-radius: 4px;
+  background: var(--accent-lt); color: var(--accent); margin-bottom: 12px;
+}
+.rc-tag.teal { background: var(--teal-lt); color: var(--teal); }
+.rc-tag.gold { background: var(--gold-lt); color: var(--gold); }
+.rc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 500; color: var(--ink);
+  margin-bottom: 10px; line-height: 1.38;
+}
+.rc-desc { font-size: 16.5px; color: var(--ink-2); line-height: 1.8; font-weight: 300; }
 
-/* PUBLICATIONS */
-.pub-filter { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 26px; }
-.filter-btn { font-size: 14.5px; font-weight: 500; padding: 6px 16px; border: 1px solid var(--border); border-radius: 20px; color: var(--muted); background: var(--white); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
-.filter-btn:hover, .filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
-.pub-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
-.pub-num { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--muted); width: 28px; flex-shrink: 0; padding-top: 3px; text-align: right; }
-.pub-badge { flex-shrink: 0; background: var(--ink); color: #fff; font-size: 12.5px; font-weight: 500; padding: 4px 9px; border-radius: 3px; letter-spacing: 0.06em; margin-top: 3px; text-transform: uppercase; white-space: nowrap; }
+/* ── PUBLICATIONS ── */
+.pub-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+.filter-btn {
+  font-size: 14px; font-weight: 400; padding: 6px 18px;
+  border: 1px solid var(--border); border-radius: 20px;
+  color: var(--muted); background: var(--surface);
+  cursor: pointer; transition: all .18s; font-family: 'DM Sans', sans-serif;
+}
+.filter-btn:hover { background: var(--bg); border-color: var(--border-2); }
+.filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.pub-list { border-top: 1px solid var(--border); }
+.pub-item {
+  display: flex; gap: 16px; padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+  transition: background .18s;
+  margin: 0 -12px; padding-left: 12px; padding-right: 12px;
+}
+.pub-item:hover { background: rgba(0,0,0,.018); border-radius: 6px; }
+.pub-num { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--faint); width: 26px; flex-shrink: 0; padding-top: 4px; text-align: right; }
+.pub-badge {
+  flex-shrink: 0; background: var(--ink); color: #fff;
+  font-size: 11.5px; font-weight: 500; padding: 4px 9px;
+  border-radius: 4px; letter-spacing: .06em; margin-top: 4px;
+  text-transform: uppercase; white-space: nowrap;
+}
 .pub-body { flex: 1; min-width: 0; }
-.pub-title { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 5px; line-height: 1.45; }
-.pub-authors { font-size: 16px; color: var(--muted); margin-bottom: 4px; font-weight: 300; }
-.pub-authors em { font-style: normal; font-weight: 500; color: var(--ink-soft); }
-.pub-venue { font-size: 15.5px; color: var(--teal); font-style: italic; margin-bottom: 7px; }
-.pub-links { display: flex; gap: 6px; flex-wrap: wrap; }
-.pub-link { font-size: 14px; font-weight: 400; padding: 3px 12px; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); transition: all 0.15s; }
-.pub-link:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); text-decoration: none; }
-.poster-item { background: var(--teal-soft); border: 1px solid #c0dede; border-radius: 6px; padding: 18px 20px; margin-bottom: 11px; }
-.poster-label { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 7px; }
-.poster-title { font-size: 17.5px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
-.poster-authors { font-size: 16px; color: var(--ink-soft); margin-bottom: 3px; font-weight: 300; }
-.poster-venue { font-size: 15px; color: var(--muted); font-style: italic; }
+.pub-title { font-size: 17.5px; font-weight: 500; color: var(--ink); margin-bottom: 6px; line-height: 1.5; }
+.pub-authors { font-size: 15.5px; color: var(--muted); margin-bottom: 4px; font-weight: 300; }
+.pub-authors em { font-style: normal; font-weight: 500; color: var(--ink-2); }
+.pub-venue { font-size: 15px; color: var(--teal); font-style: italic; margin-bottom: 8px; }
+.pub-links { display: flex; gap: 7px; flex-wrap: wrap; }
+.pub-link {
+  font-size: 13px; font-weight: 400; padding: 3px 12px;
+  border: 1px solid var(--border); border-radius: 4px;
+  color: var(--muted); transition: all .18s;
+}
+.pub-link:hover { background: var(--accent-lt); border-color: var(--accent-md); color: var(--accent); text-decoration: none; }
 
-/* TEACHING */
-.inst-block { margin-bottom: 38px; }
-.inst-header { display: flex; align-items: center; gap: 14px; margin-bottom: 5px; flex-wrap: wrap; }
-.inst-logo { height: 44px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
-.inst-name { font-family: 'EB Garamond', serif; font-size: 23px; font-weight: 500; color: var(--ink); }
-.inst-loc { font-size: 16px; color: var(--muted); margin-bottom: 16px; }
-.teaching-group-label { font-size: 13.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 16px 0 7px; padding-bottom: 6px; border-bottom: 1px dashed var(--border); }
-.course-row { display: grid; grid-template-columns: 96px 1fr 168px; gap: 11px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #f5f5f5; }
+.poster-item {
+  background: var(--teal-lt); border: 1px solid #c0dede;
+  border-radius: 8px; padding: 20px 22px; margin-bottom: 12px;
+  transition: box-shadow .2s;
+}
+.poster-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); }
+.poster-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--teal); margin-bottom: 8px; }
+.poster-title { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.poster-authors { font-size: 15.5px; color: var(--ink-2); margin-bottom: 4px; font-weight: 300; }
+.poster-venue { font-size: 14.5px; color: var(--muted); font-style: italic; }
+
+/* ── TEACHING ── */
+.inst-block { margin-bottom: 44px; }
+.inst-header { display: flex; align-items: center; gap: 16px; margin-bottom: 4px; flex-wrap: wrap; }
+.inst-logo { height: 40px; width: auto; object-fit: contain; }
+.inst-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: var(--ink); }
+.inst-loc { font-size: 15.5px; color: var(--muted); margin-bottom: 18px; }
+.teaching-group-label {
+  font-size: 12px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--muted);
+  margin: 18px 0 8px; padding-bottom: 7px;
+  border-bottom: 1px dashed var(--border);
+}
+.course-row {
+  display: grid; grid-template-columns: 94px 1fr 172px;
+  gap: 12px; align-items: baseline; padding: 9px 0;
+  border-bottom: 1px solid rgba(0,0,0,.035);
+  transition: background .15s;
+}
+.course-row:hover { background: var(--accent-lt); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 4px; }
 .course-row:last-child { border-bottom: none; }
-.course-code { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--accent); font-weight: 500; }
-.course-name { font-size: 17.5px; color: var(--ink-soft); font-weight: 300; }
-.course-term { font-size: 15px; color: var(--muted); text-align: right; }
+.course-code { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--accent); font-weight: 400; }
+.course-name { font-size: 17px; color: var(--ink-2); font-weight: 300; }
+.course-term { font-size: 14px; color: var(--faint); text-align: right; }
 
-/* MENTORING */
-.mentee-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px; margin-bottom: 13px; }
-.mentee-period { font-family: 'DM Mono', monospace; font-size: 14.5px; color: var(--muted); margin-bottom: 7px; }
-.mentee-thesis { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.4; }
-.mentee-students { font-size: 16px; color: var(--ink-soft); font-weight: 300; font-style: italic; }
-.mentor-highlight { display: flex; gap: 16px; align-items: flex-start; background: var(--accent-soft); border: 1px solid var(--accent-mid); border-radius: 6px; padding: 20px 22px; margin-bottom: 16px; }
-.mh-icon { font-size: 28px; flex-shrink: 0; }
-.mh-title { font-size: 18.5px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
-.mh-sub { font-size: 16px; color: var(--ink-soft); font-weight: 300; }
+/* ── MENTORING ── */
+.mentor-highlight {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--accent-lt); border: 1px solid var(--accent-md);
+  border-radius: 8px; padding: 22px 24px; margin-bottom: 18px;
+  transition: box-shadow .2s;
+}
+.mentor-highlight:hover { box-shadow: 0 4px 16px rgba(176,58,46,.1); }
+.mh-icon { font-size: 26px; flex-shrink: 0; }
+.mh-title { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.mh-sub { font-size: 15.5px; color: var(--ink-2); font-weight: 300; line-height: 1.65; }
+.mentee-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 20px 22px; margin-bottom: 12px;
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.mentee-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); border-color: var(--border-2); transform: translateX(3px); }
+.mentee-period { font-family: 'DM Mono', monospace; font-size: 13.5px; color: var(--faint); margin-bottom: 8px; }
+.mentee-thesis { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.45; }
+.mentee-students { font-size: 15.5px; color: var(--muted); font-weight: 300; font-style: italic; }
 
-/* AWARDS */
-.award-card { display: flex; gap: 18px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--border); }
-.award-year { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--muted); width: 96px; flex-shrink: 0; padding-top: 3px; }
-.award-icon { font-size: 22px; flex-shrink: 0; }
-.award-title { font-size: 18.5px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
-.award-org { font-size: 16px; color: var(--ink-soft); font-weight: 300; }
-.grant-card { background: var(--gold-soft); border: 1px solid #e8d5a0; border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: 20px 22px; margin-bottom: 13px; }
-.grant-agency { font-size: 13.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 7px; }
-.grant-title { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 7px; line-height: 1.4; }
-.grant-meta { font-size: 16px; color: var(--ink-soft); font-weight: 300; line-height: 1.7; }
-.cert-item { padding: 13px 0; border-bottom: 1px solid var(--border); display: flex; gap: 18px; align-items: flex-start; }
-.cert-period { font-family: 'DM Mono', monospace; font-size: 14.5px; color: var(--muted); width: 124px; flex-shrink: 0; padding-top: 3px; }
-.cert-name { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
-.cert-org { font-size: 15.5px; color: var(--muted); font-weight: 300; }
+/* ── AWARDS ── */
+.award-card {
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 20px 0; border-bottom: 1px solid var(--border);
+  transition: background .18s;
+  margin: 0 -12px; padding-left: 12px; padding-right: 12px;
+}
+.award-card:hover { background: var(--gold-lt); border-radius: 6px; }
+.award-year { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--faint); width: 90px; flex-shrink: 0; padding-top: 4px; }
+.award-icon { font-size: 22px; flex-shrink: 0; line-height: 1.5; }
+.award-title { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.award-org { font-size: 15.5px; color: var(--muted); font-weight: 300; }
+.grant-card {
+  background: var(--gold-lt); border: 1px solid #e8d5a0;
+  border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0;
+  padding: 22px 24px; margin-bottom: 14px;
+  transition: box-shadow .2s;
+}
+.grant-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); }
+.grant-agency { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--gold); margin-bottom: 8px; }
+.grant-title { font-size: 17.5px; font-weight: 500; color: var(--ink); margin-bottom: 8px; line-height: 1.45; }
+.grant-meta { font-size: 15.5px; color: var(--ink-2); font-weight: 300; line-height: 1.7; }
+.cert-item {
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+  display: flex; gap: 18px; align-items: flex-start;
+  transition: background .18s;
+  margin: 0 -12px; padding-left: 12px; padding-right: 12px;
+}
+.cert-item:hover { background: rgba(0,0,0,.018); border-radius: 4px; }
+.cert-period { font-family: 'DM Mono', monospace; font-size: 13.5px; color: var(--faint); width: 130px; flex-shrink: 0; padding-top: 3px; }
+.cert-name { font-size: 17.5px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.cert-org { font-size: 15px; color: var(--muted); font-weight: 300; }
 
-/* SKILLS */
+/* ── SKILLS ── */
 .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.skill-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 22px 20px; }
-.skill-card-title { font-size: 14.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin-bottom: 13px; padding-bottom: 9px; border-bottom: 2px solid var(--border); }
+.skill-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 22px 20px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.skill-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); border-color: var(--border-2); }
+.skill-card-title {
+  font-size: 12px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--ink);
+  margin-bottom: 14px; padding-bottom: 10px;
+  border-bottom: 1.5px solid var(--border);
+}
 .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-.skill-tag { font-size: 15.5px; padding: 5px 13px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; color: var(--ink-soft); font-weight: 300; }
-.membership-text { font-size: 17px; color: var(--ink-soft); font-weight: 300; line-height: 1.7; }
-.service-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
-.service-period { font-family: 'DM Mono', monospace; font-size: 14.5px; color: var(--muted); width: 148px; flex-shrink: 0; padding-top: 2px; }
-.service-name { font-size: 17.5px; color: var(--ink-soft); font-weight: 300; }
+.skill-tag {
+  font-size: 14.5px; padding: 5px 13px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 5px; color: var(--ink-2); font-weight: 300;
+  transition: all .18s;
+}
+.skill-tag:hover { background: var(--accent-lt); border-color: var(--accent-md); color: var(--accent); }
+.service-item {
+  display: flex; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--border);
+  align-items: flex-start; transition: background .18s;
+  margin: 0 -12px; padding-left: 12px; padding-right: 12px;
+}
+.service-item:hover { background: rgba(0,0,0,.018); border-radius: 4px; }
+.service-period { font-family: 'DM Mono', monospace; font-size: 13.5px; color: var(--faint); width: 152px; flex-shrink: 0; padding-top: 2px; }
+.service-name { font-size: 17px; color: var(--ink-2); font-weight: 300; }
 
-/* FOOTER */
-.page-footer { border-top: 1px solid var(--border); margin-top: 66px; padding: 26px 0 0; text-align: center; font-size: 15.5px; color: var(--muted); }
+/* ── FOOTER ── */
+.page-footer {
+  border-top: 1px solid var(--border); margin-top: 80px;
+  padding: 28px 0 0; text-align: center;
+  font-size: 14.5px; color: var(--faint);
+}
 
-/* ═══════════════════════════════
-   RESPONSIVE
-═══════════════════════════════ */
+/* ── SCROLL PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: var(--nav-h); left: 0; height: 2px;
+  background: var(--accent); z-index: 400; width: 0%;
+  transition: width .1s linear;
+}
 
-/* Tablet: hamburger + tighten bio hero */
+/* ── BACK TO TOP ── */
+#back-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 200;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--ink); color: #fff;
+  border: none; cursor: pointer; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s, background .2s, transform .2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,.18);
+}
+#back-top.visible { opacity: 1; pointer-events: auto; }
+#back-top:hover { background: var(--accent); transform: translateY(-3px); }
+
+/* ── RESPONSIVE ── */
 @media (max-width: 860px) {
   .topbar-nav { display: none; }
   .hamburger { display: flex; }
-  .page { padding: 32px 28px 70px; }
-  /* Fix 3: bio hero too cramped between 700–860px */
-  .bio-hero { grid-template-columns: 1fr 240px; gap: 32px; }
+  .page { padding: 36px 30px 72px; }
+  .bio-hero { grid-template-columns: 1fr 240px; gap: 36px; }
 }
-
-/* Mobile portrait */
 @media (orientation: portrait) and (max-width: 700px) {
-  .page { padding: 24px 16px 56px; }
-  .page-title { font-size: 32px; }
+  .page { padding: 28px 18px 60px; }
+  .page-title { font-size: 34px; }
   .page-subtitle { font-size: 15px; }
   .bio-body { font-size: 16.5px; }
-  .section-label { font-size: 11.5px; }
-  .bio-hero { grid-template-columns: 1fr; gap: 24px; }
+  .bio-hero { grid-template-columns: 1fr; gap: 28px; }
   .bio-hero-text { order: 2; }
-  .profile-card { order: 1; align-items: center; }
-  .profile-photo-wrap { width: 180px; border-radius: 6px; }
-  .profile-meta { width: 100%; max-width: 360px; }
-  .cit-section { width: 100%; max-width: 360px; }
-  .interest-grid { grid-template-columns: 1fr; }
-  .interest-tag { font-size: 15px; }
-  .skills-grid { grid-template-columns: 1fr; }
+  .profile-sidebar { order: 1; align-items: center; position: static; }
+  .profile-photo-wrap { width: 180px; }
+  .profile-meta, .cit-card { width: 100%; max-width: 360px; }
+  .interest-grid, .skills-grid { grid-template-columns: 1fr; }
   .course-row { grid-template-columns: 80px 1fr; gap: 8px; }
   .course-term { display: none; }
-  .course-code { font-size: 13px; }
-  .course-name { font-size: 15.5px; }
-  .inst-logo { height: 34px; }
-  .inst-name { font-size: 19px; }
-  .inst-loc { font-size: 14px; }
-  .teaching-group-label { font-size: 12px; }
-  .award-year { width: 64px; font-size: 12.5px; }
-  .award-title { font-size: 16px; }
-  .award-org { font-size: 14px; }
-  .grant-title { font-size: 15.5px; }
-  .grant-meta { font-size: 14px; }
+  .award-year { width: 68px; font-size: 13px; }
   .cert-item { flex-direction: column; gap: 4px; }
-  .cert-period { width: auto; font-size: 13px; }
-  .cert-name { font-size: 16px; }
-  .cert-org { font-size: 14px; }
-  .service-period { width: 120px; font-size: 13px; }
-  .service-name { font-size: 15.5px; }
+  .cert-period { width: auto; }
+  .service-period { width: 110px; }
   .pub-num { display: none; }
   .pub-item { gap: 8px; }
   .pub-badge { font-size: 11px; padding: 3px 7px; }
   .pub-title { font-size: 15.5px; }
-  .pub-authors { font-size: 14px; }
-  .pub-venue { font-size: 13.5px; }
-  .filter-btn { font-size: 13px; padding: 5px 12px; }
-  .news-date { width: 72px; font-size: 12.5px; }
-  .news-text { font-size: 15px; }
+  .news-date { width: 76px; font-size: 13px; }
   .rc-title { font-size: 20px; }
-  .rc-desc { font-size: 15.5px; }
-  .tl-title { font-size: 17px; }
-  .tl-org { font-size: 15px; }
-  .tl-desc { font-size: 14px; }
-  .mentee-thesis { font-size: 15.5px; }
-  .mentee-students { font-size: 14px; }
-  .mh-title { font-size: 16px; }
-  .mh-sub { font-size: 14px; }
 }
-
-/* Landscape mobile */
 @media (orientation: landscape) and (max-width: 860px) {
-  .page { padding: 30px 40px 64px; }
+  .page { padding: 32px 44px 68px; }
   .bio-hero { grid-template-columns: 1fr 260px; gap: 40px; }
-  .course-row { grid-template-columns: 80px 1fr 150px; }
-  .course-term { display: block; }
-  .interest-grid { grid-template-columns: 1fr 1fr; }
-  .skills-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </head>
 <body>
 
+<!-- Progress bar -->
+<div id="progress-bar"></div>
+
+<!-- Nav -->
 <nav class="topbar">
   <a href="#" class="topbar-brand" onclick="showPage('bio');return false;">Tarikul Islam</a>
   <div class="topbar-nav">
@@ -330,161 +568,214 @@ a:hover { text-decoration: underline; }
 
 <div class="layout">
 
-<!-- BIO -->
+<!-- ══ BIO ══ -->
 <div class="page active" id="page-bio">
   <div class="bio-hero">
     <div class="bio-hero-text">
       <div class="page-title">Tarikul Islam</div>
       <div class="page-subtitle">Ph.D. Student · Civil &amp; Environmental Engineering · University of Southern California</div>
+
       <p class="bio-body">I am a Graduate Research and Teaching Assistant in the <a href="https://cee.usc.edu" target="_blank">Sonny Astani Department of Civil and Environmental Engineering</a> at the <strong>University of Southern California</strong>, working under <a href="https://thomas-petersen-1.github.io/" target="_blank">Dr. Thomas Petersen</a>. I also hold a position as <a href="https://www.aust.edu/ce/faculty_member/mr_tarikul_islam" target="_blank">Assistant Professor (on leave)</a> in the Department of Civil Engineering at Ahsanullah University of Science and Technology (AUST), Dhaka, Bangladesh.</p>
-      <p class="bio-body">My current research focuses on the <strong>fabrication of bicontinuous cement composites with multifunctional structural and electrical properties</strong> — an interdisciplinary study that bridges materials science, electrochemistry, and civil engineering.</p>
-      <p class="bio-body">I earned my B.Sc. in Civil Engineering from AUST (2017) and M.Sc. in Civil Engineering (Structural) from <strong>Bangladesh University of Engineering and Technology (BUET)</strong> (2022), where my research involved the experimental investigation of boiler blast loads on building structures. I have over 7 years of teaching experience and have authored <strong>10+ peer-reviewed journal articles</strong> on fiber-reinforced concrete, structural retrofitting, and numerical modeling.</p>
+      <p class="bio-body">My current research focuses on the <strong>fabrication of bicontinuous cement composites with multifunctional structural and electrical properties</strong> — an interdisciplinary study bridging materials science, electrochemistry, and civil engineering.</p>
+      <p class="bio-body">I earned my B.Sc. in Civil Engineering from AUST (2017) and M.Sc. in Civil Engineering (Structural) from <strong>Bangladesh University of Engineering and Technology (BUET)</strong> (2022). I have over 7 years of teaching experience and have authored <strong>10+ peer-reviewed journal articles</strong> on fiber-reinforced concrete, structural retrofitting, and numerical modeling.</p>
       <p class="bio-body">In my leisure time, I enjoy music, films, soccer, and cricket.</p>
+
+      <div class="section-label">Research Interests</div>
+      <div class="interest-grid">
+        <div class="interest-tag">Mechanics of civil engineering materials &amp; porous media</div>
+        <div class="interest-tag">Durability and fracture of reinforced concrete</div>
+        <div class="interest-tag">Sustainable and multifunctional construction materials</div>
+        <div class="interest-tag">Multiscale chemo-mechanical characterization</div>
+        <div class="interest-tag">Materials modeling</div>
+        <div class="interest-tag">Retrofitting and rehabilitation of structures</div>
+        <div class="interest-tag">Structural dynamics</div>
+        <div class="interest-tag">Nondestructive testing</div>
+      </div>
+
+      <div class="section-label">News &amp; Updates</div>
+      <div class="news-list">
+        <div class="news-row">
+          <span class="news-date">Mar 2026</span>
+          <span class="news-text">Serving as TA for <strong>CE 537: Advanced Reinforced Concrete</strong> at USC (Spring 2026). <span class="news-badge">New</span></span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Aug 2025</span>
+          <span class="news-text">Mentored <strong>Luke Bayliss</strong> (Amazon SURE Fellow). Poster <em>"Understanding the Electrochemical Properties of Porous Media"</em> presented at USC Viterbi SURE Symposium.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">2025</span>
+          <span class="news-text">Two new journal papers published in <em>Malaysian Journal of Civil Engineering</em> (BIM) and <em>Civil Engineering and Architecture</em> (jute fiber-reinforced concrete).</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Aug 2024</span>
+          <span class="news-text">Joined <strong>USC</strong> as PhD student and Graduate RA/TA, supported by the <strong>Viterbi School of Engineering Fellowship</strong> ($45,000/year, 2024–2028).</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Apr 2022</span>
+          <span class="news-text">Promoted to <strong>Assistant Professor</strong> at AUST after completing M.Sc. at BUET.</span>
+        </div>
+      </div>
     </div>
 
-    <div class="profile-card">
+    <!-- Sidebar -->
+    <aside class="profile-sidebar">
       <div class="profile-photo-wrap">
         <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo" loading="lazy">
       </div>
+
       <div class="profile-meta">
         <div class="profile-meta-row">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          <span>3620 South Vermont Ave, KAP 211<br>Los Angeles, CA 90089, USA</span>
+          <span>3620 S Vermont Ave, KAP 211<br>Los Angeles, CA 90089</span>
         </div>
         <div class="profile-meta-row">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
           <a href="mailto:tarikuli@usc.edu">tarikuli@usc.edu</a>
         </div>
         <hr class="profile-meta-divider">
-        <div class="social-icons">
-          <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" title="Google Scholar">
-            <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
+        <div class="social-row">
+          <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" title="Google Scholar" class="social-btn">
+            <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" loading="lazy">
           </a>
-          <a href="https://orcid.org/0000-0002-4193-4366" target="_blank" title="ORCID">
-            <img src="/images/Orcid_logo.png" alt="ORCID" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
+          <a href="https://orcid.org/0000-0002-4193-4366" target="_blank" title="ORCID" class="social-btn">
+            <img src="/images/Orcid_logo.png" alt="ORCID" loading="lazy">
           </a>
-          <a href="https://www.scopus.com/authid/detail.uri?authorId=58035898400" target="_blank" title="Scopus">
-            <img src="/images/Scopus_logo.png" alt="Scopus" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
+          <a href="https://www.scopus.com/authid/detail.uri?authorId=58035898400" target="_blank" title="Scopus" class="social-btn">
+            <img src="/images/Scopus_logo.png" alt="Scopus" loading="lazy">
           </a>
-          <a href="https://www.researchgate.net/profile/Tarikul-Islam-5" target="_blank" title="ResearchGate">
-            <img src="/images/ResearchGate_logo.png" alt="ResearchGate" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
+          <a href="https://www.researchgate.net/profile/Tarikul-Islam-5" target="_blank" title="ResearchGate" class="social-btn">
+            <img src="/images/ResearchGate_logo.png" alt="ResearchGate" loading="lazy">
           </a>
-          <a href="https://www.linkedin.com/in/tarikul-islam-313785142/" target="_blank" title="LinkedIn">
-            <img src="/images/Linkedin_logo.png" alt="LinkedIn" style="width:20px;height:20px;object-fit:contain;" loading="lazy">
+          <a href="https://www.linkedin.com/in/tarikul-islam-313785142/" target="_blank" title="LinkedIn" class="social-btn">
+            <img src="/images/Linkedin_logo.png" alt="LinkedIn" loading="lazy">
           </a>
         </div>
         <hr class="profile-meta-divider">
-        <!-- Fix 5: CV download button -->
-        <a href="/files/CV_Tarikul_Islam.pdf" target="_blank" class="cv-download">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <a href="/files/CV_Tarikul_Islam.pdf" target="_blank" class="cv-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download CV
         </a>
       </div>
-      <div class="cit-section">
+
+      <!-- Citation widget -->
+      <div class="cit-card">
         <div class="cit-title">Citation Metrics</div>
         <div class="cit-grid">
           <div class="cit-box"><div class="cit-num" id="total-cit">—</div><div class="cit-lbl">Citations</div></div>
           <div class="cit-box"><div class="cit-num" id="h-index">—</div><div class="cit-lbl">h-index</div></div>
-          <div class="cit-box"><div class="cit-num" id="i10-index">—</div><div class="cit-lbl">i10-index</div></div>
+          <div class="cit-box"><div class="cit-num" id="i10-index">—</div><div class="cit-lbl">i10</div></div>
           <div class="cit-box"><div class="cit-num" id="paper-count">—</div><div class="cit-lbl">Papers</div></div>
         </div>
         <div class="cit-chart-wrap"><canvas id="citChart"></canvas></div>
         <div class="cit-source" id="cit-source">
-          <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">Google Scholar ↗</a>
+          <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--faint);">Google Scholar ↗</a>
         </div>
       </div>
-    </div>
+    </aside>
   </div>
 
-  <div class="section-label">Research Interests</div>
-  <div class="interest-grid">
-    <div class="interest-tag">Mechanics of civil engineering materials &amp; porous media</div>
-    <div class="interest-tag">Durability and fracture of reinforced concrete</div>
-    <div class="interest-tag">Sustainable and multifunctional construction materials</div>
-    <div class="interest-tag">Multiscale chemo-mechanical characterization</div>
-    <div class="interest-tag">Materials modeling</div>
-    <div class="interest-tag">Retrofitting and rehabilitation of structures</div>
-    <div class="interest-tag">Structural dynamics</div>
-    <div class="interest-tag">Nondestructive testing</div>
-  </div>
-
-  <div class="section-label">News &amp; Updates</div>
-  <div class="news-list">
-    <div class="news-row"><span class="news-date">Mar 2026</span><span class="news-text">Serving as TA for <strong>CE 537: Advanced Reinforced Concrete</strong> at USC (Spring 2026).</span></div>
-    <div class="news-row"><span class="news-date">Aug 2025</span><span class="news-text">Mentored <strong>Luke Bayliss</strong> (Amazon SURE Fellow). Poster <em>"Understanding the Electrochemical Properties of Porous Media"</em> presented at USC Viterbi SURE Symposium.</span></div>
-    <div class="news-row"><span class="news-date">2025</span><span class="news-text">Two new journal papers published in <em>Malaysian Journal of Civil Engineering</em> (BIM) and <em>Civil Engineering and Architecture</em> (jute fiber-reinforced concrete).</span></div>
-    <div class="news-row"><span class="news-date">Aug 2024</span><span class="news-text">Joined <strong>USC</strong> as PhD student and Graduate RA/TA, supported by the <strong>Viterbi School of Engineering Fellowship</strong> ($45,000/year, 2024–2028).</span></div>
-    <div class="news-row"><span class="news-date">Apr 2022</span><span class="news-text">Promoted to <strong>Assistant Professor</strong> at AUST after completing M.Sc. at BUET.</span></div>
-  </div>
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- RESEARCH -->
+<!-- ══ RESEARCH ══ -->
 <div class="page" id="page-research">
   <div class="page-title">Research</div>
   <div class="page-subtitle">Current and past research interests &amp; projects</div>
+
   <div class="section-label">Current Research — USC</div>
   <div class="research-card">
     <span class="rc-tag">Current · Petersen Lab · USC</span>
     <div class="rc-title">Fabrication of Bicontinuous Cement Composites with Multifunctional Structural and Electrical Properties</div>
     <div class="rc-desc">This research focuses on engineering bicontinuous cement-based composites that simultaneously exhibit enhanced mechanical performance and tunable electrical conductivity. The work integrates principles from materials science, electrochemistry, and civil engineering to develop composites suitable for smart structural applications, including structural health monitoring, self-sensing capabilities, and electromagnetic shielding. The study leverages multiscale characterization techniques to understand the interplay between microstructure, connectivity, and multifunctional properties.</div>
   </div>
+
   <div class="section-label">Previous Research</div>
-  <div class="research-card teal"><span class="rc-tag teal">Structural Engineering</span><div class="rc-title">Blast Load Effects on Building Structures</div><div class="rc-desc">Experimental investigation of boiler blast loads on building structures at BUET. Included large- and small-scale specimen testing, dynamic data acquisition, and assessment of structural resilience. Funded by the CASR grant, BUET.</div></div>
-  <div class="research-card"><span class="rc-tag">Materials</span><div class="rc-title">Fiber-Reinforced &amp; Sustainable Concrete</div><div class="rc-desc">Extensive experimental study of mechanical behavior of concrete with natural and synthetic fibers — including jute, PVC, banana, and coconut fibers — and supplementary cementitious materials such as fly ash, rice husk ash, sugarcane bagasse ash (SCBA), and wood powder. Published 6+ peer-reviewed journal papers on these topics.</div></div>
-  <div class="research-card gold"><span class="rc-tag gold">Computational</span><div class="rc-title">Numerical Modeling of RC Structures</div><div class="rc-desc">Developed and validated numerical models of lateral behavior of masonry-infilled RC frames in OpenSees focusing on sliding failure of infill panels, blast-induced column response using Abaqus, and retrofitting of RC columns under lateral loads. Parametric studies informed design recommendations for retrofitting strategies.</div></div>
-  <div class="research-card teal"><span class="rc-tag teal">Geotechnical</span><div class="rc-title">Chemical Stabilization of Expansive Soils</div><div class="rc-desc">Investigation of the effectiveness of different chemical additives on the stabilization of expansive (swelling) soils, with implications for foundation engineering in regions with problematic soils.</div></div>
-  <div class="research-card gold"><span class="rc-tag gold">Sustainability</span><div class="rc-title">Carbon Emission &amp; Sustainable Construction</div><div class="rc-desc">Analysis of carbon emissions and sequestration associated with residential building construction, and implementation of BIM for sustainable construction practices in developing countries — with emphasis on economic, environmental, and social aspects.</div></div>
+  <div class="research-card teal">
+    <span class="rc-tag teal">Structural Engineering</span>
+    <div class="rc-title">Blast Load Effects on Building Structures</div>
+    <div class="rc-desc">Experimental investigation of boiler blast loads on building structures at BUET. Included large- and small-scale specimen testing, dynamic data acquisition, and assessment of structural resilience. Funded by the CASR grant, BUET.</div>
+  </div>
+  <div class="research-card">
+    <span class="rc-tag">Materials</span>
+    <div class="rc-title">Fiber-Reinforced &amp; Sustainable Concrete</div>
+    <div class="rc-desc">Extensive experimental study of mechanical behavior of concrete with natural and synthetic fibers — including jute, PVC, banana, and coconut fibers — and supplementary cementitious materials such as fly ash, rice husk ash, sugarcane bagasse ash (SCBA), and wood powder. Published 6+ peer-reviewed journal papers on these topics.</div>
+  </div>
+  <div class="research-card gold">
+    <span class="rc-tag gold">Computational</span>
+    <div class="rc-title">Numerical Modeling of RC Structures</div>
+    <div class="rc-desc">Developed and validated numerical models of lateral behavior of masonry-infilled RC frames in OpenSees focusing on sliding failure of infill panels, blast-induced column response using Abaqus, and retrofitting of RC columns under lateral loads. Parametric studies informed design recommendations for retrofitting strategies.</div>
+  </div>
+  <div class="research-card teal">
+    <span class="rc-tag teal">Geotechnical</span>
+    <div class="rc-title">Chemical Stabilization of Expansive Soils</div>
+    <div class="rc-desc">Investigation of the effectiveness of different chemical additives on the stabilization of expansive (swelling) soils, with implications for foundation engineering in regions with problematic soils.</div>
+  </div>
+  <div class="research-card gold">
+    <span class="rc-tag gold">Sustainability</span>
+    <div class="rc-title">Carbon Emission &amp; Sustainable Construction</div>
+    <div class="rc-desc">Analysis of carbon emissions and sequestration associated with residential building construction, and implementation of BIM for sustainable construction practices in developing countries — with emphasis on economic, environmental, and social aspects.</div>
+  </div>
+
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- PUBLICATIONS -->
+<!-- ══ PUBLICATIONS ══ -->
 <div class="page" id="page-publications">
   <div class="page-title">Publications</div>
-  <div class="page-subtitle">10 peer-reviewed journal papers · 1 conference proceeding · 1 poster presentation &nbsp;|&nbsp; * = Corresponding author</div>
+  <div class="page-subtitle">10 peer-reviewed journal papers · 1 conference proceeding · 1 poster &nbsp;|&nbsp; * = Corresponding author</div>
+
   <div class="pub-filter">
     <button class="filter-btn active" onclick="filterPubs('all',this)">All</button>
     <button class="filter-btn" onclick="filterPubs('journal',this)">Journal Papers</button>
     <button class="filter-btn" onclick="filterPubs('conference',this)">Conference</button>
     <button class="filter-btn" onclick="filterPubs('poster',this)">Poster</button>
   </div>
+
   <div id="journal-section">
     <div class="section-label">Peer-Reviewed Journal Papers</div>
-    <div class="pub-item"><span class="pub-num">10</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Implementing BIM for Sustainable Construction in Developing Countries: Emphasizing Economic, Environmental, and Social Aspects</div><div class="pub-authors">Nazim, M. F., <em>Islam, T.*</em>, Islam S., &amp; Shuvo, R. I.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 37(3), 17–27, 2025</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v37.25019" target="_blank" class="pub-link">DOI</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">9</span><span class="pub-badge">CEA</span><div class="pub-body"><div class="pub-title">Effect of Jute Fiber Content on Compressive and Split Tensile Strength of Concrete Utilizing Stone Chips as Coarse Aggregates</div><div class="pub-authors"><em>Islam, T.</em>, Patowary, F., Sen, D.*, &amp; Chowdhury, S. R.</div><div class="pub-venue">Civil Engineering and Architecture, 13(3), 1995–2005, 2025</div><div class="pub-links"><a href="https://doi.org/10.13189/cea.2025.130339" target="_blank" class="pub-link">DOI</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">8</span><span class="pub-badge">Buildings</span><div class="pub-body"><div class="pub-title">Mechanical Properties of PVC Fiber-Reinforced Concrete — Effects of Fiber Content and Length</div><div class="pub-authors"><em>Islam, T.</em>, Safiuddin, M.*, Roman, R. A., Chakma, B., &amp; Al Maroof, A.</div><div class="pub-venue">Buildings, 13, 2666, 2023</div><div class="pub-links"><a href="https://doi.org/10.3390/buildings13102666" target="_blank" class="pub-link">DOI</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">7</span><span class="pub-badge">AJCE</span><div class="pub-body"><div class="pub-title">Numerical Modeling and Validation of Lateral Behavior of Masonry-Infilled RC Frame Focusing Sliding Failure of Infill Panel</div><div class="pub-authors"><em>Islam, T.</em>, &amp; Sen, D.*</div><div class="pub-venue">Asian Journal of Civil Engineering, 24, 1247–1255, 2023</div><div class="pub-links"><a href="https://doi.org/10.1007/s42107-022-00566-1" target="_blank" class="pub-link">DOI</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">6</span><span class="pub-badge">CEPM</span><div class="pub-body"><div class="pub-title">Numerical Analysis of Retrofitted RC Column under Lateral Load</div><div class="pub-authors"><em>Islam, T.*</em>, Yasar, R., &amp; Chowdhury, S. R.</div><div class="pub-venue">Computational Engineering and Physical Modeling, 5(3), 82–95, 2022</div><div class="pub-links"><a href="https://doi.org/10.22115/CEPM.2023.374244.1226" target="_blank" class="pub-link">DOI</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">5</span><span class="pub-badge">JAGE</span><div class="pub-body"><div class="pub-title">Effectiveness of Different Chemicals on Stabilization of Expansive Soil</div><div class="pub-authors">Jahan, N.*, <em>Islam, T.</em>, &amp; Islam, S.</div><div class="pub-venue">Journal of Advances in Geotechnical Engineering, 5(3), 1–11, 2022</div><div class="pub-links"><a href="https://doi.org/10.5281/zenodo.7451446" target="_blank" class="pub-link">DOI</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">4</span><span class="pub-badge">JCBME</span><div class="pub-body"><div class="pub-title">Carbon Emission and Carbon Sequestration of Residential Building</div><div class="pub-authors">Tasin, T. R.*, Noman, A. A. R., Prottoy, A. R., Islam, S., &amp; <em>Islam, T.</em></div><div class="pub-venue">Journal of Construction and Building Materials Engineering, 8(1), 33–41, 2022</div><div class="pub-links"><a href="https://matjournals.co.in/index.php/JOCBME/article/view/131" target="_blank" class="pub-link">Link</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">3</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Behavior of Concrete Compressive Strength by Utilizing Fly Ash and Wood Powder</div><div class="pub-authors"><em>Islam, T.*</em>, Gupta, S. D., Janin, J., &amp; Rahman, A.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 33(3), 69–77, 2021</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v33.17398" target="_blank" class="pub-link">DOI</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">2</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Experimental Study of Concrete with Sugarcane Bagasse Ash (SCBA) at Elevated Temperature</div><div class="pub-authors">Gupta, S. D.*, <em>Islam, T.</em>, Palash, M. D. N., &amp; Shohan, M. S. A.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 33(3), 59–67, 2021</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v33.17379" target="_blank" class="pub-link">DOI</a></div></div></div>
-    <div class="pub-item"><span class="pub-num">1</span><span class="pub-badge">CEPM</span><div class="pub-body"><div class="pub-title">Experimental Study of Concrete Using Raw Rice Husk as Partial Replacement of Cement with Natural Fiber (Jute Fiber) as Reinforcing Material</div><div class="pub-authors">Gupta, S. D.*, <em>Islam, T.</em>, Sohag, M. A. I., Salakin, S., &amp; Hossain, I.</div><div class="pub-venue">Computational Engineering and Physical Modeling, 4(3), 29–42, 2021</div><div class="pub-links"><a href="https://doi.org/10.22115/CEPM.2021.280252.1166" target="_blank" class="pub-link">DOI</a></div></div></div>
+    <div class="pub-list">
+      <div class="pub-item"><span class="pub-num">10</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Implementing BIM for Sustainable Construction in Developing Countries: Emphasizing Economic, Environmental, and Social Aspects</div><div class="pub-authors">Nazim, M. F., <em>Islam, T.*</em>, Islam S., &amp; Shuvo, R. I.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 37(3), 17–27, 2025</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v37.25019" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">9</span><span class="pub-badge">CEA</span><div class="pub-body"><div class="pub-title">Effect of Jute Fiber Content on Compressive and Split Tensile Strength of Concrete Utilizing Stone Chips as Coarse Aggregates</div><div class="pub-authors"><em>Islam, T.</em>, Patowary, F., Sen, D.*, &amp; Chowdhury, S. R.</div><div class="pub-venue">Civil Engineering and Architecture, 13(3), 1995–2005, 2025</div><div class="pub-links"><a href="https://doi.org/10.13189/cea.2025.130339" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">8</span><span class="pub-badge">Buildings</span><div class="pub-body"><div class="pub-title">Mechanical Properties of PVC Fiber-Reinforced Concrete — Effects of Fiber Content and Length</div><div class="pub-authors"><em>Islam, T.</em>, Safiuddin, M.*, Roman, R. A., Chakma, B., &amp; Al Maroof, A.</div><div class="pub-venue">Buildings, 13, 2666, 2023</div><div class="pub-links"><a href="https://doi.org/10.3390/buildings13102666" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">7</span><span class="pub-badge">AJCE</span><div class="pub-body"><div class="pub-title">Numerical Modeling and Validation of Lateral Behavior of Masonry-Infilled RC Frame Focusing Sliding Failure of Infill Panel</div><div class="pub-authors"><em>Islam, T.</em>, &amp; Sen, D.*</div><div class="pub-venue">Asian Journal of Civil Engineering, 24, 1247–1255, 2023</div><div class="pub-links"><a href="https://doi.org/10.1007/s42107-022-00566-1" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">6</span><span class="pub-badge">CEPM</span><div class="pub-body"><div class="pub-title">Numerical Analysis of Retrofitted RC Column under Lateral Load</div><div class="pub-authors"><em>Islam, T.*</em>, Yasar, R., &amp; Chowdhury, S. R.</div><div class="pub-venue">Computational Engineering and Physical Modeling, 5(3), 82–95, 2022</div><div class="pub-links"><a href="https://doi.org/10.22115/CEPM.2023.374244.1226" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">5</span><span class="pub-badge">JAGE</span><div class="pub-body"><div class="pub-title">Effectiveness of Different Chemicals on Stabilization of Expansive Soil</div><div class="pub-authors">Jahan, N.*, <em>Islam, T.</em>, &amp; Islam, S.</div><div class="pub-venue">Journal of Advances in Geotechnical Engineering, 5(3), 1–11, 2022</div><div class="pub-links"><a href="https://doi.org/10.5281/zenodo.7451446" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">4</span><span class="pub-badge">JCBME</span><div class="pub-body"><div class="pub-title">Carbon Emission and Carbon Sequestration of Residential Building</div><div class="pub-authors">Tasin, T. R.*, Noman, A. A. R., Prottoy, A. R., Islam, S., &amp; <em>Islam, T.</em></div><div class="pub-venue">Journal of Construction and Building Materials Engineering, 8(1), 33–41, 2022</div><div class="pub-links"><a href="https://matjournals.co.in/index.php/JOCBME/article/view/131" target="_blank" class="pub-link">Link ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">3</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Behavior of Concrete Compressive Strength by Utilizing Fly Ash and Wood Powder</div><div class="pub-authors"><em>Islam, T.*</em>, Gupta, S. D., Janin, J., &amp; Rahman, A.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 33(3), 69–77, 2021</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v33.17398" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">2</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Experimental Study of Concrete with Sugarcane Bagasse Ash (SCBA) at Elevated Temperature</div><div class="pub-authors">Gupta, S. D.*, <em>Islam, T.</em>, Palash, M. D. N., &amp; Shohan, M. S. A.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 33(3), 59–67, 2021</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v33.17379" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">1</span><span class="pub-badge">CEPM</span><div class="pub-body"><div class="pub-title">Experimental Study of Concrete Using Raw Rice Husk as Partial Replacement of Cement with Natural Fiber (Jute Fiber) as Reinforcing Material</div><div class="pub-authors">Gupta, S. D.*, <em>Islam, T.</em>, Sohag, M. A. I., Salakin, S., &amp; Hossain, I.</div><div class="pub-venue">Computational Engineering and Physical Modeling, 4(3), 29–42, 2021</div><div class="pub-links"><a href="https://doi.org/10.22115/CEPM.2021.280252.1166" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+    </div>
   </div>
+
   <div id="conference-section">
     <div class="section-label">Conference Proceedings</div>
-    <div class="pub-item"><span class="pub-num">1</span><span class="pub-badge">ICCESD</span><div class="pub-body"><div class="pub-title">Bench Scale Study on Co-Composting for Organic Solid Wastes and Faecal Sludge</div><div class="pub-authors"><em>Islam, T.*</em>, Bari, Q. H., Shovon, S. M. S. A., &amp; Al Saif, R.</div><div class="pub-venue">4th International Conference on Civil Engineering for Sustainable Development (ICCESD 2018)</div><div class="pub-links"><a href="http://www.iccesd.com/proc_2018/index.html" target="_blank" class="pub-link">Link</a></div></div></div>
+    <div class="pub-list">
+      <div class="pub-item"><span class="pub-num">1</span><span class="pub-badge">ICCESD</span><div class="pub-body"><div class="pub-title">Bench Scale Study on Co-Composting for Organic Solid Wastes and Faecal Sludge</div><div class="pub-authors"><em>Islam, T.*</em>, Bari, Q. H., Shovon, S. M. S. A., &amp; Al Saif, R.</div><div class="pub-venue">4th International Conference on Civil Engineering for Sustainable Development (ICCESD 2018)</div><div class="pub-links"><a href="http://www.iccesd.com/proc_2018/index.html" target="_blank" class="pub-link">Link ↗</a></div></div></div>
+    </div>
   </div>
+
   <div id="poster-section">
     <div class="section-label">Poster Presentations</div>
     <div class="poster-item">
       <div class="poster-label">Poster · 2025</div>
       <div class="poster-title">Understanding the Electrochemical Properties of Porous Media</div>
       <div class="poster-authors">Bayliss, L.*, Islam, T., &amp; Petersen, T.</div>
-      <div class="poster-venue">Viterbi Summer Undergraduate Research Experience (SURE), USC, Los Angeles, CA, August 7, 2025 &nbsp;<a href="https://drive.google.com/file/d/1AxhQVxN66WNG_xLED-vhxv5jLLtlu7pS/view?usp=sharing" target="_blank">[Link]</a></div>
+      <div class="poster-venue">Viterbi SURE Symposium, USC, Los Angeles, CA, August 7, 2025 &nbsp;<a href="https://drive.google.com/file/d/1AxhQVxN66WNG_xLED-vhxv5jLLtlu7pS/view?usp=sharing" target="_blank">[View Poster ↗]</a></div>
     </div>
   </div>
+
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- TEACHING -->
+<!-- ══ TEACHING ══ -->
 <div class="page" id="page-teaching">
   <div class="page-title">Teaching</div>
   <div class="page-subtitle">Courses taught as instructor and teaching assistant across three institutions</div>
+
   <div class="inst-block">
     <div class="section-label">University of Southern California</div>
     <div class="inst-header">
-      <img src="/images/USC_logo.png" alt="USC" class="inst-logo" loading="lazy" onerror="this.style.display='none';">
+      <img src="/images/USC_logo.png" alt="USC" class="inst-logo" loading="lazy" onerror="this.style.display='none'">
       <div class="inst-name">University of Southern California</div>
     </div>
     <div class="inst-loc">Los Angeles, CA, USA &nbsp;·&nbsp; Role: Teaching Assistant</div>
@@ -493,10 +784,11 @@ a:hover { text-decoration: underline; }
     <div class="course-row"><span class="course-code">CE 538</span><span class="course-name">Prestressed Concrete</span><span class="course-term">Spring 2025</span></div>
     <div class="course-row"><span class="course-code">CE 334L</span><span class="course-name">Mechanical Behavior of Materials</span><span class="course-term">Fall 2024, Fall 2025</span></div>
   </div>
+
   <div class="inst-block">
     <div class="section-label">Ahsanullah University of Science and Technology (AUST)</div>
     <div class="inst-header">
-      <img src="/images/AUST_logo.png" alt="AUST" class="inst-logo" loading="lazy" onerror="this.style.display='none';">
+      <img src="/images/AUST_logo.png" alt="AUST" class="inst-logo" loading="lazy" onerror="this.style.display='none'">
       <div class="inst-name">Ahsanullah University of Science and Technology</div>
     </div>
     <div class="inst-loc">Dhaka, Bangladesh &nbsp;·&nbsp; Role: Lecturer → Assistant Professor (2019–2024)</div>
@@ -521,10 +813,11 @@ a:hover { text-decoration: underline; }
     <div class="course-row"><span class="course-code">CE 200</span><span class="course-name">Details of Construction</span><span class="course-term">Fall 2019</span></div>
     <div class="course-row"><span class="course-code">CE 344</span><span class="course-name">Geotechnical Engineering Sessional-I</span><span class="course-term">Fall 2018</span></div>
   </div>
+
   <div class="inst-block">
     <div class="section-label">European University of Bangladesh (EUB)</div>
     <div class="inst-header">
-      <img src="/images/EUB_logo.png" alt="EUB" class="inst-logo" loading="lazy" onerror="this.style.display='none';">
+      <img src="/images/EUB_logo.png" alt="EUB" class="inst-logo" loading="lazy" onerror="this.style.display='none'">
       <div class="inst-name">European University of Bangladesh</div>
     </div>
     <div class="inst-loc">Dhaka, Bangladesh &nbsp;·&nbsp; Role: Lecturer (2017–2018)</div>
@@ -535,17 +828,27 @@ a:hover { text-decoration: underline; }
     <div class="course-row"><span class="course-code">CE 202</span><span class="course-name">Engineering Materials Lab</span><span class="course-term">Fall 2017</span></div>
     <div class="course-row"><span class="course-code">CE 332</span><span class="course-name">Soil Mechanics Lab</span><span class="course-term">Spring 2018</span></div>
   </div>
+
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- MENTORING -->
+<!-- ══ MENTORING ══ -->
 <div class="page" id="page-mentoring">
   <div class="page-title">Mentoring</div>
   <div class="page-subtitle">Undergraduate thesis advising and research mentorship</div>
+
   <div class="section-label">USC — Research Mentorship</div>
-  <div class="mentor-highlight"><span class="mh-icon">🔬</span><div><div class="mh-title">Luke Bayliss — Amazon SURE Fellow</div><div class="mh-sub">USC Viterbi School of Engineering &nbsp;·&nbsp; Summer 2025<br>Project: <em>"Understanding the Electrochemical Properties of Porous Media"</em> — resulted in poster presentation at the USC Viterbi SURE Symposium, August 7, 2025.</div></div></div>
+  <div class="mentor-highlight">
+    <span class="mh-icon">🔬</span>
+    <div>
+      <div class="mh-title">Luke Bayliss — Amazon SURE Fellow</div>
+      <div class="mh-sub">USC Viterbi School of Engineering &nbsp;·&nbsp; Summer 2025<br>Project: <em>"Understanding the Electrochemical Properties of Porous Media"</em> — resulted in poster presentation at the USC Viterbi SURE Symposium, August 7, 2025.</div>
+    </div>
+  </div>
+
   <div class="section-label">AUST — Faculty Advisor, Undergraduate Research &amp; Thesis</div>
-  <p style="font-size:17px;color:var(--muted);margin-bottom:18px;font-weight:300;">Supervised 15 undergraduate students across 7 thesis projects at AUST (2021–2023).</p>
+  <p style="font-size:16.5px;color:var(--muted);margin-bottom:20px;font-weight:300;">Supervised 15 undergraduate students across 7 thesis projects at AUST (2021–2023).</p>
+
   <div class="mentee-card"><div class="mentee-period">Spring 2023 – Fall 2023</div><div class="mentee-thesis">Impact of Waterproofing Admixture on the Performance of Concrete Incorporating Wood Ash as Partially Replaced Cementitious Materials</div><div class="mentee-students">Hoosne Ara Ferdaus Maya · Tanvir Hasan · Md Nahidul Alam</div></div>
   <div class="mentee-card"><div class="mentee-period">Spring 2023 – Fall 2023</div><div class="mentee-thesis">Effect of Different Rebar Coatings on Flexural Performance of Reinforced Concrete Beams</div><div class="mentee-students">Md Jahidul Islam Amanoth · Md. Shakib Al Hasan · Md. Ataur Rahman Shakib</div></div>
   <div class="mentee-card"><div class="mentee-period">Fall 2022 – Spring 2023</div><div class="mentee-thesis">Validation and Parametric Analysis of Blast-Induced Column Using Abaqus</div><div class="mentee-students">Samina Afreen Upoma · Md Mehadi Hasan Mazumdar Shahin · Sarja Akter</div></div>
@@ -553,13 +856,15 @@ a:hover { text-decoration: underline; }
   <div class="mentee-card"><div class="mentee-period">Spring 2022 – Fall 2022</div><div class="mentee-thesis">Experimental Investigation of Impact and Flexural Behavior of Jute Fiber Reinforced Self-Compacting Concrete with 15% Replacement of Fine Aggregates</div><div class="mentee-students">Ashabul Eyamin · Md. Jubair Ahmed · Shishir Datta</div></div>
   <div class="mentee-card"><div class="mentee-period">Spring 2022 – Fall 2022</div><div class="mentee-thesis">Prediction of Mechanical Properties of Coconut Fiber Reinforced Concrete Using Machine Learning Approaches</div><div class="mentee-students">Rafi Mohammad Saad Sultan · Nusrat Jahan Tuli · Md. Nazrul Islam Mishel</div></div>
   <div class="mentee-card"><div class="mentee-period">Fall 2021 – Spring 2022</div><div class="mentee-thesis">Experimental Investigation of Impact and Flexural Behaviors of Plastic Fiber Reinforced Concrete</div><div class="mentee-students">Rezwan Ahmed Roman · Bodhijit Chakma · Abdullah-Al-Maroof</div></div>
+
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- AWARDS -->
+<!-- ══ AWARDS ══ -->
 <div class="page" id="page-awards">
   <div class="page-title">Awards &amp; Training</div>
   <div class="page-subtitle">Honors, fellowships, research grants, and professional development</div>
+
   <div class="section-label">Honors &amp; Awards</div>
   <div class="award-card"><div class="award-year">2024–2028</div><span class="award-icon">🏆</span><div><div class="award-title">Viterbi School of Engineering / Graduate School Fellowship</div><div class="award-org">University of Southern California · Four-year annual stipend of $45,000</div></div></div>
   <div class="award-card"><div class="award-year">2017</div><span class="award-icon">🎓</span><div><div class="award-title">Dean's Honor List</div><div class="award-org">Faculty of Engineering, AUST · Outstanding achievement in B.S. Civil Engineering</div></div></div>
@@ -567,36 +872,58 @@ a:hover { text-decoration: underline; }
   <div class="award-card"><div class="award-year">2010</div><span class="award-icon">📜</span><div><div class="award-title">Merit Scholarship — SSC</div><div class="award-org">Comilla Board, Govt. of Bangladesh · Feni Govt. Pilot High School</div></div></div>
   <div class="award-card"><div class="award-year">2008</div><span class="award-icon">📜</span><div><div class="award-title">Merit Scholarship — JSC</div><div class="award-org">Comilla Board, Govt. of Bangladesh · Feni Govt. Pilot High School</div></div></div>
   <div class="award-card"><div class="award-year">2005</div><span class="award-icon">🌟</span><div><div class="award-title">Primary School Scholarship</div><div class="award-org">Feni Central Govt. Primary School, Feni, Bangladesh</div></div></div>
+
   <div class="section-label">Research Grants</div>
   <div class="grant-card"><div class="grant-agency">AUST Internal Research Grant (AIRG) · 2023–2025 · ~$5,900</div><div class="grant-title">Investigation on the Effect of High Range Water Reducing Admixture on the Mechanical Properties of Jute Fiber Reinforced Concrete</div><div class="grant-meta">Grant ID: APR/2022/CE/02/08 · PI: Dr. Sharmin Reza Chowdhury · Co-PI: Dr. Debasish Sen, Tarikul Islam, Faruk Patowary</div></div>
   <div class="grant-card"><div class="grant-agency">CASR, BUET · Dec 2020 · ~$855</div><div class="grant-title">Experimental Investigation of Boiler Blast Load on Building Structures</div><div class="grant-meta">Meeting No.: 336, Resolution No.: 10 · Supervisor: Dr. Raquib Ahsan</div></div>
+
   <div class="section-label">Professional Certifications &amp; Training</div>
   <div class="cert-item"><div class="cert-period">Jan–Mar 2022</div><div><div class="cert-name">SEng. Training Program Webinar</div><div class="cert-org">Organized by RAJUK in association with International Code Council (ICC)</div></div></div>
   <div class="cert-item"><div class="cert-period">Mar–Jun 2021</div><div><div class="cert-name">BNBC-2020 Webinar</div><div class="cert-org">S. K. Ghosh Associates LLC &amp; ICC · Urban Resilience Project: RAJUK Part</div></div></div>
   <div class="cert-item"><div class="cert-period">Nov–Dec 2021</div><div><div class="cert-name">Certificate Course in e-Learning and Teaching (CeLT)</div><div class="cert-org">Foundation for Learning Teaching and Research</div></div></div>
   <div class="cert-item"><div class="cert-period">Apr 2020</div><div><div class="cert-name">Workshop on "Online Teaching &amp; Learning"</div><div class="cert-org">Institutional Quality Assurance Cell (IQAC), AUST</div></div></div>
+
   <div class="section-label">Seminars &amp; Workshops</div>
   <div class="cert-item"><div class="cert-period">Oct 2021</div><div><div class="cert-name">SATREPS–TSUIB WG3 Virtual Workshop</div><div class="cert-org">Development and Promotion of Seismic Retrofit Guidelines · SATREPS–TSUIB Project</div></div></div>
   <div class="cert-item"><div class="cert-period">Nov 2020</div><div><div class="cert-name">Different Standards and Simple Tests of Construction Materials</div><div class="cert-org">Dhaka, Bangladesh</div></div></div>
+
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- SKILLS -->
+<!-- ══ SKILLS ══ -->
 <div class="page" id="page-skills">
   <div class="page-title">Skills &amp; Tools</div>
   <div class="page-subtitle">Software, programming languages, professional affiliations, and university service</div>
+
   <div class="section-label">Technical Skills</div>
   <div class="skills-grid">
-    <div class="skill-card"><div class="skill-card-title">Structural Analysis &amp; Design</div><div class="skill-tags"><span class="skill-tag">ETABS</span><span class="skill-tag">SAP 2000</span><span class="skill-tag">STAAD Pro</span><span class="skill-tag">Abaqus</span><span class="skill-tag">Response 2000</span><span class="skill-tag">OpenSees Navigator</span></div></div>
-    <div class="skill-card"><div class="skill-card-title">Programming</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">MATLAB</span><span class="skill-tag">C</span></div></div>
-    <div class="skill-card"><div class="skill-card-title">CAD &amp; Drawing</div><div class="skill-tags"><span class="skill-tag">AutoCAD</span><span class="skill-tag">SketchUp Pro</span></div></div>
-    <div class="skill-card"><div class="skill-card-title">GIS</div><div class="skill-tags"><span class="skill-tag">ArcGIS</span></div></div>
+    <div class="skill-card">
+      <div class="skill-card-title">Structural Analysis &amp; Design</div>
+      <div class="skill-tags">
+        <span class="skill-tag">ETABS</span><span class="skill-tag">SAP 2000</span><span class="skill-tag">STAAD Pro</span>
+        <span class="skill-tag">Abaqus</span><span class="skill-tag">Response 2000</span><span class="skill-tag">OpenSees Navigator</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Programming</div>
+      <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">MATLAB</span><span class="skill-tag">C</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">CAD &amp; Drawing</div>
+      <div class="skill-tags"><span class="skill-tag">AutoCAD</span><span class="skill-tag">SketchUp Pro</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">GIS</div>
+      <div class="skill-tags"><span class="skill-tag">ArcGIS</span></div>
+    </div>
   </div>
+
   <div class="section-label">Professional Memberships</div>
   <div class="skills-grid">
-    <div class="skill-card"><div class="skill-card-title">Member</div><div class="membership-text">Institute of Engineers Bangladesh (IEB)</div></div>
-    <div class="skill-card"><div class="skill-card-title">Student Member</div><div class="membership-text">American Society of Civil Engineers (ASCE)</div></div>
+    <div class="skill-card"><div class="skill-card-title">Member</div><p style="font-size:16.5px;color:var(--ink-2);font-weight:300;">Institute of Engineers Bangladesh (IEB)</p></div>
+    <div class="skill-card"><div class="skill-card-title">Student Member</div><p style="font-size:16.5px;color:var(--ink-2);font-weight:300;">American Society of Civil Engineers (ASCE)</p></div>
   </div>
+
   <div class="section-label">University Service — AUST</div>
   <div class="service-item"><span class="service-period">Jan 2019–Aug 2024</span><span class="service-name">Member, Undergraduate Curriculum Committee</span></div>
   <div class="service-item"><span class="service-period">Jan 2019–Aug 2024</span><span class="service-name">Member, Accreditation Sub-Committee (OBE Compliance)</span></div>
@@ -606,124 +933,181 @@ a:hover { text-decoration: underline; }
   <div class="service-item"><span class="service-period">Spring 2019–Fall 2021</span><span class="service-name">Team Leader, Departmental Vigilance Committee</span></div>
   <div class="service-item"><span class="service-period">Fall 2019, Spring 2020</span><span class="service-name">Member, Timetabling (Routine) Committee</span></div>
   <div class="service-item"><span class="service-period">Spring 2019, Fall 2019</span><span class="service-name">Member, Departmental Web Development Committee</span></div>
+
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
-<!-- EXPERIENCE -->
+<!-- ══ EXPERIENCE ══ -->
 <div class="page" id="page-experience">
   <div class="page-title">Experience</div>
   <div class="page-subtitle">Academic appointments, professional history, and education</div>
+
   <div class="section-label">Academic Appointments</div>
   <div class="timeline">
-    <div class="tl-item"><div class="tl-period">Aug 2024 – Present</div><div class="tl-title">Graduate Research &amp; Teaching Assistant</div><div class="tl-org">Dept. of Civil &amp; Environmental Engineering · University of Southern California, Los Angeles, CA</div><div class="tl-desc">Supported by the Viterbi School of Engineering/Graduate School Fellowship. Research under Dr. Thomas Petersen on bicontinuous cement composites and multifunctional materials.</div></div>
-    <div class="tl-item"><div class="tl-period">Apr 2022 – Present (on leave)</div><div class="tl-title">Assistant Professor</div><div class="tl-org">Dept. of Civil Engineering · Ahsanullah University of Science and Technology (AUST), Dhaka, BD</div><div class="tl-desc">Teaching structural engineering courses, supervising undergraduate thesis research, and serving on curriculum and accreditation committees. Currently on academic leave while pursuing Ph.D. at USC.</div></div>
-    <div class="tl-item"><div class="tl-period">Dec 2020 – Apr 2022</div><div class="tl-title">Lecturer (Grade-I)</div><div class="tl-org">Dept. of Civil Engineering · AUST, Dhaka, BD</div><div class="tl-desc">Taught theoretical and sessional courses in structural analysis, concrete design, and surveying. Conducted research on fiber-reinforced concrete and RC structural behavior.</div></div>
-    <div class="tl-item"><div class="tl-period">Jan 2019 – Dec 2020</div><div class="tl-title">Lecturer (Grade-II)</div><div class="tl-org">Dept. of Civil Engineering · AUST, Dhaka, BD</div><div class="tl-desc">Delivered courses in surveying, geotechnical engineering, and civil engineering drawing; served on curriculum and vigilance committees.</div></div>
-    <div class="tl-item"><div class="tl-period">Sep 2017 – Dec 2018</div><div class="tl-title">Lecturer</div><div class="tl-org">Dept. of Civil Engineering · European University of Bangladesh (EUB), Dhaka, BD</div><div class="tl-desc">Taught structural analysis, foundation engineering, and laboratory courses in engineering materials and soil mechanics.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Aug 2024 – Present</div><div class="tl-title">Graduate Research &amp; Teaching Assistant</div><div class="tl-org">Dept. of Civil &amp; Environmental Engineering · University of Southern California, Los Angeles, CA</div><div class="tl-desc">Supported by the Viterbi School of Engineering/Graduate School Fellowship. Research under Dr. Thomas Petersen on bicontinuous cement composites and multifunctional materials.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Apr 2022 – Present (on leave)</div><div class="tl-title">Assistant Professor</div><div class="tl-org">Dept. of Civil Engineering · Ahsanullah University of Science and Technology (AUST), Dhaka, BD</div><div class="tl-desc">Teaching structural engineering courses, supervising undergraduate thesis research, and serving on curriculum and accreditation committees. Currently on academic leave while pursuing Ph.D. at USC.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Dec 2020 – Apr 2022</div><div class="tl-title">Lecturer (Grade-I)</div><div class="tl-org">Dept. of Civil Engineering · AUST, Dhaka, BD</div><div class="tl-desc">Taught theoretical and sessional courses in structural analysis, concrete design, and surveying. Conducted research on fiber-reinforced concrete and RC structural behavior.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Jan 2019 – Dec 2020</div><div class="tl-title">Lecturer (Grade-II)</div><div class="tl-org">Dept. of Civil Engineering · AUST, Dhaka, BD</div><div class="tl-desc">Delivered courses in surveying, geotechnical engineering, and civil engineering drawing; served on curriculum and vigilance committees.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Sep 2017 – Dec 2018</div><div class="tl-title">Lecturer</div><div class="tl-org">Dept. of Civil Engineering · European University of Bangladesh (EUB), Dhaka, BD</div><div class="tl-desc">Taught structural analysis, foundation engineering, and laboratory courses in engineering materials and soil mechanics.</div></div>
   </div>
+
   <div class="section-label">Education</div>
   <div class="timeline">
-    <div class="tl-item"><div class="tl-period">Aug 2024 – Present</div><div class="tl-title">Ph.D. in Civil Engineering (in progress)</div><div class="tl-org">University of Southern California · Advisor: Dr. Thomas Petersen</div><div class="tl-desc">Dissertation Title: TBD. Research focus on multifunctional cement composites.</div></div>
-    <div class="tl-item"><div class="tl-period">Feb 2022</div><div class="tl-title">M.S. in Civil Engineering (Structural)</div><div class="tl-org">Bangladesh University of Engineering and Technology (BUET) · Supervisor: Dr. Raquib Ahsan</div><div class="tl-desc">Thesis: <em>Experimental Investigation of Boiler Blast Load on Building Structures</em></div></div>
-    <div class="tl-item"><div class="tl-period">Jun 2017</div><div class="tl-title">B.S. in Civil Engineering</div><div class="tl-org">Ahsanullah University of Science and Technology (AUST) · Supervisor: Dr. Quazi Hamidul Bari</div><div class="tl-desc">Thesis: <em>Bench Scale Study on Co-composting for Organic Solid Wastes and Faecal Sludge</em> · Dean's Honor List</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Aug 2024 – Present</div><div class="tl-title">Ph.D. in Civil Engineering (in progress)</div><div class="tl-org">University of Southern California · Advisor: Dr. Thomas Petersen</div><div class="tl-desc">Research focus on multifunctional cement composites. Dissertation title to be determined.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Feb 2022</div><div class="tl-title">M.S. in Civil Engineering (Structural)</div><div class="tl-org">Bangladesh University of Engineering and Technology (BUET) · Supervisor: Dr. Raquib Ahsan</div><div class="tl-desc">Thesis: <em>Experimental Investigation of Boiler Blast Load on Building Structures</em></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Jun 2017</div><div class="tl-title">B.S. in Civil Engineering</div><div class="tl-org">Ahsanullah University of Science and Technology (AUST) · Supervisor: Dr. Quazi Hamidul Bari</div><div class="tl-desc">Thesis: <em>Bench Scale Study on Co-composting for Organic Solid Wastes and Faecal Sludge</em> · Dean's Honor List</div></div>
   </div>
+
   <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 </div><!-- /layout -->
 
+<!-- Back to top -->
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
-/* PAGE NAV */
+/* ── PAGE NAV ── */
 function showPage(id) {
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
-  document.getElementById('page-'+id).classList.add('active');
-  document.querySelectorAll('.topbar-nav a,.mobile-nav a').forEach(function(a){
-    a.classList.toggle('active', a.dataset.page===id);
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.topbar-nav a, .mobile-nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === id);
   });
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
-/* HAMBURGER + Fix 7: close on outside click */
-var hamburger = document.getElementById('hamburger');
-var mobileNav = document.getElementById('mobile-nav');
-hamburger.addEventListener('click', function(e){
+/* ── HAMBURGER ── */
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+hamburger.addEventListener('click', e => {
   e.stopPropagation();
-  mobileNav.classList.toggle('open');
+  const open = mobileNav.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
 });
-document.addEventListener('click', function(e){
-  if(mobileNav.classList.contains('open') && !mobileNav.contains(e.target) && e.target !== hamburger){
+document.addEventListener('click', e => {
+  if (mobileNav.classList.contains('open') && !mobileNav.contains(e.target) && e.target !== hamburger) {
     mobileNav.classList.remove('open');
+    hamburger.classList.remove('open');
   }
 });
-function closeMobileNav(){ mobileNav.classList.remove('open'); }
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  hamburger.classList.remove('open');
+}
 
-/* PUBLICATION FILTER */
-function filterPubs(type,btn){
-  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+/* ── SCROLL PROGRESS + BACK-TO-TOP ── */
+const progressBar = document.getElementById('progress-bar');
+const backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+  progressBar.style.width = pct + '%';
+  backTop.classList.toggle('visible', window.scrollY > 320);
+}, { passive: true });
+
+/* ── PUBLICATION FILTER ── */
+function filterPubs(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  var ids=['journal-section','conference-section','poster-section'];
-  if(type==='all'){ids.forEach(function(id){document.getElementById(id).style.display='';});}
-  else{
-    var map={journal:'journal-section',conference:'conference-section',poster:'poster-section'};
-    ids.forEach(function(id){document.getElementById(id).style.display='none';});
-    if(map[type])document.getElementById(map[type]).style.display='';
+  const sections = { journal: 'journal-section', conference: 'conference-section', poster: 'poster-section' };
+  if (type === 'all') {
+    Object.values(sections).forEach(id => document.getElementById(id).style.display = '');
+  } else {
+    Object.values(sections).forEach(id => document.getElementById(id).style.display = 'none');
+    if (sections[type]) document.getElementById(sections[type]).style.display = '';
   }
 }
 
-/* CITATION CHART */
-(function(){
-  var FALLBACK={total:42,hIndex:3,i10Index:1,papers:11,
-    byYear:{'2021':2,'2022':2,'2023':2,'2024':14,'2025':18,'2026':4},
-    updatedAt:'2026-03-25'};
-  var chartInstance=null;
+/* ── CITATION CHART ── */
+(function () {
+  const FALLBACK = {
+    total: 42, hIndex: 3, i10Index: 1, papers: 11,
+    byYear: { '2021': 2, '2022': 2, '2023': 2, '2024': 14, '2025': 18, '2026': 4 },
+    updatedAt: '2026-03-25'
+  };
+  let chartInstance = null;
 
-  function renderCitChart(yearData){
-    var years=Object.keys(yearData).sort();
-    var counts=years.map(function(y){return yearData[y];});
-    var canvas=document.getElementById('citChart');
-    if(!canvas)return;
-    if(chartInstance){chartInstance.destroy();}
-    chartInstance=new Chart(canvas,{
-      type:'bar',
-      data:{labels:years,datasets:[{data:counts,backgroundColor:'#1a6b6b',hoverBackgroundColor:'#0f5252',borderRadius:3,borderSkipped:false}]},
-      options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false},tooltip:{callbacks:{
-          title:function(i){return i[0].label;},
-          label:function(i){return ' '+i.raw+' citations';}
-        }}},
-        scales:{
-          x:{grid:{display:false},ticks:{color:'#4b4b4b',font:{size:10},maxRotation:45},border:{display:false}},
-          y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{color:'#4b4b4b',font:{size:10},callback:function(v){return Number.isInteger(v)?v:'';},maxTicksLimit:5},border:{display:false}}
+  function renderChart(yearData) {
+    const canvas = document.getElementById('citChart');
+    if (!canvas) return;
+    const years = Object.keys(yearData).sort();
+    const counts = years.map(y => yearData[y]);
+    if (chartInstance) chartInstance.destroy();
+    chartInstance = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: years,
+        datasets: [{
+          data: counts,
+          backgroundColor: '#1a6b6b',
+          hoverBackgroundColor: '#125050',
+          borderRadius: 3,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: i => ' ' + i.raw + ' citations' } }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: '#a0a097', font: { size: 10 }, maxRotation: 45 }, border: { display: false } },
+          y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#a0a097', font: { size: 10 }, callback: v => Number.isInteger(v) ? v : '', maxTicksLimit: 5 }, border: { display: false } }
         }
       }
     });
   }
 
-  function applyData(d){
-    var set=function(id,val){var el=document.getElementById(id);if(el)el.textContent=(val!=null&&val!=='')? val:'—';};
-    set('total-cit',d.total);
-    set('h-index',d.hIndex);
-    set('i10-index',d.i10Index);
-    set('paper-count',d.papers);
-    var src=document.getElementById('cit-source');
-    if(src){
-      var upd=d.updatedAt?' · updated '+d.updatedAt:'';
-      src.innerHTML='<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">Google Scholar ↗</a>'
-        +'<span style="color:var(--muted);font-size:10px;display:block;">'+upd+'</span>';
+  function applyData(d) {
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = (val != null && val !== '') ? val : '—';
+    };
+    set('total-cit', d.total);
+    set('h-index', d.hIndex);
+    set('i10-index', d.i10Index);
+    set('paper-count', d.papers);
+    const src = document.getElementById('cit-source');
+    if (src && d.updatedAt) {
+      src.innerHTML = `<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--faint);">Google Scholar ↗</a><span style="color:var(--faint);font-size:10.5px;display:block;">Updated ${d.updatedAt}</span>`;
     }
-    renderCitChart(d.byYear||{});
+    renderChart(d.byYear || {});
   }
 
-  function loadCitations(){
-    fetch('citations.json?v='+Date.now())
-      .then(function(r){if(!r.ok)throw new Error('not found');return r.json();})
-      .then(function(data){applyData(data);})
-      .catch(function(){applyData(FALLBACK);});
+  function loadCitations() {
+    fetch('citations.json?v=' + Date.now())
+      .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
+      .then(applyData)
+      .catch(() => applyData(FALLBACK));
   }
 
-  if(typeof Chart!=='undefined'){loadCitations();}
-  else{window.addEventListener('load',loadCitations);}
+  if (typeof Chart !== 'undefined') loadCitations();
+  else window.addEventListener('load', loadCitations);
 })();
+
+/* ── ENTRANCE ANIMATION for interest tags ── */
+function animateInterestTags() {
+  const tags = document.querySelectorAll('.interest-tag');
+  tags.forEach((tag, i) => {
+    tag.style.opacity = '0';
+    tag.style.transform = 'translateY(10px)';
+    setTimeout(() => {
+      tag.style.transition = 'opacity .35s ease, transform .35s ease';
+      tag.style.opacity = '1';
+      tag.style.transform = 'none';
+    }, 120 + i * 60);
+  });
+}
+
+/* Run entrance animation when bio page loads */
+const origShowPage = window.showPage || showPage;
+window.showPage = function(id) {
+  showPage(id);
+  if (id === 'bio') setTimeout(animateInterestTags, 80);
+};
+setTimeout(animateInterestTags, 200);
 </script>
 </body>
 </html>
