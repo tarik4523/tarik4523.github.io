@@ -39,7 +39,7 @@ a:hover { text-decoration: underline; }
 .topbar-nav a.active { color: #fff; border-bottom-color: var(--accent); }
 .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
 .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.2s; }
-.mobile-nav { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 199; background: var(--ink); flex-direction: column; padding: 8px 0 16px; border-top: 1px solid rgba(255,255,255,0.1); }
+.mobile-nav { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 199; background: var(--ink); flex-direction: column; padding: 8px 0 16px; border-top: 1px solid rgba(255,255,255,0.1); max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
 .mobile-nav.open { display: flex; }
 .mobile-nav a { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.7); padding: 12px 24px; text-transform: uppercase; letter-spacing: 0.06em; border-left: 3px solid transparent; transition: all 0.15s; }
 .mobile-nav a:hover, .mobile-nav a.active { color: #fff; border-left-color: var(--accent); background: rgba(255,255,255,0.05); text-decoration: none; }
@@ -311,7 +311,7 @@ a:hover { text-decoration: underline; }
     <div class="bio-hero-text">
       <div class="page-title">Tarikul Islam</div>
       <div class="page-subtitle">Ph.D. Candidate · Civil &amp; Environmental Engineering · University of Southern California</div>
-      <p class="bio-intro">I am a Graduate Research and Teaching Assistant in the <a href="https://cee.usc.edu" target="_blank">Sonny Astani Department of Civil and Environmental Engineering</a> at the <strong>University of Southern California</strong>, working under <a href="https://thomas-petersen-1.github.io/" target="_blank">Dr. Thomas Petersen</a>. I also hold a position as <a href="https://www.aust.edu/ce/faculty_member/mr_tarikul_islam" target="_blank">Assistant Professor (on leave)</a> in the Department of Civil Engineering at Ahsanullah University of Science and Technology (AUST), Dhaka, Bangladesh.</p>
+      <p class="bio-body">I am a Graduate Research and Teaching Assistant in the <a href="https://cee.usc.edu" target="_blank">Sonny Astani Department of Civil and Environmental Engineering</a> at the <strong>University of Southern California</strong>, working under <a href="https://thomas-petersen-1.github.io/" target="_blank">Dr. Thomas Petersen</a>. I also hold a position as <a href="https://www.aust.edu/ce/faculty_member/mr_tarikul_islam" target="_blank">Assistant Professor (on leave)</a> in the Department of Civil Engineering at Ahsanullah University of Science and Technology (AUST), Dhaka, Bangladesh.</p>
       <p class="bio-body">My current research focuses on the <strong>fabrication of bicontinuous cement composites with multifunctional structural and electrical properties</strong> — an interdisciplinary study that bridges materials science, electrochemistry, and civil engineering.</p>
       <p class="bio-body">I earned my B.Sc. in Civil Engineering from AUST (2017) and M.Sc. in Civil Engineering (Structural) from <strong>Bangladesh University of Engineering and Technology (BUET)</strong> (2022), where my research involved the experimental investigation of boiler blast loads on building structures. I have over 7 years of teaching experience and have authored <strong>10+ peer-reviewed journal articles</strong> on fiber-reinforced concrete, structural retrofitting, and numerical modeling.</p>
       <p class="bio-body">In my leisure time, I enjoy music, films, soccer, and cricket.</p>
@@ -331,7 +331,7 @@ a:hover { text-decoration: underline; }
       <div class="profile-meta">
         <div class="profile-meta-row">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          <span>3620 S Vermont Ave, KAP 211<br>Los Angeles, CA 90089</span>
+          <span>3620 South Vermont Ave, KAP 211<br>Los Angeles, CA 90089, USA</span>
         </div>
         <div class="profile-meta-row">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
@@ -397,7 +397,7 @@ a:hover { text-decoration: underline; }
 
   <div class="section-label">News &amp; Updates</div>
   <div class="news-list">
-    <div class="news-row"><span class="news-date">Mar 2026</span><span class="news-text">Serving as TA for <strong>CE 537: Advanced Reinforced Concrete</strong> at USC (Spring 2026).</span></div>
+    <div class="news-row"><span class="news-date">Jan 2026</span><span class="news-text">Serving as TA for <strong>CE 537: Advanced Reinforced Concrete</strong> at USC (Spring 2026).</span></div>
     <div class="news-row"><span class="news-date">Aug 2025</span><span class="news-text">Mentored <strong>Luke Bayliss</strong> (Amazon SURE Fellow). Poster <em>"Understanding the Electrochemical Properties of Porous Media"</em> presented at USC Viterbi SURE Symposium.</span></div>
     <div class="news-row"><span class="news-date">2025</span><span class="news-text">Two new journal papers published in <em>Malaysian Journal of Civil Engineering</em> (BIM) and <em>Civil Engineering and Architecture</em> (jute fiber-reinforced concrete).</span></div>
     <div class="news-row"><span class="news-date">Aug 2024</span><span class="news-text">Joined <strong>USC</strong> as PhD student and Graduate RA/TA, supported by the <strong>Viterbi School of Engineering Fellowship</strong> ($45,000/year, 2024–2028).</span></div>
