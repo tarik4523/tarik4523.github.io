@@ -13,7 +13,7 @@
 <meta property="og:description" content="Graduate Research &amp; Teaching Assistant at USC Sonny Astani Dept. of CEE.">
 <meta property="og:image" content="https://tarik4523.github.io/images/Profile_pic.jpg">
 <meta name="twitter:card" content="summary">
-<link rel="icon" type="image/jpeg" href="/images/Profile_pic.jpg">
+<link rel="icon" type="image/jpeg" href="images/Profile_pic.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -752,6 +752,80 @@ img { max-width: 100%; display: block; }
 }
 
 
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .page {
+    padding: 34px 28px 72px;
+  }
+  .page-title {
+    font-size: clamp(40px, 5vw, 52px);
+  }
+  .page-subtitle {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .bio-hero {
+    grid-template-columns: minmax(0, 1fr) 268px;
+    gap: 56px;
+    margin-bottom: 48px;
+    align-items: start;
+  }
+  .bio-hero::before {
+    left: -6px;
+    right: -6px;
+    top: -6px;
+    height: 220px;
+    border-radius: 30px;
+    opacity: .46;
+  }
+  .bio-hero-text {
+    order: 0;
+    max-width: none;
+  }
+  .profile-sidebar {
+    order: 0;
+    position: sticky;
+    top: calc(var(--nav-h) + 24px);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .profile-photo-wrap {
+    width: 100%;
+    max-width: 268px;
+  }
+  .profile-meta,
+  .cit-card {
+    width: 100%;
+    max-width: 268px;
+  }
+  .bio-body {
+    font-size: 16.2px;
+    line-height: 1.85;
+  }
+  .interest-grid,
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .section-label {
+    margin-top: 38px;
+    margin-bottom: 16px;
+  }
+  .course-row {
+    grid-template-columns: 86px 1fr;
+    gap: 10px;
+  }
+  .course-term {
+    display: none;
+  }
+  .news-row {
+    gap: 14px;
+  }
+  .news-date {
+    width: 80px;
+  }
+}
+
 /* PREMIUM PORTFOLIO POLISH */
 .topbar {
   box-shadow: 0 10px 30px rgba(0,0,0,.06);
@@ -1027,7 +1101,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.82); }
 .page.active .profile-photo-wrap,
 .page.active .profile-meta,
 .page.active .cit-card { will-change: transform, opacity; }
-@media (max-width: 920px) {
+@media (max-width: 767px) {
   .topbar { padding: 0 14px; }
   .page { padding: 48px 18px 88px; }
   .bio-hero { grid-template-columns: 1fr; gap: 24px; }
@@ -1145,7 +1219,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.82); }
     <!-- Sidebar -->
     <aside class="profile-sidebar">
       <div class="profile-photo-wrap">
-        <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo" loading="eager" fetchpriority="high" decoding="async">
+        <img src="images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo" loading="eager" fetchpriority="high" decoding="async">
       </div>
 
       <div class="profile-meta">
@@ -1160,23 +1234,23 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.82); }
         <hr class="profile-meta-divider">
         <div class="social-row">
           <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" title="Google Scholar" class="social-btn">
-            <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" loading="lazy" decoding="async">
+            <img src="images/GoogleScholar_logo.png" alt="Google Scholar" loading="lazy" decoding="async">
           </a>
           <a href="https://orcid.org/0000-0002-4193-4366" target="_blank" title="ORCID" class="social-btn">
-            <img src="/images/Orcid_logo.png" alt="ORCID" loading="lazy" decoding="async">
+            <img src="images/Orcid_logo.png" alt="ORCID" loading="lazy" decoding="async">
           </a>
           <a href="https://www.scopus.com/authid/detail.uri?authorId=58035898400" target="_blank" title="Scopus" class="social-btn">
-            <img src="/images/Scopus_logo.png" alt="Scopus" loading="lazy" decoding="async">
+            <img src="images/Scopus_logo.png" alt="Scopus" loading="lazy" decoding="async">
           </a>
           <a href="https://www.researchgate.net/profile/Tarikul-Islam-5" target="_blank" title="ResearchGate" class="social-btn">
-            <img src="/images/ResearchGate_logo.png" alt="ResearchGate" loading="lazy" decoding="async">
+            <img src="images/ResearchGate_logo.png" alt="ResearchGate" loading="lazy" decoding="async">
           </a>
           <a href="https://www.linkedin.com/in/tarikul-islam-313785142/" target="_blank" title="LinkedIn" class="social-btn">
-            <img src="/images/Linkedin_logo.png" alt="LinkedIn" loading="lazy" decoding="async">
+            <img src="images/Linkedin_logo.png" alt="LinkedIn" loading="lazy" decoding="async">
           </a>
         </div>
         <hr class="profile-meta-divider">
-        <a href="/files/CV_Tarikul_Islam.pdf" target="_blank" class="cv-btn">
+        <a href="files/CV_Tarikul_Islam.pdf" target="_blank" class="cv-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download CV
         </a>
@@ -1300,7 +1374,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.82); }
   <div class="inst-block">
     <div class="section-label">University of Southern California</div>
     <div class="inst-header">
-      <img src="/images/USC_logo.png" alt="USC" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
+      <img src="images/USC_logo.png" alt="USC" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div class="inst-name">University of Southern California</div>
     </div>
     <div class="inst-loc">Los Angeles, CA, USA &nbsp;·&nbsp; Role: Teaching Assistant</div>
@@ -1313,7 +1387,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.82); }
   <div class="inst-block">
     <div class="section-label">Ahsanullah University of Science and Technology (AUST)</div>
     <div class="inst-header">
-      <img src="/images/AUST_logo.png" alt="AUST" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
+      <img src="images/AUST_logo.png" alt="AUST" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div class="inst-name">Ahsanullah University of Science and Technology</div>
     </div>
     <div class="inst-loc">Dhaka, Bangladesh &nbsp;·&nbsp; Role: Lecturer → Assistant Professor (2019–2024)</div>
@@ -1342,7 +1416,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.82); }
   <div class="inst-block">
     <div class="section-label">European University of Bangladesh (EUB)</div>
     <div class="inst-header">
-      <img src="/images/EUB_logo.png" alt="EUB" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
+      <img src="images/EUB_logo.png" alt="EUB" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div class="inst-name">European University of Bangladesh</div>
     </div>
     <div class="inst-loc">Dhaka, Bangladesh &nbsp;·&nbsp; Role: Lecturer (2017–2018)</div>
