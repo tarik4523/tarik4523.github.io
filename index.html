@@ -22,9 +22,13 @@
   try {
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+    const theme = saved || 'auto';
+    document.documentElement.dataset.theme = theme === 'auto' ? (prefersDark ? 'dark' : 'light') : theme;
+    document.documentElement.dataset.themePreference = theme;
   } catch (e) {
-    document.documentElement.dataset.theme = 'light';
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
+    document.documentElement.dataset.themePreference = 'auto';
   }
 })();
 </script>
@@ -761,7 +765,7 @@ img { max-width: 100%; display: block; }
     <a href="#" onclick="showPage('experience');return false;" data-page="experience">Experience</a>
   </div>
   <div class="site-actions">
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode" type="button">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Change theme" title="Theme: Auto" type="button">
       <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"></svg>
     </button>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -810,7 +814,7 @@ img { max-width: 100%; display: block; }
       <div class="section-label">News &amp; Updates</div>
       <div class="news-list">
         <div class="news-row">
-          <span class="news-date">Mar 2026</span>
+          <span class="news-date">Jan 2026</span>
           <span class="news-text">Serving as TA for <strong>CE 537: Advanced Reinforced Concrete</strong> at USC (Spring 2026). <span class="news-badge">New</span></span>
         </div>
         <div class="news-row">
@@ -1185,23 +1189,66 @@ img { max-width: 100%; display: block; }
 /* ── THEME ── */
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
+const themeModes = ['auto', 'light', 'dark'];
+
+function getStoredTheme() {
+  try {
+    return localStorage.getItem('theme') || 'auto';
+  } catch (e) {
+    return 'auto';
+  }
+}
+
+function systemPrefersDark() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function resolveTheme(mode) {
+  return mode === 'auto' ? (systemPrefersDark() ? 'dark' : 'light') : mode;
+}
+
 function renderThemeIcon() {
-  const dark = document.documentElement.dataset.theme === 'dark';
-  themeIcon.innerHTML = dark
-    ? '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M4.93 19.07l1.41-1.41"></path><path d="M17.66 6.34l1.41-1.41"></path>'
-    : '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2"></path><path d="M12 21v2"></path><path d="M4.22 4.22l1.42 1.42"></path><path d="M18.36 18.36l1.42 1.42"></path><path d="M1 12h2"></path><path d="M21 12h2"></path><path d="M4.22 19.78l1.42-1.42"></path><path d="M18.36 5.64l1.42-1.42"></path>';
+  const mode = document.documentElement.dataset.themePreference || getStoredTheme();
+  const resolved = document.documentElement.dataset.theme || resolveTheme(mode);
+  const isAuto = mode === 'auto';
+  const isDark = resolved === 'dark';
+  themeIcon.innerHTML = isAuto
+    ? '<rect x="3.5" y="4" width="17" height="12" rx="2.5"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path><path d="M7 8h.01"></path><path d="M17 8h.01"></path>'
+    : isDark
+      ? '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M4.93 19.07l1.41-1.41"></path><path d="M17.66 6.34l1.41-1.41"></path>'
+      : '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2"></path><path d="M12 21v2"></path><path d="M4.22 4.22l1.42 1.42"></path><path d="M18.36 18.36l1.42 1.42"></path><path d="M1 12h2"></path><path d="M21 12h2"></path><path d="M4.22 19.78l1.42-1.42"></path><path d="M18.36 5.64l1.42-1.42"></path>';
+  themeToggle.title = 'Theme: ' + mode.charAt(0).toUpperCase() + mode.slice(1);
+  themeToggle.setAttribute('aria-label', 'Change theme. Current theme: ' + mode);
 }
-function setTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  try { localStorage.setItem('theme', theme); } catch (e) {}
+
+function applyTheme(mode, persist = true) {
+  const resolved = resolveTheme(mode);
+  document.documentElement.dataset.theme = resolved;
+  document.documentElement.dataset.themePreference = mode;
+  try {
+    if (persist) localStorage.setItem('theme', mode);
+  } catch (e) {}
   renderThemeIcon();
 }
+
 if (themeToggle && themeIcon) {
-  renderThemeIcon();
+  applyTheme(getStoredTheme(), false);
   themeToggle.addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
+    const current = document.documentElement.dataset.themePreference || getStoredTheme();
+    const idx = themeModes.indexOf(current);
+    const next = themeModes[(idx + 1) % themeModes.length];
+    applyTheme(next, true);
   });
+
+  if (window.matchMedia) {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onSystemThemeChange = () => {
+      const current = document.documentElement.dataset.themePreference || getStoredTheme();
+      if (current === 'auto') applyTheme('auto', false);
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onSystemThemeChange);
+    else if (mq.addListener) mq.addListener(onSystemThemeChange);
+  }
 }
 
 /* ── PAGE NAV ── */
