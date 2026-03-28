@@ -262,6 +262,11 @@ img { max-width: 100%; display: block; }
   background: var(--ink); flex-direction: column;
   padding: 8px 0 20px;
   border-top: 1px solid rgba(255,255,255,.08);
+  max-height: calc(100vh - var(--nav-h));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
 }
 .mobile-nav.open { display: flex; }
 .mobile-nav a {
@@ -270,11 +275,15 @@ img { max-width: 100%; display: block; }
   padding: 13px 28px;
   text-transform: uppercase; letter-spacing: .08em;
   border-left: 2px solid transparent; transition: all .15s;
+  flex: 0 0 auto;
 }
 .mobile-nav a:hover, .mobile-nav a.active {
   color: #fff; border-left-color: var(--accent);
   background: rgba(255,255,255,.04); text-decoration: none;
 }
+.mobile-nav::-webkit-scrollbar { width: 10px; }
+.mobile-nav::-webkit-scrollbar-track { background: rgba(255,255,255,.04); }
+.mobile-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 999px; }
 
 /* ── LAYOUT ── */
 .layout { margin-top: var(--nav-h); }
@@ -1225,6 +1234,10 @@ function closeMobileNav() {
   mobileNav.classList.remove('open');
   hamburger.classList.remove('open');
 }
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 920) closeMobileNav();
+});
 
 /* ── SCROLL PROGRESS + BACK-TO-TOP ── */
 const progressBar = document.getElementById('progress-bar');
