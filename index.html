@@ -1078,6 +1078,31 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
   .news-date { width: 82px; font-size: 11px; }
   .topbar-nav { display: none; }
 }
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .bio-hero {
+    grid-template-columns: minmax(0, 1fr) 268px;
+    gap: 56px;
+    align-items: start;
+  }
+  .bio-hero-text { order: 0; }
+  .profile-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + 24px);
+    order: 0;
+    max-width: 268px;
+    width: 268px;
+    margin: 0;
+    align-items: stretch;
+  }
+  .profile-photo-wrap,
+  .profile-meta,
+  .cit-card {
+    width: 100%;
+    max-width: none;
+  }
+  .profile-photo-wrap { width: 100%; }
+}
+
 @media (min-width: 921px) {
   .bio-hero-text { padding-right: 8px; }
 }
