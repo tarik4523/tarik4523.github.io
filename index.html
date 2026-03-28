@@ -15,8 +15,9 @@
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/jpeg" href="/images/Profile_pic.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 (function() {
   try {
@@ -182,6 +183,10 @@ html[data-theme="dark"] .theme-toggle {
   transition: opacity .7s var(--ease), transform .7s var(--ease);
   will-change: opacity, transform;
 }
+.page.active .research-card, .page.active .pub-item, .page.active .poster-item, .page.active .skill-card, .page.active .mentee-card, .page.active .award-card, .page.active .grant-card, .page.active .course-row, .page.active .cert-item, .page.active .service-item, .page.active .news-row {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 180px;
+}
 .reveal.in-view { opacity: 1; transform: none; }
 
 body::before {
@@ -292,8 +297,10 @@ img { max-width: 100%; display: block; }
 /* ── LAYOUT ── */
 .layout { margin-top: var(--nav-h); }
 .page { display: none; padding: 56px clamp(20px, 4vw, 72px) 100px; max-width: 1120px; margin: 0 auto; }
-.page.active { display: block; animation: fadeIn .28s var(--ease); }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.page.active { display: block; animation: fadeIn .34s var(--ease); }
+.page.leaving { display: block; pointer-events: none; animation: fadeOut .22s var(--ease) forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fadeOut { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(-10px); } }
 
 /* ── TYPOGRAPHY ── */
 .page-title {
@@ -744,6 +751,298 @@ img { max-width: 100%; display: block; }
   .page { padding-left: 30px; padding-right: 30px; }
 }
 
+
+/* PREMIUM PORTFOLIO POLISH */
+.topbar {
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  transition: box-shadow .22s var(--ease), background .22s var(--ease), border-color .22s var(--ease), transform .22s var(--ease);
+}
+.topbar.scrolled {
+  box-shadow: 0 16px 42px rgba(0,0,0,.12);
+  background: rgba(18,18,15,.88);
+}
+html[data-theme="dark"] .topbar.scrolled { background: rgba(9, 13, 25, 0.94); }
+.topbar-brand {
+  font-weight: 600;
+  letter-spacing: .03em;
+  position: relative;
+}
+.topbar-brand::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -7px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: scaleX(.22);
+  transform-origin: center;
+  opacity: .55;
+  transition: transform .25s var(--ease), opacity .25s var(--ease);
+}
+.topbar-brand:hover::after { transform: scaleX(1); opacity: 1; }
+.topbar-nav a {
+  position: relative;
+  margin: 0 3px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border-bottom: 0;
+}
+.topbar-nav a:hover,
+.topbar-nav a.active {
+  background: rgba(255,255,255,.06);
+}
+html[data-theme="dark"] .topbar-nav a:hover,
+html[data-theme="dark"] .topbar-nav a.active {
+  background: rgba(255,255,255,.05);
+}
+.mobile-nav {
+  margin-top: 10px;
+  left: 12px; right: 12px;
+  width: calc(100% - 24px);
+  border-radius: 0 0 22px 22px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-top: 0;
+}
+.mobile-nav a { border-radius: 14px; margin: 4px 12px; }
+.layout { margin-top: var(--nav-h); position: relative; }
+.layout::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(176,58,46,.08), transparent 24%),
+    radial-gradient(circle at 85% 10%, rgba(26,107,107,.07), transparent 22%),
+    radial-gradient(circle at 50% 85%, rgba(176,125,16,.05), transparent 24%);
+  z-index: -1;
+}
+.page {
+  display: none;
+  padding: 62px clamp(20px, 4vw, 78px) 106px;
+  max-width: 1180px;
+}
+.page.active { animation: fadeIn .46s cubic-bezier(.22,1,.36,1); }
+.page.leaving { animation: fadeOut .25s cubic-bezier(.22,1,.36,1) forwards; }
+.page-title {
+  font-size: clamp(44px, 5vw, 60px);
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--accent) 56%, var(--teal) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+}
+html[data-theme="dark"] .page-title {
+  background: linear-gradient(135deg, #ffffff 0%, #ffd0cb 52%, #b9f0ef 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.page-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+.page-subtitle::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+.bio-hero {
+  position: relative;
+  padding: 10px 0 18px;
+  gap: 46px;
+  margin-bottom: 56px;
+}
+.bio-hero::before {
+  content: '';
+  position: absolute;
+  left: -14px; right: -14px; top: -6px;
+  height: 260px;
+  border-radius: 34px;
+  background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.12));
+  box-shadow: 0 20px 60px rgba(0,0,0,.05);
+  z-index: -1;
+  filter: saturate(1.05);
+}
+html[data-theme="dark"] .bio-hero::before {
+  background: linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+  box-shadow: 0 18px 60px rgba(0,0,0,.22);
+}
+.bio-body {
+  max-width: 760px;
+  font-size: 16.6px;
+  line-height: 1.9;
+  color: var(--ink-2);
+}
+.bio-body + .bio-body { margin-top: 10px; }
+.section-label {
+  letter-spacing: .2em;
+  font-size: 10.5px;
+  margin-top: 46px;
+  margin-bottom: 18px;
+}
+.section-label::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(176,58,46,.12);
+}
+.section-label::after { height: 1px; opacity: .9; }
+.profile-sidebar { top: calc(var(--nav-h) + 18px); }
+.profile-photo-wrap {
+  border-radius: 24px;
+  padding: 6px;
+  background: linear-gradient(135deg, rgba(176,58,46,.18), rgba(26,107,107,.12));
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 18px 45px rgba(0,0,0,.10);
+}
+.profile-photo { border-radius: 18px; }
+.profile-meta,
+.news-list,
+.cit-card,
+.research-card,
+.pub-item,
+.poster-item,
+.skill-card,
+.mentee-card,
+.grant-card,
+.course-row,
+.award-card,
+.cert-item,
+.service-item,
+.news-row,
+.tl-item,
+.interest-tag {
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+}
+.profile-meta {
+  padding: 18px 17px 15px;
+  box-shadow: 0 14px 36px rgba(0,0,0,.05);
+}
+.interest-grid { gap: 12px; }
+.interest-tag {
+  border-radius: 999px;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, var(--surface), rgba(255,255,255,.82));
+  box-shadow: 0 10px 30px rgba(0,0,0,.04);
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
+}
+.interest-tag:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(176,58,46,.12);
+  border-color: rgba(176,58,46,.24);
+}
+.news-list {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.94));
+  box-shadow: 0 14px 36px rgba(0,0,0,.04);
+}
+html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.82); }
+.news-row {
+  padding: 16px 18px;
+  transition: transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+}
+.news-row:hover { transform: translateX(3px); background: rgba(176,58,46,.045); }
+.news-date { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; width: 100px; }
+.news-text { font-size: 16px; line-height: 1.8; }
+.research-card,
+.pub-item,
+.poster-item,
+.skill-card,
+.mentee-card,
+.grant-card,
+.course-row,
+.award-card,
+.cert-item,
+.service-item,
+.tl-item,
+.cit-card {
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
+}
+.research-card:hover,
+.pub-item:hover,
+.poster-item:hover,
+.skill-card:hover,
+.mentee-card:hover,
+.grant-card:hover,
+.course-row:hover,
+.award-card:hover,
+.cert-item:hover,
+.service-item:hover,
+.tl-item:hover,
+.cit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.10);
+  border-color: rgba(176,58,46,.18);
+}
+.cv-btn,
+.filter-btn,
+.social-btn,
+#back-top {
+  transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), color .18s var(--ease), border-color .18s var(--ease);
+}
+.cv-btn:hover,
+.filter-btn:hover,
+.social-btn:hover,
+#back-top:hover {
+  transform: translateY(-2px);
+}
+#back-top { box-shadow: 0 14px 36px rgba(0,0,0,.12); }
+.page.active .page-title,
+.page.active .page-subtitle,
+.page.active .bio-body,
+.page.active .section-label,
+.page.active .interest-tag,
+.page.active .news-row,
+.page.active .research-card,
+.page.active .pub-item,
+.page.active .poster-item,
+.page.active .inst-block,
+.page.active .course-row,
+.page.active .mentor-highlight,
+.page.active .mentee-card,
+.page.active .award-card,
+.page.active .grant-card,
+.page.active .cert-item,
+.page.active .skill-card,
+.page.active .service-item,
+.page.active .tl-item,
+.page.active .profile-photo-wrap,
+.page.active .profile-meta,
+.page.active .cit-card { will-change: transform, opacity; }
+@media (max-width: 920px) {
+  .topbar { padding: 0 14px; }
+  .page { padding: 48px 18px 88px; }
+  .bio-hero { grid-template-columns: 1fr; gap: 24px; }
+  .bio-hero::before { height: 190px; }
+  .profile-sidebar {
+    position: static;
+    order: -1;
+    max-width: 260px;
+    width: 100%;
+    margin: 0 auto 6px;
+  }
+  .page-title { font-size: clamp(36px, 9vw, 48px); }
+  .page-subtitle { font-size: 11px; margin-bottom: 22px; }
+  .bio-body { font-size: 15.5px; line-height: 1.85; }
+  .news-row { padding: 14px 15px; }
+  .news-date { width: 82px; font-size: 11px; }
+  .topbar-nav { display: none; }
+}
+@media (min-width: 921px) {
+  .bio-hero-text { padding-right: 8px; }
+}
+
 </style>
 </head>
 <body>
@@ -839,7 +1138,7 @@ img { max-width: 100%; display: block; }
     <!-- Sidebar -->
     <aside class="profile-sidebar">
       <div class="profile-photo-wrap">
-        <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo" loading="lazy">
+        <img src="/images/Profile_pic.jpg" alt="Tarikul Islam" class="profile-photo" loading="eager" fetchpriority="high" decoding="async">
       </div>
 
       <div class="profile-meta">
@@ -854,19 +1153,19 @@ img { max-width: 100%; display: block; }
         <hr class="profile-meta-divider">
         <div class="social-row">
           <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" title="Google Scholar" class="social-btn">
-            <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" loading="lazy">
+            <img src="/images/GoogleScholar_logo.png" alt="Google Scholar" loading="lazy" decoding="async">
           </a>
           <a href="https://orcid.org/0000-0002-4193-4366" target="_blank" title="ORCID" class="social-btn">
-            <img src="/images/Orcid_logo.png" alt="ORCID" loading="lazy">
+            <img src="/images/Orcid_logo.png" alt="ORCID" loading="lazy" decoding="async">
           </a>
           <a href="https://www.scopus.com/authid/detail.uri?authorId=58035898400" target="_blank" title="Scopus" class="social-btn">
-            <img src="/images/Scopus_logo.png" alt="Scopus" loading="lazy">
+            <img src="/images/Scopus_logo.png" alt="Scopus" loading="lazy" decoding="async">
           </a>
           <a href="https://www.researchgate.net/profile/Tarikul-Islam-5" target="_blank" title="ResearchGate" class="social-btn">
-            <img src="/images/ResearchGate_logo.png" alt="ResearchGate" loading="lazy">
+            <img src="/images/ResearchGate_logo.png" alt="ResearchGate" loading="lazy" decoding="async">
           </a>
           <a href="https://www.linkedin.com/in/tarikul-islam-313785142/" target="_blank" title="LinkedIn" class="social-btn">
-            <img src="/images/Linkedin_logo.png" alt="LinkedIn" loading="lazy">
+            <img src="/images/Linkedin_logo.png" alt="LinkedIn" loading="lazy" decoding="async">
           </a>
         </div>
         <hr class="profile-meta-divider">
@@ -994,7 +1293,7 @@ img { max-width: 100%; display: block; }
   <div class="inst-block">
     <div class="section-label">University of Southern California</div>
     <div class="inst-header">
-      <img src="/images/USC_logo.png" alt="USC" class="inst-logo" loading="lazy" onerror="this.style.display='none'">
+      <img src="/images/USC_logo.png" alt="USC" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div class="inst-name">University of Southern California</div>
     </div>
     <div class="inst-loc">Los Angeles, CA, USA &nbsp;·&nbsp; Role: Teaching Assistant</div>
@@ -1007,7 +1306,7 @@ img { max-width: 100%; display: block; }
   <div class="inst-block">
     <div class="section-label">Ahsanullah University of Science and Technology (AUST)</div>
     <div class="inst-header">
-      <img src="/images/AUST_logo.png" alt="AUST" class="inst-logo" loading="lazy" onerror="this.style.display='none'">
+      <img src="/images/AUST_logo.png" alt="AUST" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div class="inst-name">Ahsanullah University of Science and Technology</div>
     </div>
     <div class="inst-loc">Dhaka, Bangladesh &nbsp;·&nbsp; Role: Lecturer → Assistant Professor (2019–2024)</div>
@@ -1036,7 +1335,7 @@ img { max-width: 100%; display: block; }
   <div class="inst-block">
     <div class="section-label">European University of Bangladesh (EUB)</div>
     <div class="inst-header">
-      <img src="/images/EUB_logo.png" alt="EUB" class="inst-logo" loading="lazy" onerror="this.style.display='none'">
+      <img src="/images/EUB_logo.png" alt="EUB" class="inst-logo" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div class="inst-name">European University of Bangladesh</div>
     </div>
     <div class="inst-loc">Dhaka, Bangladesh &nbsp;·&nbsp; Role: Lecturer (2017–2018)</div>
@@ -1251,16 +1550,47 @@ if (themeToggle && themeIcon) {
   }
 }
 
+
+/* TOPBAR SCROLL STATE */
+const topbar = document.querySelector('.topbar');
+function updateTopbarState() {
+  if (!topbar) return;
+  topbar.classList.toggle('scrolled', window.scrollY > 12);
+}
+window.addEventListener('scroll', updateTopbarState, { passive: true });
+updateTopbarState();
+
 /* ── PAGE NAV ── */
+let pageSwitchTimer = null;
 function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
+  const nextPage = document.getElementById('page-' + id);
+  const currentPage = document.querySelector('.page.active');
+
+  if (pageSwitchTimer) {
+    clearTimeout(pageSwitchTimer);
+    pageSwitchTimer = null;
+  }
+
   document.querySelectorAll('.topbar-nav a, .mobile-nav a').forEach(a => {
     a.classList.toggle('active', a.dataset.page === id);
   });
-  window.scrollTo(0, 0);
-  refreshReveals();
-  if (id === 'bio') setTimeout(animateInterestTags, 80);
+
+  if (currentPage && currentPage !== nextPage) {
+    currentPage.classList.remove('active');
+    currentPage.classList.add('leaving');
+    pageSwitchTimer = setTimeout(() => {
+      currentPage.classList.remove('leaving');
+      nextPage.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      refreshReveals();
+      if (id === 'bio') setTimeout(animateInterestTags, 80);
+    }, 150);
+  } else {
+    nextPage.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    refreshReveals();
+    if (id === 'bio') setTimeout(animateInterestTags, 80);
+  }
 }
 
 /* ── HAMBURGER ── */
@@ -1314,7 +1644,7 @@ function filterPubs(type, btn) {
   const FALLBACK = {
     total: 42, hIndex: 3, i10Index: 1, papers: 11,
     byYear: { '2021': 2, '2022': 2, '2023': 2, '2024': 14, '2025': 18, '2026': 4 },
-    updatedAt: '2026-03-25'
+    updatedAt: '2026-01-25'
   };
   let chartInstance = null;
 
