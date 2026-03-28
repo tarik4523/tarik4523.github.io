@@ -862,17 +862,24 @@ html[data-theme="dark"] .page-title {
 .bio-hero::before {
   content: '';
   position: absolute;
-  left: -14px; right: -14px; top: -6px;
-  height: 260px;
+  left: -10px; right: -10px; top: -8px;
+  height: 280px;
   border-radius: 34px;
-  background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.12));
-  box-shadow: 0 20px 60px rgba(0,0,0,.05);
+  background:
+    radial-gradient(circle at 12% 14%, rgba(176,58,46,.06), transparent 32%),
+    radial-gradient(circle at 88% 10%, rgba(26,107,107,.05), transparent 30%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.14), transparent 42%);
+  box-shadow: none;
   z-index: -1;
-  filter: saturate(1.05);
+  opacity: .72;
+  filter: none;
 }
 html[data-theme="dark"] .bio-hero::before {
-  background: linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-  box-shadow: 0 18px 60px rgba(0,0,0,.22);
+  background:
+    radial-gradient(circle at 12% 14%, rgba(176,58,46,.12), transparent 32%),
+    radial-gradient(circle at 88% 10%, rgba(26,107,107,.10), transparent 30%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.05), transparent 42%);
+  opacity: .84;
 }
 .bio-body {
   max-width: 760px;
