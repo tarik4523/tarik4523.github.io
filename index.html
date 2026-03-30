@@ -125,6 +125,9 @@ html[data-theme="dark"] .news-badge,
 html[data-theme="dark"] .grant-agency,
 html[data-theme="dark"] .cit-title,
 html[data-theme="dark"] .teaching-group-label { color: #f2a99f; }
+html[data-theme="dark"] .cit-box { background: rgba(255,255,255,.04); }
+html[data-theme="dark"] .cit-box:hover { background: rgba(176,58,46,.15); }
+html[data-theme="dark"] .cit-divider { background: rgba(255,255,255,.08); }
 html[data-theme="dark"] .profile-photo-wrap,
 html[data-theme="dark"] .profile-meta,
 html[data-theme="dark"] .cit-card,
@@ -420,26 +423,73 @@ img { max-width: 100%; display: block; }
 
 /* Citation widget */
 .cit-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 16px 16px 14px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
 }
+.cit-header {
+  background: linear-gradient(135deg, #b03a2e 0%, #922b21 60%, #7b241c 100%);
+  padding: 14px 16px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cit-header-left { display: flex; flex-direction: column; gap: 1px; }
 .cit-title {
-  font-size: 11px; font-weight: 500;
-  text-transform: uppercase; letter-spacing: .14em;
-  color: var(--faint); margin-bottom: 14px; text-align: center;
+  font-size: 10.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .16em;
+  color: rgba(255,255,255,.75); margin: 0;
 }
-.cit-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 14px; }
+.cit-header-badge {
+  font-size: 9.5px; color: rgba(255,255,255,.5); letter-spacing: .04em;
+}
+.cit-scholar-link {
+  font-size: 10px; color: rgba(255,255,255,.7);
+  text-decoration: none; display: flex; align-items: center; gap: 3px;
+  border: 1px solid rgba(255,255,255,.25); border-radius: 20px;
+  padding: 3px 8px; transition: background .18s, color .18s;
+  white-space: nowrap;
+}
+.cit-scholar-link:hover { background: rgba(255,255,255,.15); color: #fff; }
+.cit-body { padding: 14px 14px 12px; }
+.cit-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-bottom: 14px;
+}
 .cit-box {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 7px; padding: 9px 4px; text-align: center;
-  transition: border-color .18s, background .18s;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 11px 8px 9px; text-align: center;
+  transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
+  cursor: default;
 }
-.cit-box:hover { border-color: var(--accent-md); background: var(--accent-lt); }
-.cit-num { font-size: 22px; font-weight: 500; color: var(--ink); line-height: 1.2; }
-.cit-lbl { font-size: 10.5px; color: var(--faint); margin-top: 2px; }
-.cit-chart-wrap { position: relative; width: 100%; height: 112px; }
-.cit-source { text-align: center; margin-top: 10px; font-size: 12px; }
+.cit-box:hover {
+  border-color: var(--accent-md);
+  background: var(--accent-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(176,58,46,.12);
+}
+.cit-num {
+  font-size: 26px; font-weight: 600;
+  color: var(--accent); line-height: 1.1;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: -.02em;
+}
+.cit-lbl {
+  font-size: 10px; color: var(--faint);
+  margin-top: 3px; text-transform: uppercase; letter-spacing: .1em;
+}
+.cit-divider {
+  height: 1px; background: var(--border); margin: 0 0 12px;
+}
+.cit-chart-label {
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: .12em;
+  color: var(--faint); margin-bottom: 6px; text-align: center;
+}
+.cit-chart-wrap { position: relative; width: 100%; height: 100px; }
+.cit-source {
+  text-align: center; margin-top: 10px; font-size: 11px;
+  color: var(--faint);
+}
 
 /* Bio text */
 .bio-body {
@@ -1246,16 +1296,37 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
 
       <!-- Citation widget -->
       <div class="cit-card">
-        <div class="cit-title">Citation Metrics</div>
-        <div class="cit-grid">
-          <div class="cit-box"><div class="cit-num" id="total-cit">—</div><div class="cit-lbl">Citations</div></div>
-          <div class="cit-box"><div class="cit-num" id="h-index">—</div><div class="cit-lbl">h-index</div></div>
-          <div class="cit-box"><div class="cit-num" id="i10-index">—</div><div class="cit-lbl">i10</div></div>
-          <div class="cit-box"><div class="cit-num" id="paper-count">—</div><div class="cit-lbl">Papers</div></div>
+        <div class="cit-header">
+          <div class="cit-header-left">
+            <div class="cit-title">Citation Metrics</div>
+            <div class="cit-header-badge" id="cit-updated">Google Scholar</div>
+          </div>
+          <a class="cit-scholar-link" href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank">
+            &#x1F4CA; Scholar ↗
+          </a>
         </div>
-        <div class="cit-chart-wrap"><canvas id="citChart"></canvas></div>
-        <div class="cit-source" id="cit-source">
-          <a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">Google Scholar ↗</a>
+        <div class="cit-body">
+          <div class="cit-grid">
+            <div class="cit-box">
+              <div class="cit-num" id="total-cit">—</div>
+              <div class="cit-lbl">Citations</div>
+            </div>
+            <div class="cit-box">
+              <div class="cit-num" id="h-index">—</div>
+              <div class="cit-lbl">h-index</div>
+            </div>
+            <div class="cit-box">
+              <div class="cit-num" id="i10-index">—</div>
+              <div class="cit-lbl">i10-index</div>
+            </div>
+            <div class="cit-box">
+              <div class="cit-num" id="paper-count">—</div>
+              <div class="cit-lbl">Papers</div>
+            </div>
+          </div>
+          <div class="cit-divider"></div>
+          <div class="cit-chart-label">Citations per Year</div>
+          <div class="cit-chart-wrap"><canvas id="citChart"></canvas></div>
         </div>
       </div>
     </aside>
@@ -1750,7 +1821,17 @@ function filterPubs(type, btn) {
     const years = Object.keys(yearData).sort();
     const counts = years.map(y => yearData[y]);
     const palette = getPalette();
-    const gridColor = palette.isDark ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.08)';
+    const isDark = palette.isDark;
+
+    // Gradient fill: accent red → transparent
+    const ctx = canvas.getContext('2d');
+    const grad = ctx.createLinearGradient(0, 0, 0, canvas.offsetHeight || 100);
+    grad.addColorStop(0,   isDark ? 'rgba(176,58,46,0.90)' : 'rgba(176,58,46,0.85)');
+    grad.addColorStop(1,   isDark ? 'rgba(176,58,46,0.25)' : 'rgba(176,58,46,0.20)');
+
+    const gridColor  = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.06)';
+    const tickColor  = isDark ? 'rgba(255,255,255,0.35)' : 'rgba(15,23,42,0.38)';
+
     if (chartInstance) chartInstance.destroy();
     chartInstance = new Chart(canvas, {
       type: 'bar',
@@ -1758,38 +1839,94 @@ function filterPubs(type, btn) {
         labels: years,
         datasets: [{
           data: counts,
-          backgroundColor: palette.teal,
-          hoverBackgroundColor: palette.isDark ? '#159188' : '#0b615a',
-          borderRadius: 3,
-          borderSkipped: false
+          backgroundColor: grad,
+          hoverBackgroundColor: isDark ? 'rgba(224,80,66,0.95)' : 'rgba(146,43,33,0.90)',
+          borderRadius: { topLeft: 5, topRight: 5, bottomLeft: 0, bottomRight: 0 },
+          borderSkipped: false,
+          borderWidth: 0
         }]
       },
       options: {
-        responsive: true, maintainAspectRatio: false,
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 700,
+          easing: 'easeOutQuart',
+          delay: ctx => ctx.dataIndex * 60
+        },
         plugins: {
           legend: { display: false },
-          tooltip: { callbacks: { label: i => ' ' + i.raw + ' citations' } }
+          tooltip: {
+            backgroundColor: isDark ? 'rgba(17,24,42,0.92)' : 'rgba(255,255,255,0.96)',
+            titleColor: isDark ? '#f9fafb' : '#111827',
+            bodyColor: isDark ? '#d1d5db' : '#374151',
+            borderColor: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.08)',
+            borderWidth: 1,
+            padding: 10,
+            cornerRadius: 8,
+            displayColors: false,
+            callbacks: {
+              title: items => items[0].label,
+              label: i => i.raw + ' citations'
+            }
+          }
         },
         scales: {
-          x: { grid: { display: false }, ticks: { color: palette.muted, font: { size: 10 }, maxRotation: 45 }, border: { display: false } },
-          y: { beginAtZero: true, grid: { color: gridColor }, ticks: { color: palette.muted, font: { size: 10 }, callback: v => Number.isInteger(v) ? v : '', maxTicksLimit: 5 }, border: { display: false } }
+          x: {
+            grid: { display: false },
+            border: { display: false },
+            ticks: {
+              color: tickColor,
+              font: { size: 9.5, family: "'DM Sans', sans-serif" },
+              maxRotation: 0
+            }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: gridColor, drawTicks: false },
+            border: { display: false, dash: [3, 3] },
+            ticks: {
+              color: tickColor,
+              font: { size: 9.5, family: "'DM Sans', sans-serif" },
+              callback: v => Number.isInteger(v) ? v : '',
+              maxTicksLimit: 4,
+              padding: 6
+            }
+          }
         }
       }
     });
   }
 
+  function countUp(el, target, duration) {
+    if (!el || isNaN(target)) { if (el) el.textContent = target; return; }
+    const start = 0;
+    const startTime = performance.now();
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(start + (target - start) * ease);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
   function applyData(d) {
-    const set = (id, val) => {
+    const animateEl = (id, val) => {
       const el = document.getElementById(id);
-      if (el) el.textContent = (val != null && val !== '') ? val : '—';
+      if (!el) return;
+      const num = parseInt(val);
+      if (!isNaN(num)) countUp(el, num, 900);
+      else el.textContent = (val != null && val !== '') ? val : '—';
     };
-    set('total-cit', d.total);
-    set('h-index', d.hIndex);
-    set('i10-index', d.i10Index);
-    set('paper-count', d.papers);
-    const src = document.getElementById('cit-source');
-    if (src && d.updatedAt) {
-      src.innerHTML = `<a href="https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ" target="_blank" style="color:var(--muted);">Google Scholar ↗</a><span style="color:var(--muted);font-size:10.5px;display:block;">Updated ${d.updatedAt}</span>`;
+    animateEl('total-cit', d.total);
+    animateEl('h-index', d.hIndex);
+    animateEl('i10-index', d.i10Index);
+    animateEl('paper-count', d.papers);
+    const badge = document.getElementById('cit-updated');
+    if (badge && d.updatedAt) {
+      badge.textContent = 'Updated ' + d.updatedAt;
     }
     latestYearData = d.byYear || {};
     renderChart(latestYearData);
