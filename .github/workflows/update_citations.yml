@@ -20,9 +20,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install scholarly
-        run: pip install scholarly
-
       - name: Fetch citations
         run: python update_citations.py
 
