@@ -453,15 +453,23 @@ img { max-width: 100%; display: block; }
 .cit-scholar-link:hover { background: rgba(255,255,255,.15); color: #fff; }
 .cit-body { padding: 14px 14px 12px; }
 .cit-grid {
-  display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-bottom: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
 }
+
 .cit-box {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 10px; padding: 11px 8px 9px; text-align: center;
+  border-radius: 10px;
+  padding: 11px 8px 9px;
+  text-align: center;
   transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
   cursor: default;
+  min-width: 0;
 }
+
 .cit-box:hover {
   border-color: var(--accent-md);
   background: var(--accent-lt);
