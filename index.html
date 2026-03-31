@@ -36,10 +36,10 @@
 <style>
 /* ── TOKENS ── */
 :root {
-  --ink:       #111827;
-  --ink-2:     #2b3440;
-  --muted:     #4a5563;
-  --faint:     #5f6b7a;
+  --ink:       #000000;
+  --ink-2:     #1a1a1a;
+  --muted:     #2d2d2d;
+  --faint:     #3a3a3a;
   --border:    #d9e1ea;
   --border-2:  #c3cfdb;
   --bg:        #f4f7fb;
@@ -464,7 +464,7 @@ img { max-width: 100%; display: block; }
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 9px 6px 7px; /* tighter */
+  padding: 9px 6px 7px;
   text-align: center;
   transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
   cursor: default;
@@ -478,7 +478,7 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 6px 18px rgba(176,58,46,.12);
 }
 .cit-num {
-  font-size: 20px; /* reduced */
+  font-size: 20px;
   font-weight: 600;
   color: #922b21;
   line-height: 1.1;
@@ -487,7 +487,7 @@ img { max-width: 100%; display: block; }
 }
 .cit-lbl {
   font-size: 8px;
-  color: #1a1a1a; /* was var(--faint) → now strong readable */
+  color: #1a1a1a;
   margin-top: 2px;
   text-transform: uppercase;
   letter-spacing: .08em;
@@ -1859,7 +1859,6 @@ function filterPubs(type, btn) {
     const palette = getPalette();
     const isDark = palette.isDark;
 
-    // Gradient fill: accent red → transparent
     const ctx = canvas.getContext('2d');
     const grad = ctx.createLinearGradient(0, 0, 0, canvas.offsetHeight || 100);
     grad.addColorStop(0,   isDark ? 'rgba(176,58,46,0.90)' : 'rgba(176,58,46,0.85)');
