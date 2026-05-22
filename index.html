@@ -9,6 +9,7 @@
 <meta name="author" content="Tarikul Islam">
 <link rel="me" href="https://orcid.org/0000-0002-4193-4366">
 <link rel="me" href="https://scholar.google.com/citations?user=60hz_E8AAAAJ">
+<link rel="canonical" href="https://tarik4523.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tarik4523.github.io">
 <meta property="og:title" content="Tarikul Islam | PhD Student | USC Civil Engineering">
@@ -318,6 +319,60 @@ html[data-theme="dark"] .ambient-orb.orb-3 {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* ── SKIP TO CONTENT ── */
+.skip-link {
+  position: fixed; top: -999px; left: 16px; z-index: 9999;
+  background: var(--accent); color: #fff;
+  padding: 10px 18px; border-radius: 0 0 8px 8px;
+  font-size: 14px; font-weight: 500; letter-spacing: .04em;
+  transition: top .18s; text-decoration: none;
+}
+.skip-link:focus { top: 0; color: #fff; text-decoration: none; }
+
+/* ── PRINT STYLESHEET ── */
+@media print {
+  /* Show all pages at once */
+  .page { display: block !important; animation: none !important;
+    padding: 0 0 32pt; max-width: 100%; break-inside: avoid; }
+  .page + .page { border-top: 1.5pt solid #ccc; padding-top: 24pt; }
+  /* Hide non-content chrome */
+  .topbar, .mobile-nav, #progress-bar, #back-top,
+  .ambient-bg, .theme-toggle, .hamburger,
+  .news-toggle-btn, .pub-search-wrap, .pub-filter,
+  .cv-btn, .social-row, .profile-meta-divider { display: none !important; }
+  /* Reset colors to black on white */
+  body, .page-title, .page-subtitle, .bio-body, .tl-title, .tl-org,
+  .tl-desc, .tl-period, .rc-title, .rc-desc, .pub-title, .pub-authors,
+  .pub-venue, .award-title, .award-org, .grant-title, .grant-meta,
+  .cert-name, .cert-org, .course-name, .course-term, .inst-name,
+  .section-label, .mentee-thesis, .mentee-students, .cp-title, .cp-desc,
+  .mh-title, .mh-sub, .news-text, .news-date, .service-name,
+  .skill-card-title, .skill-tag, .interest-tag {
+    color: #000 !important; background: #fff !important;
+    -webkit-background-clip: unset !important; background-clip: unset !important;
+  }
+  .page-title { font-size: 26pt !important; }
+  /* Remove reveal animation state */
+  .reveal { opacity: 1 !important; transform: none !important; }
+  /* Simplify cards */
+  .research-card, .pub-item, .poster-item, .skill-card, .mentee-card,
+  .grant-card, .cert-item, .award-card, .tl-item, .interest-tag,
+  .profile-meta, .cit-card, .profile-photo-wrap, .news-list {
+    border: 0.75pt solid #ccc !important; box-shadow: none !important;
+    background: #fff !important; border-radius: 4pt !important;
+    backdrop-filter: none !important;
+  }
+  .cit-chart-wrap, .pub-badge { display: none !important; }
+  .pub-links a { color: #000 !important; }
+  .bio-hero { display: block !important; }
+  .profile-sidebar { position: static !important; width: 100% !important; }
+  .profile-photo-wrap { width: 100pt !important; float: right; margin: 0 0 8pt 16pt; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #555; }
+  a[href^="#"]::after, a[href^="javascript"]::after { content: ""; }
+  .page-footer { border: none !important; margin-top: 16pt; font-size: 9pt; color: #777 !important; }
+  @page { margin: 18mm 16mm; }
 }
 
 /* ── RESET & BASE ── */
@@ -764,6 +819,12 @@ html[data-theme="dark"] .pub-authors { color: var(--muted); }
 }
 html[data-theme="dark"] .pub-link { color: var(--muted); }
 .pub-link:hover { background: var(--accent-lt); border-color: var(--accent-md); color: var(--accent); text-decoration: none; }
+.bib-btn {
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  background: var(--surface); position: relative;
+}
+.bib-btn.copied { background: var(--teal-lt); border-color: var(--teal); color: var(--teal); }
+html[data-theme="dark"] .bib-btn.copied { background: rgba(15,118,110,.18); }
 
 .poster-item {
   background: var(--teal-lt); border: 1px solid #c0dede;
@@ -1222,7 +1283,7 @@ html[data-theme="dark"] .page-subtitle { color: var(--muted); }
 }
 .interest-grid { gap: 12px; }
 .interest-tag {
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 12px 16px;
   background: var(--surface);
   box-shadow: 0 10px 30px rgba(0,0,0,.04);
@@ -1266,7 +1327,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
 .page.active .page-title, .page.active .page-subtitle, .page.active .bio-body,
 .page.active .section-label, .page.active .interest-tag, .page.active .news-row,
 .page.active .research-card, .page.active .pub-item, .page.active .poster-item,
-.page.active .inst-block, .page.active .course-row, .page.active .mentor-highlight,
+.page.active .course-row, .page.active .mentor-highlight,
 .page.active .mentee-card, .page.active .award-card, .page.active .grant-card,
 .page.active .cert-item, .page.active .skill-card, .page.active .service-item,
 .page.active .tl-item, .page.active .profile-photo-wrap,
@@ -1317,6 +1378,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
 <body>
 
 <!-- Progress bar -->
+<a href="#main-content" class="skip-link">Skip to content</a>
 <div id="progress-bar"></div>
 <noscript>
   <style>
@@ -1369,7 +1431,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
   <a href="#" onclick="showPage('experience');closeMobileNav();return false;" data-page="experience">Experience</a>
 </div>
 
-<div class="layout">
+<div class="layout" id="main-content">
 
 <!-- ══ BIO ══ -->
 <div class="page active" id="page-bio">
@@ -1571,7 +1633,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
 <!-- ══ PUBLICATIONS ══ -->
 <div class="page" id="page-publications">
   <div class="page-title">Publications</div>
-  <div class="page-subtitle">11 peer-reviewed journal papers · 1 conference proceeding · 2 posters &nbsp;|&nbsp; * = Corresponding author</div>
+  <div class="page-subtitle"><span id="pub-count-label">11 peer-reviewed journal papers</span> · 1 conference proceeding · 2 posters &nbsp;|&nbsp; * = Corresponding author</div>
 
   <div class="pub-search-wrap">
     <svg class="pub-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1587,24 +1649,24 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
   <div id="journal-section">
     <div class="section-label">Peer-Reviewed Journal Papers</div>
     <div class="pub-list">
-      <div class="pub-item"><span class="pub-num">11</span><span class="pub-badge">IISS</span><div class="pub-body"><div class="pub-title">Experimental Investigation on the Effect of High Range Water Reducing Admixture on Mechanical and Microstructural Properties of Jute Fiber Reinforced Concrete</div><div class="pub-authors">Patowary, F., <em>Islam, T.*</em>, Sen, D., &amp; Chowdhury, S. R.</div><div class="pub-venue">Innovative Infrastructure Solutions, Accepted for Publication, 2026</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v37.25019" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">10</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Implementing BIM for Sustainable Construction in Developing Countries: Emphasizing Economic, Environmental, and Social Aspects</div><div class="pub-authors">Nazim, M. F., <em>Islam, T.*</em>, Islam S., &amp; Shuvo, R. I.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 37(3), 17–27, 2025</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v37.25019" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">9</span><span class="pub-badge">CEA</span><div class="pub-body"><div class="pub-title">Effect of Jute Fiber Content on Compressive and Split Tensile Strength of Concrete Utilizing Stone Chips as Coarse Aggregates</div><div class="pub-authors"><em>Islam, T.</em>, Patowary, F., Sen, D.*, &amp; Chowdhury, S. R.</div><div class="pub-venue">Civil Engineering and Architecture, 13(3), 1995–2005, 2025</div><div class="pub-links"><a href="https://doi.org/10.13189/cea.2025.130339" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">8</span><span class="pub-badge">Buildings</span><div class="pub-body"><div class="pub-title">Mechanical Properties of PVC Fiber-Reinforced Concrete — Effects of Fiber Content and Length</div><div class="pub-authors"><em>Islam, T.</em>, Safiuddin, M.*, Roman, R. A., Chakma, B., &amp; Al Maroof, A.</div><div class="pub-venue">Buildings, 13, 2666, 2023</div><div class="pub-links"><a href="https://doi.org/10.3390/buildings13102666" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">7</span><span class="pub-badge">AJCE</span><div class="pub-body"><div class="pub-title">Numerical Modeling and Validation of Lateral Behavior of Masonry-Infilled RC Frame Focusing Sliding Failure of Infill Panel</div><div class="pub-authors"><em>Islam, T.</em>, &amp; Sen, D.*</div><div class="pub-venue">Asian Journal of Civil Engineering, 24, 1247–1255, 2023</div><div class="pub-links"><a href="https://doi.org/10.1007/s42107-022-00566-1" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">6</span><span class="pub-badge">CEPM</span><div class="pub-body"><div class="pub-title">Numerical Analysis of Retrofitted RC Column under Lateral Load</div><div class="pub-authors"><em>Islam, T.*</em>, Yasar, R., &amp; Chowdhury, S. R.</div><div class="pub-venue">Computational Engineering and Physical Modeling, 5(3), 82–95, 2022</div><div class="pub-links"><a href="https://doi.org/10.22115/CEPM.2023.374244.1226" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">5</span><span class="pub-badge">JAGE</span><div class="pub-body"><div class="pub-title">Effectiveness of Different Chemicals on Stabilization of Expansive Soil</div><div class="pub-authors">Jahan, N.*, <em>Islam, T.</em>, &amp; Islam, S.</div><div class="pub-venue">Journal of Advances in Geotechnical Engineering, 5(3), 1–11, 2022</div><div class="pub-links"><a href="https://doi.org/10.5281/zenodo.7451446" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">4</span><span class="pub-badge">JCBME</span><div class="pub-body"><div class="pub-title">Carbon Emission and Carbon Sequestration of Residential Building</div><div class="pub-authors">Tasin, T. R.*, Noman, A. A. R., Prottoy, A. R., Islam, S., &amp; <em>Islam, T.</em></div><div class="pub-venue">Journal of Construction and Building Materials Engineering, 8(1), 33–41, 2022</div><div class="pub-links"><a href="https://matjournals.co.in/index.php/JOCBME/article/view/131" target="_blank" class="pub-link">Link ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">3</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Behavior of Concrete Compressive Strength by Utilizing Fly Ash and Wood Powder</div><div class="pub-authors"><em>Islam, T.*</em>, Gupta, S. D., Janin, J., &amp; Rahman, A.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 33(3), 69–77, 2021</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v33.17398" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">2</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Experimental Study of Concrete with Sugarcane Bagasse Ash (SCBA) at Elevated Temperature</div><div class="pub-authors">Gupta, S. D.*, <em>Islam, T.</em>, Palash, M. D. N., &amp; Shohan, M. S. A.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 33(3), 59–67, 2021</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v33.17379" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
-      <div class="pub-item"><span class="pub-num">1</span><span class="pub-badge">CEPM</span><div class="pub-body"><div class="pub-title">Experimental Study of Concrete Using Raw Rice Husk as Partial Replacement of Cement with Natural Fiber (Jute Fiber) as Reinforcing Material</div><div class="pub-authors">Gupta, S. D.*, <em>Islam, T.</em>, Sohag, M. A. I., Salakin, S., &amp; Hossain, I.</div><div class="pub-venue">Computational Engineering and Physical Modeling, 4(3), 29–42, 2021</div><div class="pub-links"><a href="https://doi.org/10.22115/CEPM.2021.280252.1166" target="_blank" class="pub-link">DOI ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">11</span><span class="pub-badge">IISS</span><div class="pub-body"><div class="pub-title">Experimental Investigation on the Effect of High Range Water Reducing Admixture on Mechanical and Microstructural Properties of Jute Fiber Reinforced Concrete</div><div class="pub-authors">Patowary, F., <em>Islam, T.*</em>, Sen, D., &amp; Chowdhury, S. R.</div><div class="pub-venue">Innovative Infrastructure Solutions, Accepted for Publication, 2026</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v37.25019" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('patowary2026')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">10</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Implementing BIM for Sustainable Construction in Developing Countries: Emphasizing Economic, Environmental, and Social Aspects</div><div class="pub-authors">Nazim, M. F., <em>Islam, T.*</em>, Islam S., &amp; Shuvo, R. I.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 37(3), 17–27, 2025</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v37.25019" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('nazim2025')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">9</span><span class="pub-badge">CEA</span><div class="pub-body"><div class="pub-title">Effect of Jute Fiber Content on Compressive and Split Tensile Strength of Concrete Utilizing Stone Chips as Coarse Aggregates</div><div class="pub-authors"><em>Islam, T.</em>, Patowary, F., Sen, D.*, &amp; Chowdhury, S. R.</div><div class="pub-venue">Civil Engineering and Architecture, 13(3), 1995–2005, 2025</div><div class="pub-links"><a href="https://doi.org/10.13189/cea.2025.130339" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('islam2025cea')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">8</span><span class="pub-badge">Buildings</span><div class="pub-body"><div class="pub-title">Mechanical Properties of PVC Fiber-Reinforced Concrete — Effects of Fiber Content and Length</div><div class="pub-authors"><em>Islam, T.</em>, Safiuddin, M.*, Roman, R. A., Chakma, B., &amp; Al Maroof, A.</div><div class="pub-venue">Buildings, 13, 2666, 2023</div><div class="pub-links"><a href="https://doi.org/10.3390/buildings13102666" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('islam2023buildings')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">7</span><span class="pub-badge">AJCE</span><div class="pub-body"><div class="pub-title">Numerical Modeling and Validation of Lateral Behavior of Masonry-Infilled RC Frame Focusing Sliding Failure of Infill Panel</div><div class="pub-authors"><em>Islam, T.</em>, &amp; Sen, D.*</div><div class="pub-venue">Asian Journal of Civil Engineering, 24, 1247–1255, 2023</div><div class="pub-links"><a href="https://doi.org/10.1007/s42107-022-00566-1" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('islam2023ajce')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">6</span><span class="pub-badge">CEPM</span><div class="pub-body"><div class="pub-title">Numerical Analysis of Retrofitted RC Column under Lateral Load</div><div class="pub-authors"><em>Islam, T.*</em>, Yasar, R., &amp; Chowdhury, S. R.</div><div class="pub-venue">Computational Engineering and Physical Modeling, 5(3), 82–95, 2022</div><div class="pub-links"><a href="https://doi.org/10.22115/CEPM.2023.374244.1226" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('islam2022cepm')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">5</span><span class="pub-badge">JAGE</span><div class="pub-body"><div class="pub-title">Effectiveness of Different Chemicals on Stabilization of Expansive Soil</div><div class="pub-authors">Jahan, N.*, <em>Islam, T.</em>, &amp; Islam, S.</div><div class="pub-venue">Journal of Advances in Geotechnical Engineering, 5(3), 1–11, 2022</div><div class="pub-links"><a href="https://doi.org/10.5281/zenodo.7451446" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('jahan2022')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">4</span><span class="pub-badge">JCBME</span><div class="pub-body"><div class="pub-title">Carbon Emission and Carbon Sequestration of Residential Building</div><div class="pub-authors">Tasin, T. R.*, Noman, A. A. R., Prottoy, A. R., Islam, S., &amp; <em>Islam, T.</em></div><div class="pub-venue">Journal of Construction and Building Materials Engineering, 8(1), 33–41, 2022</div><div class="pub-links"><a href="https://matjournals.co.in/index.php/JOCBME/article/view/131" target="_blank" class="pub-link">Link ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('tasin2022')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">3</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Behavior of Concrete Compressive Strength by Utilizing Fly Ash and Wood Powder</div><div class="pub-authors"><em>Islam, T.*</em>, Gupta, S. D., Janin, J., &amp; Rahman, A.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 33(3), 69–77, 2021</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v33.17398" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('islam2021mjce')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">2</span><span class="pub-badge">MJCE</span><div class="pub-body"><div class="pub-title">Experimental Study of Concrete with Sugarcane Bagasse Ash (SCBA) at Elevated Temperature</div><div class="pub-authors">Gupta, S. D.*, <em>Islam, T.</em>, Palash, M. D. N., &amp; Shohan, M. S. A.</div><div class="pub-venue">Malaysian Journal of Civil Engineering, 33(3), 59–67, 2021</div><div class="pub-links"><a href="https://doi.org/10.11113/mjce.v33.17379" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('gupta2021scba')">BibTeX</button></div></div></div>
+      <div class="pub-item"><span class="pub-num">1</span><span class="pub-badge">CEPM</span><div class="pub-body"><div class="pub-title">Experimental Study of Concrete Using Raw Rice Husk as Partial Replacement of Cement with Natural Fiber (Jute Fiber) as Reinforcing Material</div><div class="pub-authors">Gupta, S. D.*, <em>Islam, T.</em>, Sohag, M. A. I., Salakin, S., &amp; Hossain, I.</div><div class="pub-venue">Computational Engineering and Physical Modeling, 4(3), 29–42, 2021</div><div class="pub-links"><a href="https://doi.org/10.22115/CEPM.2021.280252.1166" target="_blank" class="pub-link">DOI ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('gupta2021cepm')">BibTeX</button></div></div></div>
     </div>
   </div>
 
   <div id="conference-section">
     <div class="section-label">Conference Proceedings</div>
     <div class="pub-list">
-      <div class="pub-item"><span class="pub-num">1</span><span class="pub-badge">ICCESD</span><div class="pub-body"><div class="pub-title">Bench Scale Study on Co-Composting for Organic Solid Wastes and Faecal Sludge</div><div class="pub-authors"><em>Islam, T.*</em>, Bari, Q. H., Shovon, S. M. S. A., &amp; Al Saif, R.</div><div class="pub-venue">4th International Conference on Civil Engineering for Sustainable Development (ICCESD 2018)</div><div class="pub-links"><a href="http://www.iccesd.com/proc_2018/index.html" target="_blank" class="pub-link">Link ↗</a></div></div></div>
+      <div class="pub-item"><span class="pub-num">1</span><span class="pub-badge">ICCESD</span><div class="pub-body"><div class="pub-title">Bench Scale Study on Co-Composting for Organic Solid Wastes and Faecal Sludge</div><div class="pub-authors"><em>Islam, T.*</em>, Bari, Q. H., Shovon, S. M. S. A., &amp; Al Saif, R.</div><div class="pub-venue">4th International Conference on Civil Engineering for Sustainable Development (ICCESD 2018)</div><div class="pub-links"><a href="http://www.iccesd.com/proc_2018/index.html" target="_blank" class="pub-link">Link ↗</a><button class="pub-link bib-btn" onclick="copyBibtex('islam2018')">BibTeX</button></div></div></div>
     </div>
   </div>
 
@@ -1802,7 +1864,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
 <!-- ══ EXPERIENCE ══ -->
 <div class="page" id="page-experience">
   <div class="page-title">Experience</div>
-  <div class="page-subtitle">Academic appointments, professional history, and education</div>
+  <div class="page-subtitle">Academic appointments and professional history</div>
 
   <div class="section-label">Academic Appointments</div>
   <div class="timeline">
@@ -1908,12 +1970,19 @@ function showPage(id, pushState = true) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       refreshReveals();
       if (id === 'bio') setTimeout(animateInterestTags, 80);
+      /* Move focus to new page for keyboard/screen-reader users */
+      const focusTarget = nextPage.querySelector('.page-title') || nextPage;
+      focusTarget.setAttribute('tabindex', '-1');
+      focusTarget.focus({ preventScroll: true });
     }, 150);
   } else {
     nextPage.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     refreshReveals();
     if (id === 'bio') setTimeout(animateInterestTags, 80);
+    const focusTarget = nextPage.querySelector('.page-title') || nextPage;
+    focusTarget.setAttribute('tabindex', '-1');
+    focusTarget.focus({ preventScroll: true });
   }
 }
 
@@ -2129,7 +2198,7 @@ const REVEAL_SELECTOR =
   '.page.active .bio-body, .page.active .tl-item, .page.active .current-projects-card, ' +
   '.page.active .section-label, .page.active .interest-tag, .page.active .news-row, ' +
   '.page.active .research-card, .page.active .pub-item, .page.active .poster-item, ' +
-  '.page.active .inst-block, .page.active .mentor-highlight, .page.active .mentee-card, ' +
+  '.page.active .mentor-highlight, .page.active .mentee-card, ' +
   '.page.active .award-card, .page.active .grant-card, .page.active .cert-item, ' +
   '.page.active .skill-card, .page.active .course-row, .page.active .service-item';
 
@@ -2222,14 +2291,187 @@ function searchPubs(query) {
   });
 }
 
-/* ── NEWS TOGGLE ── */
+/* ── BIBTEX COPY ── */
+const BIBTEX = {
+  patowary2026: `@article{patowary2026hrwra,
+  title   = {Experimental Investigation on the Effect of High Range Water Reducing Admixture on Mechanical and Microstructural Properties of Jute Fiber Reinforced Concrete},
+  author  = {Patowary, Faruk and Islam, Tarikul and Sen, Debasish and Chowdhury, Sharmin Reza},
+  journal = {Innovative Infrastructure Solutions},
+  year    = {2026},
+  note    = {Accepted for Publication}
+}`,
+  nazim2025: `@article{nazim2025bim,
+  title   = {Implementing {BIM} for Sustainable Construction in Developing Countries: Emphasizing Economic, Environmental, and Social Aspects},
+  author  = {Nazim, Md Fahad and Islam, Tarikul and Islam, S. and Shuvo, R. I.},
+  journal = {Malaysian Journal of Civil Engineering},
+  volume  = {37},
+  number  = {3},
+  pages   = {17--27},
+  year    = {2025},
+  doi     = {10.11113/mjce.v37.25019}
+}`,
+  islam2025cea: `@article{islam2025jute,
+  title   = {Effect of Jute Fiber Content on Compressive and Split Tensile Strength of Concrete Utilizing Stone Chips as Coarse Aggregates},
+  author  = {Islam, Tarikul and Patowary, Faruk and Sen, Debasish and Chowdhury, Sharmin Reza},
+  journal = {Civil Engineering and Architecture},
+  volume  = {13},
+  number  = {3},
+  pages   = {1995--2005},
+  year    = {2025},
+  doi     = {10.13189/cea.2025.130339}
+}`,
+  islam2023buildings: `@article{islam2023pvc,
+  title   = {Mechanical Properties of {PVC} Fiber-Reinforced Concrete---Effects of Fiber Content and Length},
+  author  = {Islam, Tarikul and Safiuddin, Md. and Roman, Rezwan Ahmed and Chakma, Bodhijit and Al Maroof, Abdullah},
+  journal = {Buildings},
+  volume  = {13},
+  pages   = {2666},
+  year    = {2023},
+  doi     = {10.3390/buildings13102666}
+}`,
+  islam2023ajce: `@article{islam2023masonry,
+  title   = {Numerical Modeling and Validation of Lateral Behavior of Masonry-Infilled {RC} Frame Focusing Sliding Failure of Infill Panel},
+  author  = {Islam, Tarikul and Sen, Debasish},
+  journal = {Asian Journal of Civil Engineering},
+  volume  = {24},
+  pages   = {1247--1255},
+  year    = {2023},
+  doi     = {10.1007/s42107-022-00566-1}
+}`,
+  islam2022cepm: `@article{islam2022retrofit,
+  title   = {Numerical Analysis of Retrofitted {RC} Column under Lateral Load},
+  author  = {Islam, Tarikul and Yasar, R. and Chowdhury, Sharmin Reza},
+  journal = {Computational Engineering and Physical Modeling},
+  volume  = {5},
+  number  = {3},
+  pages   = {82--95},
+  year    = {2022},
+  doi     = {10.22115/CEPM.2023.374244.1226}
+}`,
+  jahan2022: `@article{jahan2022soil,
+  title   = {Effectiveness of Different Chemicals on Stabilization of Expansive Soil},
+  author  = {Jahan, Nusrat and Islam, Tarikul and Islam, S.},
+  journal = {Journal of Advances in Geotechnical Engineering},
+  volume  = {5},
+  number  = {3},
+  pages   = {1--11},
+  year    = {2022},
+  doi     = {10.5281/zenodo.7451446}
+}`,
+  tasin2022: `@article{tasin2022carbon,
+  title   = {Carbon Emission and Carbon Sequestration of Residential Building},
+  author  = {Tasin, T. R. and Noman, A. A. R. and Prottoy, A. R. and Islam, S. and Islam, Tarikul},
+  journal = {Journal of Construction and Building Materials Engineering},
+  volume  = {8},
+  number  = {1},
+  pages   = {33--41},
+  year    = {2022}
+}`,
+  islam2021mjce: `@article{islam2021flyash,
+  title   = {Behavior of Concrete Compressive Strength by Utilizing Fly Ash and Wood Powder},
+  author  = {Islam, Tarikul and Gupta, S. D. and Janin, J. and Rahman, A.},
+  journal = {Malaysian Journal of Civil Engineering},
+  volume  = {33},
+  number  = {3},
+  pages   = {69--77},
+  year    = {2021},
+  doi     = {10.11113/mjce.v33.17398}
+}`,
+  gupta2021scba: `@article{gupta2021scba,
+  title   = {Experimental Study of Concrete with Sugarcane Bagasse Ash ({SCBA}) at Elevated Temperature},
+  author  = {Gupta, S. D. and Islam, Tarikul and Palash, M. D. N. and Shohan, M. S. A.},
+  journal = {Malaysian Journal of Civil Engineering},
+  volume  = {33},
+  number  = {3},
+  pages   = {59--67},
+  year    = {2021},
+  doi     = {10.11113/mjce.v33.17379}
+}`,
+  gupta2021cepm: `@article{gupta2021ricehusk,
+  title   = {Experimental Study of Concrete Using Raw Rice Husk as Partial Replacement of Cement with Natural Fiber ({Jute Fiber}) as Reinforcing Material},
+  author  = {Gupta, S. D. and Islam, Tarikul and Sohag, M. A. I. and Salakin, S. and Hossain, I.},
+  journal = {Computational Engineering and Physical Modeling},
+  volume  = {4},
+  number  = {3},
+  pages   = {29--42},
+  year    = {2021},
+  doi     = {10.22115/CEPM.2021.280252.1166}
+}`,
+  islam2018: `@inproceedings{islam2018composting,
+  title     = {Bench Scale Study on Co-Composting for Organic Solid Wastes and Faecal Sludge},
+  author    = {Islam, Tarikul and Bari, Quazi Hamidul and Shovon, S. M. S. A. and Al Saif, R.},
+  booktitle = {4th International Conference on Civil Engineering for Sustainable Development (ICCESD 2018)},
+  year      = {2018}
+}`
+};
+
+let _bibTimer = null;
+function copyBibtex(key) {
+  const entry = BIBTEX[key];
+  if (!entry) return;
+  const btn = event.currentTarget;
+  navigator.clipboard.writeText(entry).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    if (_bibTimer) clearTimeout(_bibTimer);
+    _bibTimer = setTimeout(() => {
+      btn.textContent = 'BibTeX';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    /* Fallback for non-HTTPS environments */
+    const ta = document.createElement('textarea');
+    ta.value = entry; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    if (_bibTimer) clearTimeout(_bibTimer);
+    _bibTimer = setTimeout(() => { btn.textContent = 'BibTeX'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+/* ── DYNAMIC PUBLICATION COUNT ── */
+(function () {
+  const label = document.getElementById('pub-count-label');
+  if (!label) return;
+  const n = document.querySelectorAll('#journal-section .pub-item').length;
+  if (n > 0) label.textContent = n + ' peer-reviewed journal paper' + (n !== 1 ? 's' : '');
+})();
+
+/* ── CITATION CHART CANVAS DPI FIX ── */
+(function () {
+  const canvas = document.getElementById('citChart');
+  if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  if (dpr <= 1) return;
+  const parent = canvas.parentElement;
+  /* Chart.js handles DPI internally via its devicePixelRatio option;
+     ensure it uses the actual ratio by setting it explicitly */
+  canvas._chartDPR = dpr;
+})();
 function toggleNewsExtra(btn) {
   const expanded = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', String(!expanded));
   const extraRows = document.querySelectorAll('.news-extra');
-  extraRows.forEach(row => {
-    row.style.display = expanded ? 'none' : 'flex';
-  });
+  if (expanded) {
+    /* Hiding */
+    extraRows.forEach(row => { row.style.display = 'none'; });
+  } else {
+    /* Showing — re-trigger reveal animation */
+    extraRows.forEach((row, i) => {
+      row.style.display = 'flex';
+      row.classList.add('reveal');
+      row.classList.remove('in-view');
+      void row.offsetHeight;
+      setTimeout(() => {
+        row.style.transition = '';
+        row.style.transitionDelay = '';
+        row.classList.add('in-view');
+      }, i * 80);
+    });
+  }
   btn.querySelector('.news-toggle-text').textContent = expanded ? 'View all news' : 'Show less';
 }
 </script>
