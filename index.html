@@ -2114,11 +2114,13 @@ function filterPubs(type, btn) {
 })();
 
 /* ── SERIAL REVEAL ANIMATIONS (no scroll trigger) ── */
-/* Single combined selector — querySelectorAll returns elements in DOM order,
-   so whatever appears first in the page animates first regardless of type. */
+/* Sidebar elements are visually top-right but come late in DOM order —
+   animate them immediately alongside the page title/subtitle. */
+const SIDEBAR_SELECTOR =
+  '.page.active .profile-photo-wrap, .page.active .profile-meta, .page.active .cit-card';
+
 const REVEAL_SELECTOR =
   '.page.active .page-title, .page.active .page-subtitle, ' +
-  '.page.active .profile-photo-wrap, .page.active .profile-meta, .page.active .cit-card, ' +
   '.page.active .bio-body, .page.active .tl-item, .page.active .current-projects-card, ' +
   '.page.active .section-label, .page.active .interest-tag, .page.active .news-row, ' +
   '.page.active .research-card, .page.active .pub-item, .page.active .poster-item, ' +
@@ -2129,27 +2131,39 @@ const REVEAL_SELECTOR =
 let _revealTimers = [];
 
 function refreshReveals() {
-  /* Cancel any in-flight timers from a previous page */
   _revealTimers.forEach(t => clearTimeout(t));
   _revealTimers = [];
 
-  /* Single call → true DOM order, no deduplication needed */
-  const elements = Array.from(document.querySelectorAll(REVEAL_SELECTOR));
+  const sidebar  = Array.from(document.querySelectorAll(SIDEBAR_SELECTOR));
+  const main     = Array.from(document.querySelectorAll(REVEAL_SELECTOR));
+  /* sidebar items won't appear in main (different selectors), but guard anyway */
+  const sidebarSet = new Set(sidebar);
+  const all = [...sidebar, ...main.filter(el => !sidebarSet.has(el))];
 
-  /* Reset every element to hidden */
-  elements.forEach(el => {
+  /* Reset all to hidden */
+  all.forEach(el => {
     el.style.transition = 'none';
     el.style.transitionDelay = '0ms';
     el.classList.add('reveal');
     el.classList.remove('in-view');
   });
 
-  /* Force a reflow so the reset state is painted before we start */
   void document.body.offsetHeight;
 
-  /* Stagger: 35 ms per element in DOM order */
   const STEP = 35;
-  elements.forEach((el, i) => {
+
+  /* Sidebar: animate in sync with the first three main-column slots (0, 1, 2) */
+  sidebar.forEach((el, i) => {
+    const t = setTimeout(() => {
+      el.style.transition = '';
+      el.style.transitionDelay = '';
+      el.classList.add('in-view');
+    }, i * STEP);
+    _revealTimers.push(t);
+  });
+
+  /* Main column: stagger in DOM order, starting right after sidebar */
+  main.filter(el => !sidebarSet.has(el)).forEach((el, i) => {
     const t = setTimeout(() => {
       el.style.transition = '';
       el.style.transitionDelay = '';
