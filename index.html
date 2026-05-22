@@ -335,8 +335,10 @@ html[data-theme="dark"] .ambient-orb.orb-3 {
 }
 .skip-link:focus { top: 0; color: #fff; text-decoration: none; }
 
-/* Screen-reader utilities */
-.sr-only {
+/* Suppress browser focus ring on programmatically focused elements
+   (tabindex="-1" is only set by JS for page-switch focus management).
+   Real keyboard-navigable elements (tabindex="0") keep their outlines. */
+[tabindex="-1"]:focus { outline: none !important; }
   position: absolute; width: 1px; height: 1px;
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
