@@ -258,13 +258,6 @@ html[data-theme="dark"] .theme-toggle {
   transition: opacity .7s var(--ease), transform .7s var(--ease);
   will-change: opacity, transform;
 }
-.page.active .research-card, .page.active .pub-item, .page.active .poster-item,
-.page.active .skill-card, .page.active .mentee-card, .page.active .award-card,
-.page.active .grant-card, .page.active .course-row, .page.active .cert-item,
-.page.active .service-item, .page.active .news-row {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 180px;
-}
 .reveal.in-view { opacity: 1; transform: none; }
 
 body::before {
@@ -2099,50 +2092,74 @@ function filterPubs(type, btn) {
   else window.addEventListener('load', loadCitations);
 })();
 
-/* ── REVEAL ANIMATIONS ── */
-let revealObserver = null;
+/* ── SERIAL REVEAL ANIMATIONS (no scroll trigger) ── */
+const REVEAL_SELECTORS = [
+  '.page.active .page-title',
+  '.page.active .page-subtitle',
+  '.page.active .profile-photo-wrap',
+  '.page.active .profile-meta',
+  '.page.active .cit-card',
+  '.page.active .bio-body',
+  '.page.active .current-projects-card',
+  '.page.active .section-label',
+  '.page.active .interest-tag',
+  '.page.active .news-row',
+  '.page.active .research-card',
+  '.page.active .pub-item',
+  '.page.active .poster-item',
+  '.page.active .inst-block',
+  '.page.active .mentor-highlight',
+  '.page.active .mentee-card',
+  '.page.active .tl-item',
+  '.page.active .award-card',
+  '.page.active .grant-card',
+  '.page.active .cert-item',
+  '.page.active .skill-card',
+  '.page.active .course-row',
+  '.page.active .service-item',
+];
+
+let _revealTimers = [];
+
 function refreshReveals() {
-  const selectors = [
-    '.page.active .page-title', '.page.active .page-subtitle', '.page.active .bio-body',
-    '.page.active .section-label', '.page.active .interest-tag', '.page.active .news-row',
-    '.page.active .research-card', '.page.active .pub-item', '.page.active .poster-item',
-    '.page.active .inst-block', '.page.active .course-row', '.page.active .mentor-highlight',
-    '.page.active .mentee-card', '.page.active .award-card', '.page.active .grant-card',
-    '.page.active .cert-item', '.page.active .skill-card', '.page.active .service-item',
-    '.page.active .tl-item', '.page.active .profile-photo-wrap',
-    '.page.active .profile-meta', '.page.active .cit-card',
-    '.page.active .current-projects-card'
-  ];
-  const elements = [...new Set(selectors.flatMap(sel => Array.from(document.querySelectorAll(sel))))];
-  elements.forEach((el, i) => {
+  /* Cancel any in-flight timers from a previous page */
+  _revealTimers.forEach(t => clearTimeout(t));
+  _revealTimers = [];
+
+  /* Collect elements in DOM order, deduplicated */
+  const seen = new Set();
+  const elements = REVEAL_SELECTORS
+    .flatMap(sel => Array.from(document.querySelectorAll(sel)))
+    .filter(el => { if (seen.has(el)) return false; seen.add(el); return true; });
+
+  /* Reset every element to hidden, removing any leftover delay */
+  elements.forEach(el => {
+    el.style.transition = 'none';
+    el.style.transitionDelay = '0ms';
     el.classList.add('reveal');
-    el.style.transitionDelay = String(Math.min(i * 40, 320)) + 'ms';
     el.classList.remove('in-view');
   });
-  if (revealObserver) revealObserver.disconnect();
-  revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObserver.unobserve(entry.target); }
-    });
-  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
-  elements.forEach(el => revealObserver.observe(el));
-}
 
-/* ── ENTRANCE ANIMATION for interest tags ── */
-function animateInterestTags() {
-  const tags = document.querySelectorAll('.interest-tag');
-  tags.forEach((tag, i) => {
-    tag.style.opacity = '0';
-    tag.style.transform = 'translateY(10px)';
-    setTimeout(() => {
-      tag.style.transition = 'opacity .35s ease, transform .35s ease';
-      tag.style.opacity = '1';
-      tag.style.transform = 'none';
-    }, 120 + i * 60);
+  /* Force a reflow so the reset state is painted before we start */
+  void document.body.offsetHeight;
+
+  /* Stagger each element in: 55 ms apart, capped so last item ≤ ~1.4 s */
+  const STEP = 55;
+  elements.forEach((el, i) => {
+    const delay = i * STEP;
+    const t = setTimeout(() => {
+      el.style.transition = '';      /* restore CSS transition */
+      el.style.transitionDelay = ''; /* let CSS handle it (0ms) */
+      el.classList.add('in-view');
+    }, delay);
+    _revealTimers.push(t);
   });
 }
 
-setTimeout(() => { refreshReveals(); animateInterestTags(); }, 200);
+/* Keep animateInterestTags as a no-op alias — logic is now inside refreshReveals */
+function animateInterestTags() {}
+
+setTimeout(() => { refreshReveals(); }, 120);
 
 /* ── DYNAMIC COPYRIGHT YEAR ── */
 document.querySelectorAll('.dyn-year').forEach(el => { el.textContent = new Date().getFullYear(); });
