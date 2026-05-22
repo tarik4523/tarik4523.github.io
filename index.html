@@ -1885,13 +1885,18 @@ updateTopbarState();
 
 /* ── PAGE NAV ── */
 let pageSwitchTimer = null;
-function showPage(id) {
+const VALID_PAGES = new Set(['bio','research','publications','teaching','mentoring','awards','skills','experience']);
+
+function showPage(id, pushState = true) {
+  if (!VALID_PAGES.has(id)) id = 'bio';
   const nextPage = document.getElementById('page-' + id);
   const currentPage = document.querySelector('.page.active');
   if (pageSwitchTimer) { clearTimeout(pageSwitchTimer); pageSwitchTimer = null; }
   document.querySelectorAll('.topbar-nav a, .mobile-nav a').forEach(a => {
     a.classList.toggle('active', a.dataset.page === id);
   });
+  /* Update URL hash without triggering a page reload */
+  if (pushState) history.pushState({ page: id }, '', '#' + id);
   if (currentPage && currentPage !== nextPage) {
     currentPage.classList.remove('active');
     currentPage.classList.add('leaving');
@@ -1909,6 +1914,22 @@ function showPage(id) {
     if (id === 'bio') setTimeout(animateInterestTags, 80);
   }
 }
+
+/* Restore page from URL hash on load or browser back/forward */
+(function () {
+  const hash = location.hash.replace('#', '').toLowerCase();
+  if (VALID_PAGES.has(hash) && hash !== 'bio') {
+    /* Remove the default active class from bio and activate the correct page */
+    const bioPage = document.getElementById('page-bio');
+    if (bioPage) bioPage.classList.remove('active');
+    showPage(hash, false);
+  }
+})();
+
+window.addEventListener('popstate', e => {
+  const id = (e.state && e.state.page) || location.hash.replace('#', '') || 'bio';
+  showPage(id, false);
+});
 
 /* ── HAMBURGER ── */
 const hamburger = document.getElementById('hamburger');
