@@ -2114,31 +2114,17 @@ function filterPubs(type, btn) {
 })();
 
 /* ── SERIAL REVEAL ANIMATIONS (no scroll trigger) ── */
-const REVEAL_SELECTORS = [
-  '.page.active .page-title',
-  '.page.active .page-subtitle',
-  '.page.active .profile-photo-wrap',
-  '.page.active .profile-meta',
-  '.page.active .cit-card',
-  '.page.active .bio-body',
-  '.page.active .current-projects-card',
-  '.page.active .section-label',
-  '.page.active .interest-tag',
-  '.page.active .news-row',
-  '.page.active .research-card',
-  '.page.active .pub-item',
-  '.page.active .poster-item',
-  '.page.active .inst-block',
-  '.page.active .mentor-highlight',
-  '.page.active .mentee-card',
-  '.page.active .tl-item',
-  '.page.active .award-card',
-  '.page.active .grant-card',
-  '.page.active .cert-item',
-  '.page.active .skill-card',
-  '.page.active .course-row',
-  '.page.active .service-item',
-];
+/* Single combined selector — querySelectorAll returns elements in DOM order,
+   so whatever appears first in the page animates first regardless of type. */
+const REVEAL_SELECTOR =
+  '.page.active .page-title, .page.active .page-subtitle, ' +
+  '.page.active .profile-photo-wrap, .page.active .profile-meta, .page.active .cit-card, ' +
+  '.page.active .bio-body, .page.active .tl-item, .page.active .current-projects-card, ' +
+  '.page.active .section-label, .page.active .interest-tag, .page.active .news-row, ' +
+  '.page.active .research-card, .page.active .pub-item, .page.active .poster-item, ' +
+  '.page.active .inst-block, .page.active .mentor-highlight, .page.active .mentee-card, ' +
+  '.page.active .award-card, .page.active .grant-card, .page.active .cert-item, ' +
+  '.page.active .skill-card, .page.active .course-row, .page.active .service-item';
 
 let _revealTimers = [];
 
@@ -2147,13 +2133,10 @@ function refreshReveals() {
   _revealTimers.forEach(t => clearTimeout(t));
   _revealTimers = [];
 
-  /* Collect elements in DOM order, deduplicated */
-  const seen = new Set();
-  const elements = REVEAL_SELECTORS
-    .flatMap(sel => Array.from(document.querySelectorAll(sel)))
-    .filter(el => { if (seen.has(el)) return false; seen.add(el); return true; });
+  /* Single call → true DOM order, no deduplication needed */
+  const elements = Array.from(document.querySelectorAll(REVEAL_SELECTOR));
 
-  /* Reset every element to hidden, removing any leftover delay */
+  /* Reset every element to hidden */
   elements.forEach(el => {
     el.style.transition = 'none';
     el.style.transitionDelay = '0ms';
@@ -2164,15 +2147,14 @@ function refreshReveals() {
   /* Force a reflow so the reset state is painted before we start */
   void document.body.offsetHeight;
 
-  /* Stagger each element in: 55 ms apart, capped so last item ≤ ~1.4 s */
-  const STEP = 55;
+  /* Stagger: 35 ms per element in DOM order */
+  const STEP = 35;
   elements.forEach((el, i) => {
-    const delay = i * STEP;
     const t = setTimeout(() => {
-      el.style.transition = '';      /* restore CSS transition */
-      el.style.transitionDelay = ''; /* let CSS handle it (0ms) */
+      el.style.transition = '';
+      el.style.transitionDelay = '';
       el.classList.add('in-view');
-    }, delay);
+    }, i * STEP);
     _revealTimers.push(t);
   });
 }
