@@ -255,10 +255,15 @@ html[data-theme="dark"] .theme-toggle {
 .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
   will-change: opacity, transform;
 }
 .reveal.in-view { opacity: 1; transform: none; }
+
+/* Titles animate faster so they always lead the sequence */
+.page-title.reveal, .page-subtitle.reveal {
+  transition: opacity .25s var(--ease), transform .25s var(--ease);
+}
 
 body::before {
   content: '';
