@@ -7,6 +7,8 @@
 <meta name="description" content="Tarikul Islam — PhD student in Civil &amp; Environmental Engineering at the University of Southern California. Research on bicontinuous cement composites with multifunctional structural and electrical properties.">
 <meta name="keywords" content="Tarikul Islam, USC, Civil Engineering, PhD, cement composites, fiber-reinforced concrete, structural engineering, AUST">
 <meta name="author" content="Tarikul Islam">
+<link rel="me" href="https://orcid.org/0000-0002-4193-4366">
+<link rel="me" href="https://scholar.google.com/citations?user=60hz_E8AAAAJ">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tarik4523.github.io">
 <meta property="og:title" content="Tarikul Islam | PhD Student | USC Civil Engineering">
@@ -18,6 +20,67 @@
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Tarikul Islam",
+  "jobTitle": "Graduate Research and Teaching Assistant",
+  "affiliation": {
+    "@type": "EducationalOrganization",
+    "name": "University of Southern California",
+    "department": "Sonny Astani Department of Civil and Environmental Engineering"
+  },
+  "url": "https://tarik4523.github.io",
+  "image": "https://tarik4523.github.io/images/Profile_pic.jpg",
+  "email": "tarikuli@usc.edu",
+  "sameAs": [
+    "https://orcid.org/0000-0002-4193-4366",
+    "https://scholar.google.com/citations?user=60hz_E8AAAAJ",
+    "https://www.scopus.com/authid/detail.uri?authorId=58035898400",
+    "https://www.researchgate.net/profile/Tarikul-Islam-5",
+    "https://www.linkedin.com/in/tarikul-islam-313785142/"
+  ],
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "Bangladesh University of Engineering and Technology",
+      "award": "M.S. in Civil Engineering (Structural)"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "Ahsanullah University of Science and Technology",
+      "award": "B.S. in Civil Engineering"
+    }
+  ],
+  "knowsAbout": [
+    "Civil Engineering",
+    "Fiber-Reinforced Concrete",
+    "Structural Engineering",
+    "Cement Composites",
+    "Multifunctional Materials",
+    "Nondestructive Testing"
+  ],
+  "description": "PhD student in Civil Engineering at USC. Research on bicontinuous cement composites with multifunctional structural and electrical properties."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ResearchProject",
+  "name": "Fabrication of Bicontinuous Cement Composites with Multifunctional Structural and Electrical Properties",
+  "description": "Engineering bicontinuous cement-based composites with enhanced mechanical performance and tunable electrical conductivity for smart structural applications.",
+  "url": "https://tarik4523.github.io",
+  "member": {
+    "@type": "Person",
+    "name": "Tarikul Islam"
+  },
+  "funder": {
+    "@type": "Organization",
+    "name": "University of Southern California Viterbi School of Engineering"
+  }
+}
+</script>
 <script>
 (function() {
   try {
@@ -323,7 +386,7 @@ img { max-width: 100%; display: block; }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
 
 .mobile-nav {
-  display: none; position: fixed;
+  display: flex; position: fixed;
   top: var(--nav-h); left: 0; right: 0; z-index: 299;
   background: var(--ink); flex-direction: column;
   padding: 8px 0 20px;
@@ -333,8 +396,13 @@ img { max-width: 100%; display: block; }
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  /* Slide animation */
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
 }
-.mobile-nav.open { display: flex; }
+.mobile-nav.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
 .mobile-nav a {
   font-size: 14px; font-weight: 400;
   color: rgba(255,255,255,.65);
@@ -627,6 +695,29 @@ html[data-theme="dark"] .tl-desc { color: var(--muted); }
 
 /* ── PUBLICATIONS ── */
 .pub-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+.pub-search-wrap {
+  position: relative; margin-bottom: 14px;
+}
+.pub-search {
+  width: 100%; padding: 9px 14px 9px 36px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--ink);
+  font-size: 14.5px; font-family: 'DM Sans', sans-serif; font-weight: 300;
+  transition: border-color .18s, box-shadow .18s;
+  outline: none;
+}
+.pub-search:focus { border-color: var(--accent-md); box-shadow: 0 0 0 3px rgba(176,58,46,.08); }
+.pub-search::placeholder { color: var(--faint); }
+html[data-theme="dark"] .pub-search { background: rgba(255,255,255,.04); color: var(--ink); }
+.pub-search-icon {
+  position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+  color: var(--faint); pointer-events: none;
+}
+.pub-no-results {
+  text-align: center; padding: 32px 0; color: var(--faint);
+  font-size: 15px; display: none;
+}
+.pub-item.hidden-by-search { display: none; }
 .filter-btn {
   font-size: 14px; font-weight: 400; padding: 6px 18px;
   border: 1px solid var(--border); border-radius: 20px;
@@ -829,6 +920,59 @@ html[data-theme="dark"] .service-period { color: var(--faint); }
   font-size: 14.5px; color: #2a2a2a;
 }
 html[data-theme="dark"] .page-footer { color: var(--faint); }
+
+/* ── CURRENT PROJECTS CARD ── */
+.current-projects-card {
+  display: flex; gap: 18px; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 10px 10px 0;
+  padding: 20px 22px; margin-bottom: 6px;
+  transition: box-shadow .2s, transform .2s;
+}
+.current-projects-card:hover { box-shadow: 0 6px 24px rgba(15,118,110,.10); transform: translateX(3px); }
+.cp-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  background: var(--teal); margin-top: 7px;
+  box-shadow: 0 0 0 4px rgba(15,118,110,.15);
+  animation: pulse-teal 2.2s ease-in-out infinite;
+}
+@keyframes pulse-teal {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(15,118,110,.15); }
+  50% { box-shadow: 0 0 0 8px rgba(15,118,110,.06); }
+}
+.cp-title { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
+.cp-desc { font-size: 15.5px; color: var(--ink); font-weight: 300; line-height: 1.75; }
+html[data-theme="dark"] .current-projects-card { background: rgba(17,24,42,.84); border-color: var(--border); }
+
+/* ── FEATURED TIMELINE ITEM (PhD) ── */
+.tl-item-featured { background: var(--teal-lt); border: 1px solid #c0dede; border-radius: 8px; padding: 18px 22px 18px 24px; }
+html[data-theme="dark"] .tl-item-featured { background: rgba(15,118,110,.12); border-color: rgba(15,118,110,.28); }
+.tl-dot-featured { border-color: var(--teal); width: 12px; height: 12px; top: 22px; }
+.tl-item-featured:hover .tl-dot-featured { background: var(--teal); }
+.tl-badge {
+  display: inline-block; font-size: 10.5px; font-weight: 500; vertical-align: middle;
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: 2px 8px; border-radius: 3px; margin-left: 8px;
+  background: var(--teal-lt); color: var(--teal);
+  border: 1px solid rgba(15,118,110,.28);
+}
+html[data-theme="dark"] .tl-badge { background: rgba(15,118,110,.2); }
+
+/* ── NEWS TOGGLE BUTTON ── */
+.news-toggle-btn {
+  display: flex; align-items: center; gap: 6px; justify-content: center;
+  width: 100%; padding: 10px; margin-top: 0;
+  background: none; border: none; border-top: 1px solid var(--border);
+  font-size: 13px; font-weight: 400; color: var(--accent);
+  font-family: 'DM Sans', sans-serif; cursor: pointer; letter-spacing: .04em;
+  transition: background .18s, color .18s;
+  border-radius: 0 0 18px 18px;
+}
+.news-toggle-btn:hover { background: var(--accent-lt); }
+.news-toggle-icon { transition: transform .22s cubic-bezier(.4,0,.2,1); }
+.news-toggle-btn[aria-expanded="true"] .news-toggle-icon { transform: rotate(180deg); }
+.news-extra { animation: fadeIn .3s ease; }
 
 /* ── SCROLL PROGRESS BAR ── */
 #progress-bar {
@@ -1173,6 +1317,17 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
 
 <!-- Progress bar -->
 <div id="progress-bar"></div>
+<noscript>
+  <style>
+    .topbar-nav { display: flex !important; }
+    .page { display: block !important; }
+    .page:not(:first-of-type) { display: none !important; }
+    #page-bio { display: block !important; }
+  </style>
+  <div style="background:#b03a2e;color:#fff;text-align:center;padding:12px 20px;font-family:sans-serif;font-size:14px;position:fixed;top:0;left:0;right:0;z-index:9999;">
+    ⚠️ JavaScript is required for full site navigation. Please enable JavaScript to browse all sections.
+  </div>
+</noscript>
 <div class="ambient-bg" aria-hidden="true">
   <span class="ambient-orb orb-1"></span>
   <span class="ambient-orb orb-2"></span>
@@ -1227,16 +1382,25 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
       <p class="bio-body">I earned my B.Sc. in Civil Engineering from AUST (2017) and M.Sc. in Civil Engineering (Structural) from <strong>Bangladesh University of Engineering and Technology (BUET)</strong> (2022). I have over 7 years of teaching experience and have authored <strong>10+ peer-reviewed journal articles</strong> on fiber-reinforced concrete, structural retrofitting, and numerical modeling.</p>
       <p class="bio-body">In my leisure time, I enjoy music, films, soccer, and cricket.</p>
 
+      <div class="section-label">Current Projects</div>
+      <div class="current-projects-card">
+        <div class="cp-dot"></div>
+        <div class="cp-body">
+          <div class="cp-title">Bicontinuous Cement Composites for Structural Energy Storage</div>
+          <div class="cp-desc">Fabricating and characterizing cement-based composites with interpenetrating conductive networks — targeting simultaneous load-bearing and electrochemical energy storage. Work is conducted in <a href="https://thomas-petersen-1.github.io/" target="_blank">Petersen Lab</a> at USC and combines impedance spectroscopy, nanoindentation, and multiscale imaging.</div>
+        </div>
+      </div>
+
       <div class="section-label">Research Interests</div>
       <div class="interest-grid">
-        <div class="interest-tag">Mechanics of civil engineering materials &amp; porous media</div>
-        <div class="interest-tag">Durability and fracture of reinforced concrete</div>
-        <div class="interest-tag">Sustainable and multifunctional construction materials</div>
-        <div class="interest-tag">Multiscale chemo-mechanical characterization</div>
-        <div class="interest-tag">Materials modeling</div>
-        <div class="interest-tag">Retrofitting and rehabilitation of structures</div>
-        <div class="interest-tag">Structural dynamics</div>
-        <div class="interest-tag">Nondestructive testing</div>
+        <div class="interest-tag">🔬 Mechanics of civil engineering materials &amp; porous media</div>
+        <div class="interest-tag">🏗️ Durability and fracture of reinforced concrete</div>
+        <div class="interest-tag">♻️ Sustainable and multifunctional construction materials</div>
+        <div class="interest-tag">🔭 Multiscale chemo-mechanical characterization</div>
+        <div class="interest-tag">📐 Materials modeling</div>
+        <div class="interest-tag">🔧 Retrofitting and rehabilitation of structures</div>
+        <div class="interest-tag">📊 Structural dynamics</div>
+        <div class="interest-tag">🛰️ Nondestructive testing</div>
       </div>
 
       <div class="section-label">News &amp; Updates</div>
@@ -1261,7 +1425,19 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
           <span class="news-date">2025</span>
           <span class="news-text">Two new journal papers published in <em>Malaysian Journal of Civil Engineering</em> (BIM) and <em>Civil Engineering and Architecture</em> (jute fiber-reinforced concrete).</span>
         </div>
+        <div class="news-row news-extra" style="display:none">
+          <span class="news-date">Fall 2024</span>
+          <span class="news-text">Served as TA for <strong>CE 334L: Mechanical Behavior of Materials</strong> at USC (Fall 2024).</span>
+        </div>
+        <div class="news-row news-extra" style="display:none">
+          <span class="news-date">Aug 2024</span>
+          <span class="news-text">Joined <strong>USC Viterbi</strong> as a PhD student and Graduate Research &amp; Teaching Assistant, supported by the Viterbi/Graduate School Fellowship. <span class="news-badge">Milestone</span></span>
+        </div>
       </div>
+      <button class="news-toggle-btn" id="news-toggle-btn" onclick="toggleNewsExtra(this)" aria-expanded="false">
+        <span class="news-toggle-text">View all news</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="news-toggle-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
     </div>
 
     <!-- Sidebar -->
@@ -1342,7 +1518,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
     </aside>
   </div>
 
-  <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
+  <div class="page-footer">&copy; <span class="dyn-year"></span> Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 <!-- ══ RESEARCH ══ -->
@@ -1384,7 +1560,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
     <div class="rc-desc">Analysis of carbon emissions and sequestration associated with residential building construction, and implementation of BIM for sustainable construction practices in developing countries — with emphasis on economic, environmental, and social aspects.</div>
   </div>
 
-  <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
+  <div class="page-footer">&copy; <span class="dyn-year"></span> Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 <!-- ══ PUBLICATIONS ══ -->
@@ -1392,6 +1568,10 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
   <div class="page-title">Publications</div>
   <div class="page-subtitle">11 peer-reviewed journal papers · 1 conference proceeding · 2 posters &nbsp;|&nbsp; * = Corresponding author</div>
 
+  <div class="pub-search-wrap">
+    <svg class="pub-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search" class="pub-search" id="pub-search" placeholder="Search by keyword, author, or journal…" oninput="searchPubs(this.value)" autocomplete="off" spellcheck="false">
+  </div>
   <div class="pub-filter">
     <button class="filter-btn active" onclick="filterPubs('all',this)">All</button>
     <button class="filter-btn" onclick="filterPubs('journal',this)">Journal Papers</button>
@@ -1439,7 +1619,9 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
     </div>
   </div>
 
-  <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
+  <div class="pub-no-results" id="pub-no-results">No publications match your search. Try a different keyword.</div>
+
+  <div class="page-footer">&copy; <span class="dyn-year"></span> Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 <!-- ══ TEACHING ══ -->
@@ -1504,7 +1686,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
     <div class="course-row"><span class="course-code">CE 332</span><span class="course-name">Soil Mechanics Lab</span><span class="course-term">Spring 2018</span></div>
   </div>
 
-  <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
+  <div class="page-footer">&copy; <span class="dyn-year"></span> Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 <!-- ══ MENTORING ══ -->
@@ -1532,7 +1714,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
   <div class="mentee-card"><div class="mentee-period">Spring 2022 – Fall 2022</div><div class="mentee-thesis">Prediction of Mechanical Properties of Coconut Fiber Reinforced Concrete Using Machine Learning Approaches</div><div class="mentee-students">Rafi Mohammad Saad Sultan · Nusrat Jahan Tuli · Md. Nazrul Islam Mishel</div></div>
   <div class="mentee-card"><div class="mentee-period">Fall 2021 – Spring 2022</div><div class="mentee-thesis">Experimental Investigation of Impact and Flexural Behaviors of Plastic Fiber Reinforced Concrete</div><div class="mentee-students">Rezwan Ahmed Roman · Bodhijit Chakma · Abdullah-Al-Maroof</div></div>
 
-  <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
+  <div class="page-footer">&copy; <span class="dyn-year"></span> Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 <!-- ══ AWARDS ══ -->
@@ -1562,7 +1744,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
   <div class="cert-item"><div class="cert-period">Oct 2021</div><div><div class="cert-name">SATREPS–TSUIB WG3 Virtual Workshop</div><div class="cert-org">Development and Promotion of Seismic Retrofit Guidelines · SATREPS–TSUIB Project</div></div></div>
   <div class="cert-item"><div class="cert-period">Nov 2020</div><div><div class="cert-name">Different Standards and Simple Tests of Construction Materials</div><div class="cert-org">Dhaka, Bangladesh</div></div></div>
 
-  <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
+  <div class="page-footer">&copy; <span class="dyn-year"></span> Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 <!-- ══ SKILLS ══ -->
@@ -1609,7 +1791,7 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
   <div class="service-item"><span class="service-period">Fall 2019, Spring 2020</span><span class="service-name">Member, Timetabling (Routine) Committee</span></div>
   <div class="service-item"><span class="service-period">Spring 2019, Fall 2019</span><span class="service-name">Member, Departmental Web Development Committee</span></div>
 
-  <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
+  <div class="page-footer">&copy; <span class="dyn-year"></span> Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 <!-- ══ EXPERIENCE ══ -->
@@ -1628,12 +1810,12 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
 
   <div class="section-label">Education</div>
   <div class="timeline">
-    <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Aug 2024 – Present</div><div class="tl-title">Ph.D. in Civil Engineering (in progress)</div><div class="tl-org">University of Southern California · Advisor: Dr. Thomas Petersen</div><div class="tl-desc">Research focus on multifunctional cement composites. Dissertation title to be determined.</div></div>
+    <div class="tl-item tl-item-featured"><div class="tl-dot tl-dot-featured"></div><div class="tl-period">Aug 2024 – Expected 2028</div><div class="tl-title">Ph.D. in Civil Engineering <span class="tl-badge">In Progress</span></div><div class="tl-org">University of Southern California · Advisor: Dr. Thomas Petersen · Viterbi Fellow</div><div class="tl-desc">Research focus: fabrication of bicontinuous cement composites with multifunctional structural and electrical properties. Dissertation title to be determined.</div></div>
     <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Feb 2022</div><div class="tl-title">M.S. in Civil Engineering (Structural)</div><div class="tl-org">Bangladesh University of Engineering and Technology (BUET) · Supervisor: Dr. Raquib Ahsan</div><div class="tl-desc">Thesis: <em>Experimental Investigation of Boiler Blast Load on Building Structures</em></div></div>
     <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Jun 2017</div><div class="tl-title">B.S. in Civil Engineering</div><div class="tl-org">Ahsanullah University of Science and Technology (AUST) · Supervisor: Dr. Quazi Hamidul Bari</div><div class="tl-desc">Thesis: <em>Bench Scale Study on Co-composting for Organic Solid Wastes and Faecal Sludge</em> · Dean's Honor List</div></div>
   </div>
 
-  <div class="page-footer">&copy; 2026 Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
+  <div class="page-footer">&copy; <span class="dyn-year"></span> Tarikul Islam &nbsp;·&nbsp; University of Southern California</div>
 </div>
 
 </div><!-- /layout -->
@@ -1928,7 +2110,8 @@ function refreshReveals() {
     '.page.active .mentee-card', '.page.active .award-card', '.page.active .grant-card',
     '.page.active .cert-item', '.page.active .skill-card', '.page.active .service-item',
     '.page.active .tl-item', '.page.active .profile-photo-wrap',
-    '.page.active .profile-meta', '.page.active .cit-card'
+    '.page.active .profile-meta', '.page.active .cit-card',
+    '.page.active .current-projects-card'
   ];
   const elements = [...new Set(selectors.flatMap(sel => Array.from(document.querySelectorAll(sel))))];
   elements.forEach((el, i) => {
@@ -1960,6 +2143,56 @@ function animateInterestTags() {
 }
 
 setTimeout(() => { refreshReveals(); animateInterestTags(); }, 200);
+
+/* ── DYNAMIC COPYRIGHT YEAR ── */
+document.querySelectorAll('.dyn-year').forEach(el => { el.textContent = new Date().getFullYear(); });
+
+/* ── KEYBOARD PAGE NAVIGATION ── */
+const PAGE_ORDER = ['bio', 'research', 'publications', 'teaching', 'mentoring', 'awards', 'skills', 'experience'];
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+  const currentActive = document.querySelector('.topbar-nav a.active');
+  if (!currentActive) return;
+  const currentId = currentActive.dataset.page;
+  const idx = PAGE_ORDER.indexOf(currentId);
+  if (idx === -1) return;
+  const nextIdx = e.key === 'ArrowRight' ? Math.min(idx + 1, PAGE_ORDER.length - 1) : Math.max(idx - 1, 0);
+  if (nextIdx !== idx) showPage(PAGE_ORDER[nextIdx]);
+});
+
+/* ── PUBLICATION KEYWORD SEARCH ── */
+function searchPubs(query) {
+  const q = query.trim().toLowerCase();
+  const allItems = document.querySelectorAll('#page-publications .pub-item, #page-publications .poster-item');
+  let visibleCount = 0;
+  allItems.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    const matches = !q || text.includes(q);
+    item.classList.toggle('hidden-by-search', !matches);
+    if (matches) visibleCount++;
+  });
+  const noResults = document.getElementById('pub-no-results');
+  if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  // Show/hide section headers based on visible items
+  ['journal-section', 'conference-section', 'poster-section'].forEach(sId => {
+    const sec = document.getElementById(sId);
+    if (!sec) return;
+    const hasVisible = [...sec.querySelectorAll('.pub-item, .poster-item')].some(i => !i.classList.contains('hidden-by-search'));
+    sec.style.display = hasVisible ? '' : 'none';
+  });
+}
+
+/* ── NEWS TOGGLE ── */
+function toggleNewsExtra(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+  const extraRows = document.querySelectorAll('.news-extra');
+  extraRows.forEach(row => {
+    row.style.display = expanded ? 'none' : 'flex';
+  });
+  btn.querySelector('.news-toggle-text').textContent = expanded ? 'View all news' : 'Show less';
+}
 </script>
 </body>
 </html>
