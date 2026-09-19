@@ -1,0 +1,134 @@
+{
+  "news": [
+    {
+      "date": "May 2026",
+      "textHtml": "Accepted Publication: <strong>Experimental Investigation on the Effect of High Range Water Reducing Admixture on Mechanical and Microstructural Properties of Jute Fiber Reinforced Concrete.</strong> <em>Innovative Infrastructure Solutions (IISS)</em>.",
+      "badge": "New",
+      "featured": true
+    },
+    {
+      "date": "May 2026",
+      "textHtml": "Presented a poster: <strong>Electrochemical Performance of Cement Composites Incorporating Micro- and Nano-Scale Carbon Particles for Structural Energy Storage.</strong> Southern California CEE Research Symposium 2026, University of Southern California, Los Angeles, CA.",
+      "badge": "New",
+      "featured": true
+    },
+    {
+      "date": "Jan 2026",
+      "textHtml": "Served as TA for <strong>CE 537: Advanced Reinforced Concrete</strong> at USC (Spring 2026).",
+      "featured": true
+    },
+    {
+      "date": "Aug 2025",
+      "textHtml": "Mentored <strong>Luke Bayliss</strong> (Amazon SURE Fellow). Poster <em>Understanding the Electrochemical Properties of Porous Media</em> presented at USC Viterbi SURE Symposium.",
+      "featured": true
+    },
+    {
+      "date": "2025",
+      "textHtml": "Two new journal papers published in <em>Malaysian Journal of Civil Engineering</em> (BIM) and <em>Civil Engineering and Architecture</em> (jute fiber-reinforced concrete).",
+      "featured": true
+    },
+    {
+      "date": "Fall 2024",
+      "textHtml": "Served as TA for <strong>CE 334L: Mechanical Behavior of Materials</strong> at USC (Fall 2024).",
+      "featured": false
+    },
+    {
+      "date": "Aug 2024",
+      "textHtml": "Joined <strong>USC Viterbi</strong> as a PhD student and Graduate Research &amp; Teaching Assistant, supported by the Viterbi/Graduate School Fellowship.",
+      "badge": "Milestone",
+      "featured": false
+    }
+  ],
+  "research": {
+    "current": [
+      {
+        "tag": "Current · Petersen Lab · USC",
+        "title": "Fabrication of Bicontinuous Cement Composites with Multifunctional Structural and Electrical Properties",
+        "description": "This research focuses on engineering bicontinuous cement-based composites that simultaneously exhibit enhanced mechanical performance and tunable electrical conductivity. The work integrates principles from materials science, electrochemistry, and civil engineering to develop composites suitable for smart structural applications, including structural health monitoring, self-sensing capabilities, and electromagnetic shielding. The study leverages multiscale characterization techniques to understand the interplay between microstructure, connectivity, and multifunctional properties.",
+        "featured": true,
+        "pathway": [
+          { "label": "Design", "detail": "Cement matrix with interconnected conductive networks" },
+          { "label": "Characterize", "detail": "Impedance, nanoindentation, and multiscale imaging" },
+          { "label": "Translate", "detail": "Structural energy storage, sensing, and shielding" }
+        ]
+      }
+    ],
+    "previous": [
+      {
+        "tone": "teal",
+        "tag": "Structural Engineering",
+        "title": "Blast Load Effects on Building Structures",
+        "description": "Experimental investigation of boiler blast loads on building structures at BUET. Included large- and small-scale specimen testing, dynamic data acquisition, and assessment of structural resilience. Funded by the CASR grant, BUET."
+      },
+      {
+        "tag": "Materials",
+        "title": "Fiber-Reinforced & Sustainable Concrete",
+        "description": "Extensive experimental study of mechanical behavior of concrete with natural and synthetic fibers — including jute, PVC, banana, and coconut fibers — and supplementary cementitious materials such as fly ash, rice husk ash, sugarcane bagasse ash (SCBA), and wood powder. Published 6+ peer-reviewed journal papers on these topics.",
+        "galleryLabel": "Selected figures from fiber-reinforced and sustainable concrete publications",
+        "images": [
+          { "base": "/images/research/fiber-reinforced-concrete/01", "width": 1100, "height": 746, "alt": "Laboratory setups for slump, compression, splitting tensile, drop-weight impact, flexural, and scanning electron microscopy tests", "caption": "Laboratory program spanning fresh, mechanical, impact, and microstructural tests.", "citation": "Patowary et al. (2026), Fig. 3", "sourceUrl": "https://doi.org/10.1007/s41062-026-02728-5" },
+          { "base": "/images/research/fiber-reinforced-concrete/02", "width": 715, "height": 385, "alt": "PVC sheets before processing and short PVC fibers after cutting", "caption": "Processing PVC sheets into short reinforcing fibers.", "citation": "Islam et al. (2023), Fig. 2", "sourceUrl": "https://doi.org/10.3390/buildings13102666" },
+          { "base": "/images/research/fiber-reinforced-concrete/03", "width": 830, "height": 440, "alt": "Rice husk and 13 millimeter jute fibers used in sustainable concrete", "caption": "Rice husk and jute fiber used in sustainable concrete mixtures.", "citation": "Gupta et al. (2021), Fig. 2", "sourceUrl": "https://doi.org/10.22115/CEPM.2021.280252.1166" }
+        ]
+      },
+      {
+        "tone": "gold",
+        "tag": "Computational",
+        "title": "Numerical Modeling of RC Structures",
+        "description": "Developed and validated numerical models of lateral behavior of masonry-infilled RC frames in OpenSees focusing on sliding failure of infill panels, blast-induced column response using Abaqus, and retrofitting of RC columns under lateral loads. Parametric studies informed design recommendations for retrofitting strategies.",
+        "galleryLabel": "Selected figures from reinforced-concrete modeling publications",
+        "images": [
+          { "base": "/images/research/rc-modeling/01", "width": 760, "height": 530, "alt": "Dimensioned cross-section of a reinforced-concrete column strengthened with a concrete jacket", "caption": "Cross-section of a concrete-jacketed RC column.", "citation": "Islam et al. (2022), Fig. 1", "sourceUrl": "https://doi.org/10.22115/CEPM.2023.374244.1226" },
+          { "base": "/images/research/rc-modeling/02", "width": 1100, "height": 414, "alt": "Idealized diagonal-strut model and sliding-failure behavior of a masonry-infilled reinforced-concrete frame", "caption": "Idealized masonry-infill model and sliding-failure response.", "citation": "Islam & Sen (2023), Fig. 2", "sourceUrl": "https://doi.org/10.1007/s42107-022-00566-1" },
+          { "base": "/images/research/rc-modeling/03", "width": 1095, "height": 410, "alt": "Comparison of simulated and experimental lateral response beside the corresponding masonry sliding damage", "caption": "Numerical validation against measured response and observed damage.", "citation": "Islam & Sen (2023), Fig. 5", "sourceUrl": "https://doi.org/10.1007/s42107-022-00566-1" }
+        ]
+      },
+      {
+        "tone": "teal",
+        "tag": "Geotechnical",
+        "title": "Chemical Stabilization of Expansive Soils",
+        "description": "Investigation of the effectiveness of different chemical additives on the stabilization of expansive (swelling) soils, with implications for foundation engineering in regions with problematic soils.",
+        "galleryLabel": "Selected figures from the expansive-soil stabilization publication",
+        "images": [
+          { "base": "/images/research/expansive-soils/01", "width": 615, "height": 385, "alt": "Remolded expansive-soil specimens subjected to vertical loading", "caption": "Remolded expansive-soil specimens under loading.", "citation": "Jahan et al. (2022), Fig. 2", "sourceUrl": "https://doi.org/10.5281/zenodo.7451446" },
+          { "base": "/images/research/expansive-soils/02", "width": 315, "height": 390, "alt": "Laboratory apparatus performing an unconfined compression test on a stabilized soil specimen", "caption": "Unconfined compression testing of a stabilized soil specimen.", "citation": "Jahan et al. (2022), Fig. 3", "sourceUrl": "https://doi.org/10.5281/zenodo.7451446" },
+          { "base": "/images/research/expansive-soils/03", "width": 990, "height": 1220, "alt": "Five stress-strain plots comparing expansive soil stabilized with lime, fly ash, barium chloride, calcium chloride, and magnesium chloride", "caption": "Stress-strain response for five chemical stabilizers.", "citation": "Jahan et al. (2022), Fig. 7", "sourceUrl": "https://doi.org/10.5281/zenodo.7451446" }
+        ]
+      },
+      {
+        "tone": "gold",
+        "tag": "Sustainability",
+        "title": "Carbon Emission & Sustainable Construction",
+        "description": "Analysis of carbon emissions and sequestration associated with residential building construction, and implementation of BIM for sustainable construction practices in developing countries — with emphasis on economic, environmental, and social aspects.",
+        "galleryLabel": "Selected figures from sustainable-construction publications",
+        "images": [
+          { "base": "/images/research/sustainable-construction/01", "width": 1020, "height": 680, "alt": "Architectural floor plan of the residential building used for carbon-emission assessment", "caption": "Residential floor plan used for the carbon assessment.", "citation": "Tasin et al. (2022), Fig. 2" },
+          { "base": "/images/research/sustainable-construction/02", "width": 750, "height": 475, "alt": "Pie chart showing the shares of steel, cement, and brick in total building carbon-dioxide emissions", "caption": "Material contributions to total building CO₂ emissions.", "citation": "Tasin et al. (2022), Fig. 4" },
+          { "base": "/images/research/sustainable-construction/03", "width": 908, "height": 872, "alt": "Three-dimensional BIM model of the seven-story reinforced-concrete residential project", "caption": "General view of the seven-story BIM case-study project.", "citation": "Nazim et al. (2025), Fig. 2", "sourceUrl": "https://doi.org/10.11113/mjce.v37.25019" }
+        ]
+      }
+    ]
+  },
+  "publications": {
+    "journals": [
+      { "badge": "IISS", "title": "Experimental Investigation on the Effect of High Range Water Reducing Admixture on Mechanical and Microstructural Properties of Jute Fiber Reinforced Concrete", "authorsHtml": "Patowary, F., <em>Islam, T.*</em>, Sen, D., &amp; Chowdhury, S. R.", "venue": "Innovative Infrastructure Solutions, 11(6), 329, 2026", "url": "https://doi.org/10.1007/s41062-026-02728-5", "linkLabel": "DOI ↗", "bibtexKey": "patowary2026" },
+      { "badge": "MJCE", "title": "Implementing BIM for Sustainable Construction in Developing Countries: Emphasizing Economic, Environmental, and Social Aspects", "authorsHtml": "Nazim, M. F., <em>Islam, T.*</em>, Islam S., &amp; Shuvo, R. I.", "venue": "Malaysian Journal of Civil Engineering, 37(3), 17–27, 2025", "url": "https://doi.org/10.11113/mjce.v37.25019", "linkLabel": "DOI ↗", "bibtexKey": "nazim2025" },
+      { "badge": "CEA", "title": "Effect of Jute Fiber Content on Compressive and Split Tensile Strength of Concrete Utilizing Stone Chips as Coarse Aggregates", "authorsHtml": "<em>Islam, T.</em>, Patowary, F., Sen, D.*, &amp; Chowdhury, S. R.", "venue": "Civil Engineering and Architecture, 13(3), 1995–2005, 2025", "url": "https://doi.org/10.13189/cea.2025.130339", "linkLabel": "DOI ↗", "bibtexKey": "islam2025cea" },
+      { "badge": "Buildings", "title": "Mechanical Properties of PVC Fiber-Reinforced Concrete — Effects of Fiber Content and Length", "authorsHtml": "<em>Islam, T.</em>, Safiuddin, M.*, Roman, R. A., Chakma, B., &amp; Al Maroof, A.", "venue": "Buildings, 13, 2666, 2023", "url": "https://doi.org/10.3390/buildings13102666", "linkLabel": "DOI ↗", "bibtexKey": "islam2023buildings" },
+      { "badge": "AJCE", "title": "Numerical Modeling and Validation of Lateral Behavior of Masonry-Infilled RC Frame Focusing Sliding Failure of Infill Panel", "authorsHtml": "<em>Islam, T.</em>, &amp; Sen, D.*", "venue": "Asian Journal of Civil Engineering, 24, 1247–1255, 2023", "url": "https://doi.org/10.1007/s42107-022-00566-1", "linkLabel": "DOI ↗", "bibtexKey": "islam2023ajce" },
+      { "badge": "CEPM", "title": "Numerical Analysis of Retrofitted RC Column under Lateral Load", "authorsHtml": "<em>Islam, T.*</em>, Yasar, R., &amp; Chowdhury, S. R.", "venue": "Computational Engineering and Physical Modeling, 5(3), 82–95, 2022", "url": "https://doi.org/10.22115/CEPM.2023.374244.1226", "linkLabel": "DOI ↗", "bibtexKey": "islam2022cepm" },
+      { "badge": "JAGE", "title": "Effectiveness of Different Chemicals on Stabilization of Expansive Soil", "authorsHtml": "Jahan, N.*, <em>Islam, T.</em>, &amp; Islam, S.", "venue": "Journal of Advances in Geotechnical Engineering, 5(3), 1–11, 2022", "url": "https://doi.org/10.5281/zenodo.7451446", "linkLabel": "DOI ↗", "bibtexKey": "jahan2022" },
+      { "badge": "JCBME", "title": "Carbon Emission and Carbon Sequestration of Residential Building", "authorsHtml": "Tasin, T. R.*, Noman, A. A. R., Prottoy, A. R., Islam, S., &amp; <em>Islam, T.</em>", "venue": "Journal of Construction and Building Materials Engineering, 8(1), 33–41, 2022", "url": "https://matjournals.co.in/index.php/JOCBME/article/view/131", "linkLabel": "Link ↗", "bibtexKey": "tasin2022" },
+      { "badge": "MJCE", "title": "Behavior of Concrete Compressive Strength by Utilizing Fly Ash and Wood Powder", "authorsHtml": "<em>Islam, T.*</em>, Gupta, S. D., Janin, J., &amp; Rahman, A.", "venue": "Malaysian Journal of Civil Engineering, 33(3), 69–77, 2021", "url": "https://doi.org/10.11113/mjce.v33.17398", "linkLabel": "DOI ↗", "bibtexKey": "islam2021mjce" },
+      { "badge": "MJCE", "title": "Experimental Study of Concrete with Sugarcane Bagasse Ash (SCBA) at Elevated Temperature", "authorsHtml": "Gupta, S. D.*, <em>Islam, T.</em>, Palash, M. D. N., &amp; Shohan, M. S. A.", "venue": "Malaysian Journal of Civil Engineering, 33(3), 59–67, 2021", "url": "https://doi.org/10.11113/mjce.v33.17379", "linkLabel": "DOI ↗", "bibtexKey": "gupta2021scba" },
+      { "badge": "CEPM", "title": "Experimental Study of Concrete Using Raw Rice Husk as Partial Replacement of Cement with Natural Fiber (Jute Fiber) as Reinforcing Material", "authorsHtml": "Gupta, S. D.*, <em>Islam, T.</em>, Sohag, M. A. I., Salakin, S., &amp; Hossain, I.", "venue": "Computational Engineering and Physical Modeling, 4(3), 29–42, 2021", "url": "https://doi.org/10.22115/CEPM.2021.280252.1166", "linkLabel": "DOI ↗", "bibtexKey": "gupta2021cepm" }
+    ],
+    "conference": [
+      { "badge": "ICCESD", "title": "Bench Scale Study on Co-Composting for Organic Solid Wastes and Faecal Sludge", "authorsHtml": "<em>Islam, T.*</em>, Bari, Q. H., Shovon, S. M. S. A., &amp; Al Saif, R.", "venue": "4th International Conference on Civil Engineering for Sustainable Development (ICCESD 2018)", "url": "http://www.iccesd.com/proc_2018/index.html", "linkLabel": "Link ↗", "bibtexKey": "islam2018" }
+    ],
+    "posters": [
+      { "year": "2026", "title": "Electrochemical Performance of Cement Composites Incorporating Micro- and Nano-Scale Carbon Particles for Structural Energy Storage", "authors": "Islam, T.*, & Petersen, T.", "venue": "Southern California CEE Research Symposium 2026, University of Southern California, Los Angeles, CA, May 01, 2026", "url": "https://drive.google.com/file/d/1NHYsFEnGETl6NgcVzoX9z5rkZAwCAJqq/view?usp=sharing" },
+      { "year": "2025", "title": "Understanding the Electrochemical Properties of Porous Media", "authors": "Bayliss, L.*, Islam, T., & Petersen, T.", "venue": "Viterbi SURE Symposium, USC, Los Angeles, CA, August 7, 2025", "url": "https://drive.google.com/file/d/1AxhQVxN66WNG_xLED-vhxv5jLLtlu7pS/view?usp=sharing" }
+    ]
+  }
+}

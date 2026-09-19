@@ -199,6 +199,276 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 updateAmbientMotion();
 
+/* ── DATA-DRIVEN CONTENT ──
+   News, research projects, galleries, and publications are loaded from
+   data/site-content.json. The original HTML remains as an SEO-friendly and
+   offline fallback if the data file cannot be loaded. */
+(function loadSiteContent() {
+  const validUrl = value => {
+    try {
+      const parsed = new URL(value, window.location.origin);
+      return ['http:', 'https:'].includes(parsed.protocol) ? parsed.href : '#';
+    } catch (error) { return '#'; }
+  };
+  const plural = (count, singular, pluralForm) => count + ' ' + (count === 1 ? singular : pluralForm);
+
+  function renderNews(items) {
+    const list = document.getElementById('news-list');
+    if (!list || !Array.isArray(items) || !items.length) return;
+    list.replaceChildren();
+    items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'news-row' + (item.featured === false ? ' news-extra' : '');
+      if (item.featured === false) row.style.display = 'none';
+      const date = document.createElement('span');
+      date.className = 'news-date';
+      date.textContent = item.date || '';
+      const copy = document.createElement('span');
+      copy.className = 'news-text';
+      copy.innerHTML = item.textHtml || '';
+      if (item.badge) {
+        const badge = document.createElement('span');
+        badge.className = 'news-badge';
+        badge.textContent = item.badge;
+        copy.append(' ', badge);
+      }
+      row.append(date, copy);
+      list.append(row);
+    });
+    const toggle = document.getElementById('news-toggle-btn');
+    if (toggle) toggle.hidden = !items.some(item => item.featured === false);
+  }
+
+  function renderPathway(steps) {
+    if (!Array.isArray(steps) || !steps.length) return null;
+    const figure = document.createElement('figure');
+    figure.className = 'research-pathway';
+    figure.setAttribute('aria-labelledby', 'research-pathway-title');
+    const caption = document.createElement('figcaption');
+    caption.id = 'research-pathway-title';
+    caption.textContent = 'Research pathway';
+    const grid = document.createElement('div');
+    grid.className = 'pathway-grid';
+    steps.forEach((step, index) => {
+      if (index) {
+        const arrow = document.createElement('span');
+        arrow.className = 'pathway-arrow';
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.textContent = '→';
+        grid.append(arrow);
+      }
+      const item = document.createElement('div');
+      item.className = 'pathway-step';
+      const number = document.createElement('span');
+      number.className = 'pathway-number';
+      number.textContent = String(index + 1).padStart(2, '0');
+      const label = document.createElement('strong');
+      label.textContent = step.label || '';
+      const detail = document.createElement('span');
+      detail.textContent = step.detail || '';
+      item.append(number, label, detail);
+      grid.append(item);
+    });
+    figure.append(caption, grid);
+    return figure;
+  }
+
+  function renderGallery(project) {
+    if (!Array.isArray(project.images) || !project.images.length) return null;
+    const gallery = document.createElement('div');
+    gallery.className = 'research-gallery';
+    gallery.setAttribute('aria-label', project.galleryLabel || ('Selected figures for ' + project.title));
+    project.images.forEach(image => {
+      const figure = document.createElement('figure');
+      figure.className = 'research-figure';
+      const imageLink = document.createElement('a');
+      imageLink.className = 'research-figure-image';
+      imageLink.href = image.base + '.jpg';
+      imageLink.target = '_blank';
+      imageLink.rel = 'noopener noreferrer';
+      imageLink.setAttribute('aria-label', 'Open full-size figure: ' + image.alt);
+      const picture = document.createElement('picture');
+      [['avif', 'image/avif'], ['webp', 'image/webp']].forEach(([extension, type]) => {
+        const source = document.createElement('source');
+        source.type = type;
+        source.srcset = image.base + '.' + extension;
+        picture.append(source);
+      });
+      const img = document.createElement('img');
+      img.src = image.base + '.jpg';
+      img.alt = image.alt || '';
+      img.width = Number(image.width) || 900;
+      img.height = Number(image.height) || 600;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      picture.append(img);
+      imageLink.append(picture);
+      const caption = document.createElement('figcaption');
+      const captionText = document.createElement('span');
+      captionText.textContent = image.caption || '';
+      const cite = document.createElement('cite');
+      if (image.sourceUrl) {
+        const sourceLink = document.createElement('a');
+        sourceLink.href = validUrl(image.sourceUrl);
+        sourceLink.target = '_blank';
+        sourceLink.rel = 'noopener noreferrer';
+        sourceLink.textContent = image.citation || 'Source';
+        cite.append(sourceLink);
+      } else cite.textContent = image.citation || '';
+      caption.append(captionText, cite);
+      figure.append(imageLink, caption);
+      gallery.append(figure);
+    });
+    return gallery;
+  }
+
+  function createResearchCard(project) {
+    const card = document.createElement('div');
+    card.className = 'research-card' + (project.featured ? ' research-card-featured' : '') + (project.tone ? ' ' + project.tone : '');
+    const tag = document.createElement('span');
+    tag.className = 'rc-tag' + (project.tone ? ' ' + project.tone : '');
+    tag.textContent = project.tag || '';
+    const title = document.createElement('div');
+    title.className = 'rc-title';
+    title.textContent = project.title || '';
+    const description = document.createElement('div');
+    description.className = 'rc-desc';
+    description.textContent = project.description || '';
+    card.append(tag, title, description);
+    const pathway = renderPathway(project.pathway);
+    const gallery = renderGallery(project);
+    if (pathway) card.append(pathway);
+    if (gallery) card.append(gallery);
+    return card;
+  }
+
+  function renderResearch(research) {
+    if (!research) return;
+    [['current', 'research-current-list'], ['previous', 'research-previous-list']].forEach(([key, id]) => {
+      const container = document.getElementById(id);
+      const projects = research[key];
+      if (!container || !Array.isArray(projects) || !projects.length) return;
+      container.replaceChildren(...projects.map(createResearchCard));
+    });
+  }
+
+  function createPublication(item, number) {
+    const row = document.createElement('div');
+    row.className = 'pub-item';
+    const num = document.createElement('span');
+    num.className = 'pub-num';
+    num.textContent = number;
+    const badge = document.createElement('span');
+    badge.className = 'pub-badge';
+    badge.textContent = item.badge || '';
+    const body = document.createElement('div');
+    body.className = 'pub-body';
+    const title = document.createElement('div');
+    title.className = 'pub-title';
+    title.textContent = item.title || '';
+    const authors = document.createElement('div');
+    authors.className = 'pub-authors';
+    authors.innerHTML = item.authorsHtml || '';
+    const venue = document.createElement('div');
+    venue.className = 'pub-venue';
+    venue.textContent = item.venue || '';
+    const links = document.createElement('div');
+    links.className = 'pub-links';
+    if (item.url) {
+      const link = document.createElement('a');
+      link.href = validUrl(item.url);
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.className = 'pub-link';
+      link.textContent = item.linkLabel || 'Link ↗';
+      links.append(link);
+    }
+    if (item.bibtexKey) {
+      const bib = document.createElement('button');
+      bib.type = 'button';
+      bib.className = 'pub-link bib-btn';
+      bib.textContent = 'BibTeX';
+      bib.addEventListener('click', () => copyBibtex(item.bibtexKey, bib));
+      links.append(bib);
+    }
+    body.append(title, authors, venue, links);
+    row.append(num, badge, body);
+    return row;
+  }
+
+  function renderPublicationList(sectionId, items) {
+    const list = document.querySelector('#' + sectionId + ' .pub-list');
+    if (!list || !Array.isArray(items)) return;
+    list.replaceChildren(...items.map((item, index) => createPublication(item, items.length - index)));
+  }
+
+  function renderPosters(items) {
+    const section = document.getElementById('poster-section');
+    if (!section || !Array.isArray(items)) return;
+    section.querySelectorAll('.poster-item').forEach(item => item.remove());
+    items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'poster-item';
+      const label = document.createElement('div');
+      label.className = 'poster-label';
+      label.textContent = 'Poster · ' + item.year;
+      const title = document.createElement('div');
+      title.className = 'poster-title';
+      title.textContent = item.title || '';
+      const authors = document.createElement('div');
+      authors.className = 'poster-authors';
+      authors.textContent = item.authors || '';
+      const venue = document.createElement('div');
+      venue.className = 'poster-venue';
+      venue.textContent = item.venue || '';
+      if (item.url) {
+        venue.append(' ');
+        const link = document.createElement('a');
+        link.href = validUrl(item.url);
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = '[View Poster ↗]';
+        venue.append(link);
+      }
+      row.append(label, title, authors, venue);
+      section.append(row);
+    });
+  }
+
+  function renderPublications(publications) {
+    if (!publications) return;
+    const journals = publications.journals || [];
+    const conference = publications.conference || [];
+    const posters = publications.posters || [];
+    renderPublicationList('journal-section', journals);
+    renderPublicationList('conference-section', conference);
+    renderPosters(posters);
+    const journalsLabel = document.getElementById('pub-count-label');
+    const conferenceLabel = document.getElementById('conference-count-label');
+    const postersLabel = document.getElementById('poster-count-label');
+    if (journalsLabel) journalsLabel.textContent = plural(journals.length, 'peer-reviewed journal paper', 'peer-reviewed journal papers');
+    if (conferenceLabel) conferenceLabel.textContent = plural(conference.length, 'conference proceeding', 'conference proceedings');
+    if (postersLabel) postersLabel.textContent = plural(posters.length, 'poster', 'posters');
+  }
+
+  fetch('data/site-content.json', { cache: 'no-cache' })
+    .then(response => {
+      if (!response.ok) throw new Error('Content request failed');
+      return response.json();
+    })
+    .then(data => {
+      renderNews(data.news);
+      renderResearch(data.research);
+      renderPublications(data.publications);
+      document.documentElement.dataset.contentSource = 'data';
+      refreshReveals();
+    })
+    .catch(error => {
+      document.documentElement.dataset.contentSource = 'fallback';
+      console.warn('Using built-in site content:', error.message);
+    });
+})();
+
 /* ── PUBLICATION FILTER ── */
 function filterPubs(type, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -602,10 +872,11 @@ const BIBTEX = {
 };
 
 let _bibTimer = null;
-function copyBibtex(key) {
+function copyBibtex(key, trigger) {
   const entry = BIBTEX[key];
   if (!entry) return;
-  const btn = event.currentTarget;
+  const btn = trigger || (typeof event !== 'undefined' ? event.currentTarget : null);
+  if (!btn) return;
   navigator.clipboard.writeText(entry).then(() => {
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
