@@ -240,7 +240,10 @@ function searchPubs(query) {
   const FALLBACK = {
     total: 51, hIndex: 3, i10Index: 2, papers: 11,
     byYear: { '2021': 2, '2022': 3, '2023': 2, '2024': 14, '2025': 18, '2026': 12 },
-    updatedAt: '2026-06-08'
+    updatedAt: 'June 08, 2026',
+    source: 'Semantic Scholar',
+    profileUrl: 'https://www.semanticscholar.org/author/2061816683',
+    yearSeriesLabel: 'Citations by publication year'
   };
   let chartInstance = null;
   let latestYearData = {};
@@ -346,11 +349,19 @@ function searchPubs(query) {
     animateEl('i10-index', d.i10Index);
     animateEl('paper-count', d.papers);
     const badge = document.getElementById('cit-updated');
+    const source = d.source || 'Citation data';
     if (badge) {
       badge.textContent = d.updatedAt
-        ? 'Semantic Scholar · ' + d.updatedAt
-        : 'Semantic Scholar';
+        ? source + ' · ' + d.updatedAt
+        : source;
     }
+    const sourceLink = document.getElementById('cit-source-link');
+    if (sourceLink && d.profileUrl) {
+      sourceLink.href = d.profileUrl;
+      sourceLink.setAttribute('aria-label', 'Open ' + source + ' profile');
+    }
+    const chartLabel = document.getElementById('cit-chart-label');
+    if (chartLabel) chartLabel.textContent = d.yearSeriesLabel || 'Citation history';
     latestYearData = d.byYear || {};
     renderChart(latestYearData);
   }

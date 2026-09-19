@@ -1,125 +1,148 @@
-"""
-GitHub Action script: fetches Semantic Scholar citation metrics for Tarikul Islam
-using the public API (free, no key, no CAPTCHA).
+"""Update citation metrics from the Google Scholar profile through SerpAPI.
 
-Falls back to the existing citations.json values if the API is unreachable,
-so the workflow always exits 0 and never breaks the site.
+The API key is read only from the SERPAPI_KEY environment variable. If the
+secret is missing or the service is unavailable, the existing citations.json
+is preserved so the public website never falls back to zeros.
 """
+
 import json
+import os
 import sys
 import time
-import urllib.request
 import urllib.error
+import urllib.parse
+import urllib.request
 from datetime import datetime, timezone
 
-# ── Config ────────────────────────────────────────────────────────────────────
-SCHOLAR_ID   = "60hz_E8AAAAJ"          # Google Scholar ID (kept for reference)
-S2_AUTHOR_ID = "2061816683"            # Semantic Scholar author ID for Tarikul Islam
-OUTPUT_FILE  = "citations.json"
-PAPERS_FLOOR = 11                       # minimum paper count — bump when you publish more
 
-# Semantic Scholar public API — no key required
-S2_BASE      = "https://api.semanticscholar.org/graph/v1"
-HEADERS      = {"User-Agent": "tarik-citations-bot/1.0 (tarikuli@usc.edu)"}
-# ──────────────────────────────────────────────────────────────────────────────
+SCHOLAR_ID = "60hz_E8AAAAJ"
+OUTPUT_FILE = "citations.json"
+PAPERS_FLOOR = 11
+SERPAPI_ENDPOINT = "https://serpapi.com/search.json"
+PROFILE_URL = f"https://scholar.google.com/citations?hl=en&user={SCHOLAR_ID}"
+HEADERS = {"User-Agent": "tarik-citations-bot/2.0 (tarikuli@usc.edu)"}
 
 
-def get(url: str, retries: int = 3, backoff: float = 4.0) -> dict:
-    """HTTP GET with retries and exponential back-off."""
+def get_json(url: str, retries: int = 3, backoff: float = 4.0) -> dict:
+    """Fetch JSON without ever exposing the API key in logs or exceptions."""
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                return json.loads(resp.read())
-        except urllib.error.HTTPError as e:
-            if e.code == 429:                       # rate-limited
-                wait = backoff * (2 ** attempt)
-                print(f"  Rate-limited (429) — waiting {wait:.0f}s …")
+            request = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return json.loads(response.read())
+        except urllib.error.HTTPError as error:
+            if error.code == 429 and attempt < retries - 1:
+                wait = backoff * (2**attempt)
+                print(f"Rate limited; retrying in {wait:.0f} seconds.")
                 time.sleep(wait)
-            else:
-                raise
-        except Exception as e:
+                continue
+            raise RuntimeError(f"Citation service returned HTTP {error.code}") from None
+        except Exception:
             if attempt == retries - 1:
-                raise
-            time.sleep(backoff)
-    raise RuntimeError(f"Failed after {retries} attempts: {url}")
+                raise RuntimeError("Citation service request failed") from None
+            time.sleep(backoff * (2**attempt))
+    raise RuntimeError("Citation service request failed")
+
+
+def metric_value(table: list, metric: str) -> int:
+    """Read the all-time value from SerpAPI's cited_by table."""
+    for row in table:
+        value = row.get(metric)
+        if isinstance(value, dict):
+            return int(value.get("all", 0) or 0)
+    return 0
+
+
+def parse_serpapi(payload: dict) -> dict:
+    """Convert a Google Scholar Author API response to the site's schema."""
+    if payload.get("error"):
+        raise RuntimeError("Citation service returned an error")
+
+    cited_by = payload.get("cited_by") or {}
+    table = cited_by.get("table") or []
+    graph = cited_by.get("graph") or []
+    if not table:
+        raise RuntimeError("Google Scholar metrics were missing from the response")
+
+    total = metric_value(table, "citations")
+    h_index = metric_value(table, "h_index")
+    i10_index = metric_value(table, "i10_index")
+    if total <= 0:
+        raise RuntimeError("Google Scholar returned an invalid citation total")
+
+    by_year = {
+        str(item["year"]): int(item.get("citations", 0) or 0)
+        for item in graph
+        if item.get("year") is not None
+    }
+    by_year = dict(sorted(by_year.items()))
+    paper_count = max(len(payload.get("articles") or []), PAPERS_FLOOR)
+
+    return {
+        "total": total,
+        "hIndex": h_index,
+        "i10Index": i10_index,
+        "papers": paper_count,
+        "byYear": by_year,
+        "updatedAt": datetime.now(timezone.utc).strftime("%B %d, %Y"),
+        "source": "Google Scholar",
+        "profileUrl": PROFILE_URL,
+        "yearSeriesLabel": "Citations per year",
+    }
 
 
 def load_fallback() -> dict:
-    """Return existing citations.json so we never write zeros."""
+    """Return existing website data so a failed refresh never erases metrics."""
     try:
-        with open(OUTPUT_FILE) as f:
-            return json.load(f)
+        with open(OUTPUT_FILE, encoding="utf-8") as file:
+            return json.load(file)
     except Exception:
         return {
-            "total": 42, "hIndex": 3, "i10Index": 1, "papers": PAPERS_FLOOR,
-            "byYear": {"2021": 2, "2022": 2, "2023": 2,
-                       "2024": 14, "2025": 18, "2026": 4},
-            "updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            "total": 51,
+            "hIndex": 3,
+            "i10Index": 2,
+            "papers": PAPERS_FLOOR,
+            "byYear": {},
+            "updatedAt": "June 08, 2026",
+            "source": "Semantic Scholar",
+            "profileUrl": "https://www.semanticscholar.org/author/2061816683",
+            "yearSeriesLabel": "Citations by publication year",
         }
 
 
-def fetch_citations() -> bool:
-    # ── 1. Author summary (total citations, h-index) ─────────────────────────
-    author_url = (
-        f"{S2_BASE}/author/{S2_AUTHOR_ID}"
-        "?fields=citationCount,hIndex,paperCount"
+def fetch_citations() -> dict:
+    api_key = os.environ.get("SERPAPI_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("SERPAPI_KEY is not configured")
+
+    query = urllib.parse.urlencode(
+        {
+            "engine": "google_scholar_author",
+            "author_id": SCHOLAR_ID,
+            "hl": "en",
+            "num": 100,
+            "api_key": api_key,
+        }
     )
-    author = get(author_url)
+    return parse_serpapi(get_json(f"{SERPAPI_ENDPOINT}?{query}"))
 
-    total       = author.get("citationCount", 0)
-    h_index     = author.get("hIndex", 0)
-    paper_count = max(author.get("paperCount", 0), PAPERS_FLOOR)
 
-    # ── 2. Per-paper data (for byYear + i10-index) ────────────────────────────
-    papers_url = (
-        f"{S2_BASE}/author/{S2_AUTHOR_ID}/papers"
-        "?fields=citationCount,year&limit=100"
-    )
-    papers_data = get(papers_url)
-    papers = papers_data.get("data", [])
-
-    by_year: dict = {}
-    i10_count = 0
-
-    for p in papers:
-        year  = p.get("year")
-        cites = p.get("citationCount", 0)
-        if cites >= 10:
-            i10_count += 1
-        if year:
-            key = str(year)
-            by_year[key] = by_year.get(key, 0) + cites
-
-    # Sort years for clean JSON
-    by_year = dict(sorted(by_year.items()))
-
-    data = {
-        "total":     total,
-        "hIndex":    h_index,
-        "i10Index":  i10_count,
-        "papers":    paper_count,
-        "byYear":    by_year,
-        "updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-    }
-
-    with open(OUTPUT_FILE, "w") as f:
-        json.dump(data, f, indent=2)
-
-    print(
-        f"OK  total={data['total']}  h={data['hIndex']}  "
-        f"i10={data['i10Index']}  papers={data['papers']}"
-    )
-    return True
+def write_data(data: dict) -> None:
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=2, ensure_ascii=False)
+        file.write("\n")
 
 
 if __name__ == "__main__":
     try:
-        fetch_citations()
-    except Exception as e:
-        print(f"WARNING: Semantic Scholar fetch failed — {e}", file=sys.stderr)
-        print("Preserving existing citations.json (no write).")
-        # Exit 0 so the workflow stays green; site data is unchanged
+        updated = fetch_citations()
+        write_data(updated)
+        print(
+            f"Updated Google Scholar metrics: citations={updated['total']} "
+            f"h-index={updated['hIndex']} i10-index={updated['i10Index']} "
+            f"papers={updated['papers']}"
+        )
+    except Exception as error:
+        cached = load_fallback()
+        print(f"WARNING: {error}. Preserving cached {cached.get('source', 'citation')} data.")
         sys.exit(0)
-
-    sys.exit(0)
