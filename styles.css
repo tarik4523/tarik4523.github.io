@@ -1437,3 +1437,19 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
   .pathway-step { min-height: 0; }
   .pathway-arrow { justify-self: center; transform: rotate(90deg); }
 }
+
+/* Keep the portrait compact and show the complete photo without cropping. */
+.profile-photo-wrap {
+  width: min(220px, 100%);
+  align-self: center;
+}
+.profile-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+}
+@media (max-width: 920px) {
+  .profile-photo-wrap { width: min(200px, 70vw); }
+}
