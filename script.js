@@ -70,6 +70,23 @@ function updateTopbarState() {
 window.addEventListener('scroll', updateTopbarState, { passive: true });
 updateTopbarState();
 
+/* ── CV AVAILABILITY NOTICE ── */
+let cvNoticeTimer = null;
+function showCvUnavailable(trigger) {
+  const toast = document.getElementById('site-toast');
+  const text = document.getElementById('site-toast-text');
+  if (!toast || !text) return;
+  text.textContent = 'CV is not available yet. Please check back soon.';
+  toast.hidden = false;
+  requestAnimationFrame(() => toast.classList.add('visible'));
+  if (cvNoticeTimer) clearTimeout(cvNoticeTimer);
+  cvNoticeTimer = setTimeout(() => {
+    toast.classList.remove('visible');
+    setTimeout(() => { toast.hidden = true; }, 220);
+  }, 3600);
+  if (trigger) trigger.setAttribute('aria-describedby', 'site-toast-text');
+}
+
 /* ── PAGE NAV ── */
 let pageSwitchTimer = null;
 const VALID_PAGES = new Set(['bio','research','publications','teaching','mentoring','awards','skills','experience']);
