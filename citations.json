@@ -1,18 +1,18 @@
 {
-  "total": 51,
+  "total": 52,
   "hIndex": 3,
   "i10Index": 2,
-  "papers": 11,
+  "papers": 12,
   "byYear": {
     "2021": 2,
     "2022": 3,
     "2023": 2,
     "2024": 14,
     "2025": 18,
-    "2026": 12
+    "2026": 13
   },
-  "updatedAt": "June 08, 2026",
-  "source": "Semantic Scholar",
-  "profileUrl": "https://www.semanticscholar.org/author/2061816683",
-  "yearSeriesLabel": "Citations by publication year"
+  "updatedAt": "September 19, 2026",
+  "source": "Google Scholar",
+  "profileUrl": "https://scholar.google.com/citations?hl=en&user=60hz_E8AAAAJ",
+  "yearSeriesLabel": "Citations per year"
 }
