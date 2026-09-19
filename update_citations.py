@@ -1,6 +1,6 @@
 """
-GitHub Action script: fetches citation metrics for Tarikul Islam
-using the Semantic Scholar API (free, no key, no CAPTCHA).
+GitHub Action script: fetches Semantic Scholar citation metrics for Tarikul Islam
+using the public API (free, no key, no CAPTCHA).
 
 Falls back to the existing citations.json values if the API is unreachable,
 so the workflow always exits 0 and never breaks the site.

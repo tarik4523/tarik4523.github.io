@@ -1,4 +1,4 @@
-name: Update Google Scholar Citations
+name: Update Semantic Scholar Citations
 
 on:
   schedule:
