@@ -132,7 +132,8 @@ function showPage(id, pushState = true) {
     /* Remove the default active class from bio and activate the correct page */
     const bioPage = document.getElementById('page-bio');
     if (bioPage) bioPage.classList.remove('active');
-    showPage(hash, false);
+    /* Let the remaining script initialize reveal helpers before switching. */
+    requestAnimationFrame(() => showPage(hash, false));
   }
 })();
 

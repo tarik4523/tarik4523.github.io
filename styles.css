@@ -1538,3 +1538,70 @@ html[data-theme="dark"] .news-list { background: rgba(17, 24, 42, 0.84); }
 @media (max-width: 920px) {
   .profile-photo-wrap { width: min(200px, 70vw); }
 }
+
+/* ── TYPOGRAPHY REFINEMENTS ──
+   Keep the editorial serif/sans pairing while improving clarity at small sizes. */
+.topbar-nav a,
+.nav-more summary,
+.mobile-nav a {
+  font-weight: 500;
+  letter-spacing: .055em;
+}
+
+.page-subtitle {
+  letter-spacing: .105em;
+}
+
+.section-label {
+  letter-spacing: .14em;
+}
+
+.rc-tag,
+.poster-label,
+.teaching-group-label,
+.grant-agency,
+.skill-card-title,
+.news-date,
+.research-pathway figcaption {
+  letter-spacing: .085em;
+}
+
+.cit-title { letter-spacing: .12em; }
+.cit-chart-label { letter-spacing: .085em; }
+.cit-lbl { letter-spacing: .055em; }
+
+.pub-title {
+  font-weight: 600;
+  line-height: 1.42;
+}
+.pub-authors { font-weight: 300; }
+.pub-venue { font-weight: 400; }
+
+.research-figure figcaption { font-size: 13.5px; }
+.research-figure cite { font-size: 11.5px; }
+.cit-header-badge { font-size: 10.5px; }
+.cit-chart-label { font-size: 10.5px; }
+.research-pathway figcaption { font-size: 12px; }
+.pathway-step > span:last-child { font-size: 14px; }
+
+@media (max-width: 700px) {
+  .page-subtitle {
+    font-size: 11.5px;
+    letter-spacing: .08em;
+    line-height: 1.65;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: .11em;
+  }
+  .pub-title {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .pub-authors,
+  .pub-venue,
+  .poster-authors,
+  .poster-venue { font-size: 15px; }
+  .research-figure figcaption { font-size: 14px; }
+  .research-figure cite { font-size: 12px; }
+}
