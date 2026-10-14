@@ -34,12 +34,6 @@ function applyTheme(mode, persist = true) {
   /* Update theme-color meta for mobile browser chrome */
   const tcMeta = document.getElementById('theme-color-meta');
   if (tcMeta) tcMeta.content = resolved === 'dark' ? '#0b1020' : '#f4f7fb';
-  /* Announce change to screen readers */
-  const announce = document.getElementById('theme-announce');
-  if (announce && persist) {
-    announce.textContent = '';
-    setTimeout(() => { announce.textContent = 'Theme changed to ' + mode; }, 50);
-  }
   window.dispatchEvent(new CustomEvent('themechange', { detail: { mode, resolved } }));
 }
 if (themeToggle && themeIcon) {
